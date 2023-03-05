@@ -17,7 +17,7 @@ function HeaderLogged(): JSX.Element {
                 </div>
               </li>
               <li className="header__nav-item">
-                <a href='../../pages/login/login' className="header__nav-link" >
+                <a href='../../pages/login/login.tsx' className="header__nav-link" >
                   <span className="header__signout">Sign out</span>
                 </a>
               </li>

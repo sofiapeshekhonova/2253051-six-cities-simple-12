@@ -10,7 +10,7 @@ function Card({card}: Props): JSX.Element {
         <span>{!card.premium ? '' : 'Premium'}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href='../../pages/property/property'>
+        <a href='../../pages/property/property.tsx'>
           <img className="place-card__image" src={card.previewImage} width="260" height="200" alt="Place"/>
         </a>
       </div>
@@ -28,7 +28,7 @@ function Card({card}: Props): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href='../../pages/property/property'>{card.title}</a>
+          <a href='../../pages/property/property.tsx'>{card.title}</a>
         </h2>
         <p className="place-card__type">{card.type}</p>
       </div>
