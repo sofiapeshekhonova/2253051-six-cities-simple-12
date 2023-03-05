@@ -1,0 +1,22 @@
+export type CardProps = {
+  title: string;
+  previewImage: string;
+  premium?: boolean;
+  price: number;
+  type: string;
+  id: number;
+  maxAdults?: number;
+  bedrooms?: number;
+  rating: number;
+  description?: string;
+  goods: string[];
+  images: string[];
+ }
+
+export type Host = {
+  avatarUrl: string;
+  id: number;
+  isPro: boolean;
+  name: string;
+ }
+

@@ -1,47 +1,94 @@
 export const cards = [
   {
     id: 1,
-    img: 'img/apartment-01.jpg',
-    name: 'Beautiful &amp; luxurious apartment at great location',
-    premium: 'Premium',
+    previewImage: 'img/apartment-01.jpg',
+    title: 'Beautiful &amp; luxurious apartment at great location',
+    premium: true,
     price: 120,
-    houseType: 'Apartment',
-    rating: '80%',
+    type: 'Apartment',
+    maxAdults: 4,
+    bedrooms: 3,
+    rating: 4.8,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+    ],
   },
   {
     id: 2,
-    img: 'img/room.jpg',
-    name: 'Wood and stone place',
-    premium: '',
+    previewImage: 'img/room.jpg',
+    title: 'Wood and stone place',
+    premium: false,
     price: 80,
-    houseType: 'Private room',
-    rating: '80%',
+    type: 'Private room',
+    rating: 4.8,
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+    ],
   },
   {
     id: 3,
-    img: 'img/apartment-02.jpg',
-    name: 'Canal View Prinsengracht',
-    premium: '',
+    previewImage: 'img/apartment-02.jpg',
+    title: 'Canal View Prinsengracht',
+    premium: false,
     price: 132,
-    houseType: 'Apartment',
-    rating: '80%',
+    type: 'Apartment',
+    rating: 4.8,
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+    ],
   },
   {
     id: 4,
-    img: 'img/apartment-03.jpg',
-    name: 'Nice, cozy, warm big bed apartment',
-    premium: 'Premium',
+    previewImage: 'img/apartment-03.jpg',
+    title: 'Nice, cozy, warm big bed apartment',
+    premium: true,
     price: 180,
-    houseType: 'Apartment',
-    rating: '100%',
+    type: 'Apartment',
+    rating: 4.8,
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+    ],
   },
   {
     id: 5,
-    img: 'img/room.jpg',
-    name: 'Wood and stone place',
-    premium: '',
+    previewImage: 'img/room.jpg',
+    title: 'Wood and stone place',
+    premium: false,
     price: 80,
-    houseType: 'Private room',
-    rating: '80%',
+    type: 'Private room',
+    rating: 4.8,
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+    ],
+  },
+];
+
+export const host = [
+  {
+    avatarUrl: 'img/1.png',
+    id: 3,
+    isPro: true,
+    name: 'Angelina',
+  },
+];
+
+export const reviews = [
+  {
+    comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    date: '2023-02-09T10:33:21.322Z',
+    id: 1,
+    rating: 4,
+    user: {
+      avatarUrl: 'img/1.png',
+      id: 1,
+      isPro: false,
+      name: 'Oliver.conner'
+    }
   },
 ];
