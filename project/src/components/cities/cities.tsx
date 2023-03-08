@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 type cityProps = {
   city: string;
 }
@@ -5,9 +7,9 @@ type cityProps = {
 function Cities({city}: cityProps): JSX.Element {
   return (
     <li className="locations__item">
-      <a className="locations__item-link tabs__item" href="city?">
+      <Link to={'/'} className="locations__item-link tabs__item">
         <span>{city}</span>
-      </a>
+      </Link>
     </li>
   );
 }

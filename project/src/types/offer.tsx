@@ -1,3 +1,11 @@
+
+export type Host = {
+  avatarUrl: string;
+  id: number;
+  isPro: boolean;
+  name: string;
+ }
+
 export type CardProps = {
   title: string;
   previewImage: string;
@@ -11,12 +19,6 @@ export type CardProps = {
   description?: string;
   goods: string[];
   images: string[];
- }
-
-export type Host = {
-  avatarUrl: string;
-  id: number;
-  isPro: boolean;
-  name: string;
+  host: Host;
  }
 

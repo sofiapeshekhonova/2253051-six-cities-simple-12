@@ -14,6 +14,12 @@ export const cards = [
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 30,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 2,
@@ -27,6 +33,12 @@ export const cards = [
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 50,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 3,
@@ -40,6 +52,12 @@ export const cards = [
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 60,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 4,
@@ -53,6 +71,12 @@ export const cards = [
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 10,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 5,
@@ -66,15 +90,12 @@ export const cards = [
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
-  },
-];
-
-export const host = [
-  {
-    avatarUrl: 'img/1.png',
-    id: 3,
-    isPro: true,
-    name: 'Angelina',
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 20,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
 ];
 
@@ -85,8 +106,8 @@ export const reviews = [
     id: 1,
     rating: 4,
     user: {
-      avatarUrl: 'img/1.png',
-      id: 1,
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 2,
       isPro: false,
       name: 'Oliver.conner'
     }

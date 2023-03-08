@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function NearPlaces(): JSX.Element {
   return (
     <section className="near-places places">
@@ -5,9 +7,9 @@ function NearPlaces(): JSX.Element {
       <div className="near-places__list places__list">
         <article className="near-places__card place-card">
           <div className="near-places__image-wrapper place-card__image-wrapper">
-            <a href='../../pages/property/property.tsx'>
+            <Link to={'/offer/id'}>
               <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place" />
-            </a>
+            </Link>
           </div>
           <div className="place-card__info">
             <div className="place-card__price-wrapper">
@@ -23,7 +25,7 @@ function NearPlaces(): JSX.Element {
               </div>
             </div>
             <h2 className="place-card__name">
-              <a href='../../pages/property/property.tsx'>Wood and stone place</a>
+              <Link to={'/offer/id'}>Wood and stone place</Link>
             </h2>
             <p className="place-card__type">Private room</p>
           </div>
@@ -31,9 +33,9 @@ function NearPlaces(): JSX.Element {
 
         <article className="near-places__card place-card">
           <div className="near-places__image-wrapper place-card__image-wrapper">
-            <a href='../../pages/property/property.tsx'>
+            <Link to={'/offer/id'}>
               <img className="place-card__image" src="img/apartment-02.jpg" width="260" height="200" alt="Place" />
-            </a>
+            </Link>
           </div>
           <div className="place-card__info">
             <div className="place-card__price-wrapper">
@@ -49,7 +51,7 @@ function NearPlaces(): JSX.Element {
               </div>
             </div>
             <h2 className="place-card__name">
-              <a href='../../pages/property/property.tsx'>Canal View Prinsengracht</a>
+              <Link to={'/offer/id'}>Canal View Prinsengracht</Link>
             </h2>
             <p className="place-card__type">Apartment</p>
           </div>
@@ -60,9 +62,9 @@ function NearPlaces(): JSX.Element {
             <span>Premium</span>
           </div>
           <div className="near-places__image-wrapper place-card__image-wrapper">
-            <a href='../../pages/property/property.tsx'>
+            <Link to={'/offer/id'}>
               <img className="place-card__image" src="img/apartment-03.jpg" width="260" height="200" alt="Place" />
-            </a>
+            </Link>
           </div>
           <div className="place-card__info">
             <div className="place-card__price-wrapper">
@@ -78,7 +80,7 @@ function NearPlaces(): JSX.Element {
               </div>
             </div>
             <h2 className="place-card__name">
-              <a href='../../pages/property/property.tsx'>Nice, cozy, warm big bed apartment</a>
+              <Link to={'/offer/id'}>Nice, cozy, warm big bed apartment</Link>
             </h2>
             <p className="place-card__type">Apartment</p>
           </div>
