@@ -1,7 +1,7 @@
+import { Helmet } from 'react-helmet-async';
 import PlaceCard from '../../components/placeCard/placeCard';
 import CityNav from '../../components/cityNav/cityNav';
 import { CITIES } from '../../constants';
-import { Helmet } from 'react-helmet-async';
 import { Card } from '../../types/offer';
 
 type AppScreenProps = {

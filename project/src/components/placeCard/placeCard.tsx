@@ -1,5 +1,5 @@
-import { Card } from '../../types/offer';
 import {Link} from 'react-router-dom';
+import { Card } from '../../types/offer';
 
 type Props = {
   card: Card;

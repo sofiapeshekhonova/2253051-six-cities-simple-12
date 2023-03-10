@@ -1,4 +1,4 @@
-import { ReviewsType } from 'types/reviews';
+import { ReviewsType } from '../../types/reviews';
 import { Card } from '../../types/offer';
 
 export const cards: Card[] = [
