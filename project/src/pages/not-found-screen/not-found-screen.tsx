@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './not-found-screen.module.css';
 import { Helmet } from 'react-helmet-async';
+
 function NotFoundScreen(): JSX.Element {
   return (
     <>

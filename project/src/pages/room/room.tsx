@@ -1,45 +1,25 @@
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+
 import Goods from '../../components/goods/goods';
 import Reviews from '../../components/reviews/reviews';
 import PropertyGallery from '../../components/propertyGallery/propertyGallery';
 import NearPlaces from '../../components/nearPlaces/nearPlaces';
-import { cards, reviews } from '../../components/mocks/mocks';
-import { CardProps } from '../../types/offer';
 import Host from '../../components/host/host';
-import { Helmet } from 'react-helmet-async';
+import { reviews } from '../../components/mocks/mocks';
+import { Card } from '../../types/offer';
 
-function Room(): JSX.Element {
+type AppScreenProps = {
+  cards: Card[];
+}
+
+function Room({cards}: AppScreenProps): JSX.Element {
   const cardId = Number(useParams().id);
 
-  let card: CardProps = {
-    id: 1,
-    previewImage: 'img/apartment-01.jpg',
-    title: 'Beautiful &amp; luxurious apartment at great location',
-    premium: true,
-    price: 120,
-    type: 'Apartment',
-    maxAdults: 4,
-    bedrooms: 3,
-    rating: 4.8,
-    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
-    images: [
-      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
-    ],
-    host: {
-      avatarUrl: 'img/avatar-angelina.jpg',
-      id: 10,
-      isPro: true,
-      name: 'Angelina',
-    },
-  };
-
-  cards.forEach((item) => {
-    if (item.id === cardId) {
-      card = item;
-      return card;
-    }
-  });
+  const card: Card | undefined = cards.find((element) => element.id === cardId);
+  if(card === undefined) {
+    return <p>Информация по жилью не найдена</p>;
+  }
 
   return (
     <>

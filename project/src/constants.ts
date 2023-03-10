@@ -5,3 +5,5 @@ export enum AppRoute {
   Root = '/',
   Room = '/offer/:id',
 }
+
+// export const offerId = '`/offer/${id}`'

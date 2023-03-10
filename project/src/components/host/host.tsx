@@ -1,7 +1,7 @@
-import { CardProps } from '../../types/offer';
+import { Card } from '../../types/offer';
 
 type Props = {
-  card: CardProps;
+  card: Card;
 }
 
 function Host({card}: Props): JSX.Element {
@@ -17,7 +17,7 @@ function Host({card}: Props): JSX.Element {
           {host.name}
         </span>
         <span className="property__user-status">
-          {!host.name ? '' : 'Pro'}
+          {!host.isPro ? '' : 'Pro'}
         </span>
       </div>
       <div className="property__description">

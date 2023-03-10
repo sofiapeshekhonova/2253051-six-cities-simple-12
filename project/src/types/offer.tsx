@@ -6,19 +6,20 @@ export type Host = {
   name: string;
  }
 
-export type CardProps = {
+export type Card = {
   title: string;
   previewImage: string;
-  premium?: boolean;
+  premium: boolean;
   price: number;
   type: string;
   id: number;
-  maxAdults?: number;
-  bedrooms?: number;
+  maxAdults: number;
+  bedrooms: number;
   rating: number;
   description?: string;
   goods: string[];
   images: string[];
   host: Host;
+  length?: number;
  }
 

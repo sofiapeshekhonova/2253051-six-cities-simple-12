@@ -1,8 +1,8 @@
-import Card from '../../components/card/card';
-import Cities from '../../components/cities/cities';
-import { cards } from '../../components/mocks/mocks';
+import PlaceCard from '../../components/placeCard/placeCard';
+import CityNav from '../../components/cityNav/cityNav';
 import { CITIES } from '../../constants';
 import { Helmet } from 'react-helmet-async';
+import { cards } from '../../components/mocks/mocks';
 
 function Main(): JSX.Element {
   return (
@@ -15,7 +15,7 @@ function Main(): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {CITIES.map((city) => <Cities city={city} key={city} />)}
+              {CITIES.map((city) => <CityNav city={city} key={city} />)}
             </ul>
           </section>
         </div>
@@ -41,7 +41,7 @@ function Main(): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {cards.map((card) => (
-                  <Card key={card.id} card={card} />
+                  <PlaceCard key={card.id} card={card} />
                 ))}
               </div>
             </section>
