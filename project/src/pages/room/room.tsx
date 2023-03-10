@@ -1,19 +1,19 @@
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-
 import Goods from '../../components/goods/goods';
 import Reviews from '../../components/reviews/reviews';
 import PropertyGallery from '../../components/propertyGallery/propertyGallery';
 import NearPlaces from '../../components/nearPlaces/nearPlaces';
 import Host from '../../components/host/host';
-import { reviews } from '../../components/mocks/mocks';
 import { Card } from '../../types/offer';
+import { ReviewsType } from '../../types/reviews';
 
 type AppScreenProps = {
   cards: Card[];
+  reviews: ReviewsType[];
 }
 
-function Room({cards}: AppScreenProps): JSX.Element {
+function Room({cards, reviews}: AppScreenProps): JSX.Element {
   const cardId = Number(useParams().id);
 
   const card: Card | undefined = cards.find((element) => element.id === cardId);

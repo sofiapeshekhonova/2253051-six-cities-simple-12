@@ -2,9 +2,13 @@ import PlaceCard from '../../components/placeCard/placeCard';
 import CityNav from '../../components/cityNav/cityNav';
 import { CITIES } from '../../constants';
 import { Helmet } from 'react-helmet-async';
-import { cards } from '../../components/mocks/mocks';
+import { Card } from '../../types/offer';
 
-function Main(): JSX.Element {
+type AppScreenProps = {
+  cards: Card[];
+}
+
+function Main({cards}: AppScreenProps): JSX.Element {
   return (
     <>
       <Helmet>

@@ -7,13 +7,7 @@
       "esnext",
     ],
     "allowJs": true,
-    "baseUrl": "./",
-    "paths": {
-       "@components/*" : ["./src/components/*"],
-       "@components*" : ["./src/components"],
-      // "@pages/*" : ["/pages/*"],
-      // "constants/*" : ["./src/constants/"]
-    },
+    "baseUrl": "src",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -27,7 +21,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  // "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src"],
   "include": [
     "src"
   ]
