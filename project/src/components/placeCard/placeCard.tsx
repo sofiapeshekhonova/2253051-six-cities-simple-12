@@ -3,14 +3,20 @@ import { Card } from '../../types/offer';
 
 type Props = {
   card: Card;
+  setActiveCard: (id: number | null) => void;
 }
 
-function PlaceCard({card}: Props): JSX.Element {
+function PlaceCard({card, setActiveCard}: Props): JSX.Element {
   const {id} = card;
   const offerId = `/offer/${id}`;
 
+  function mouseOverHandler () {
+    // console.log(setActiveCard(id))
+    setActiveCard(id);
+  }
+
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={mouseOverHandler}>
       <div className={!card.premium ? '' : 'place-card__mark'}>
         <span>{!card.premium ? '' : 'Premium'}</span>
       </div>

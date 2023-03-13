@@ -69,7 +69,7 @@ function Room({cards, reviews}: AppScreenProps): JSX.Element {
               </div>
               <Host card={card} />
               {reviews.map((review) => (
-                <Reviews key={review.id} review={review} />
+                <Reviews key={review.id} review={review} reviews={reviews}/>
               ))}
             </div>
           </div>
