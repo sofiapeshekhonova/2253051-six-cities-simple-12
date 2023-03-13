@@ -4,14 +4,14 @@ import StarsInput from '../../components/starsInput/starsInput';
 
 function ReviewsForm(): JSX.Element {
   const [formData, setFormData] = useState({
-    reviewsRating: '',
-    reviewsComment: ''
+    rating: '',
+    review: '',
   });
   function handleChange(evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const {name, value} = evt.target;
-    setFormData({...formData, [name]: value});
+    const { name, value } = evt.target;
+    setFormData({ ...formData, [name]: value });
   }
-  const {reviewsRating, reviewsComment} = formData;
+  const { rating, review } = formData;
 
   function handleFormSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -22,14 +22,14 @@ function ReviewsForm(): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {STARS.map((star, index) => (
-          <StarsInput key={star} index={index} star={star} handleChange={handleChange} reviewsRating={reviewsRating}/>
+          <StarsInput key={star} index={index} star={star} handleChange={handleChange} rating={rating} />
         ))}
       </div>
       <textarea
         className="reviews__textarea form__textarea"
         id="review"
         name="review"
-        value={reviewsComment}
+        value={review}
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={handleChange}
       />

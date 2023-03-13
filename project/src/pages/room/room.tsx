@@ -13,11 +13,12 @@ type AppScreenProps = {
   reviews: ReviewsType[];
 }
 
-function Room({cards, reviews}: AppScreenProps): JSX.Element {
+function Room({ cards, reviews }: AppScreenProps): JSX.Element {
   const cardId = Number(useParams().id);
 
   const card: Card | undefined = cards.find((element) => element.id === cardId);
-  if(card === undefined) {
+
+  if (card === undefined) {
     return <p>Информация по жилью не найдена</p>;
   }
 
@@ -69,7 +70,7 @@ function Room({cards, reviews}: AppScreenProps): JSX.Element {
               </div>
               <Host card={card} />
               {reviews.map((review) => (
-                <Reviews key={review.id} review={review} reviews={reviews}/>
+                <Reviews key={review.id} review={review} reviews={reviews} />
               ))}
             </div>
           </div>

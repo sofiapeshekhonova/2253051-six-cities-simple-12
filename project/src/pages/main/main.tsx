@@ -8,7 +8,7 @@ type AppScreenProps = {
   cards: Card[];
 }
 
-function Main({cards}: AppScreenProps): JSX.Element {
+function Main({ cards }: AppScreenProps): JSX.Element {
   return (
     <>
       <Helmet>
@@ -43,7 +43,7 @@ function Main({cards}: AppScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <Offers cards={cards}/>
+              <Offers cards={cards} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />

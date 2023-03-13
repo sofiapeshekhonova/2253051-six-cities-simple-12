@@ -4,8 +4,8 @@ type Props = {
   card: Card;
 }
 
-function Host({card}: Props): JSX.Element {
-  const {host} = card;
+function Host({ card }: Props): JSX.Element {
+  const { host } = card;
   return (
     <div className="property__host">
       <h2 className="property__host-title">Meet the host</h2>

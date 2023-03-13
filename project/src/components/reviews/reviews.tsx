@@ -37,7 +37,7 @@ function Reviews({ review, reviews }: Props): JSX.Element {
         </li>
       </ul>
       {/* если пользователь зарегестрированн */}
-      <ReviewsForm/>
+      <ReviewsForm />
     </section>
   );
 }
