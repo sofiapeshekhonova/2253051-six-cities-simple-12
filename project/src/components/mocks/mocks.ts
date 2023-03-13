@@ -1,4 +1,7 @@
-export const cards = [
+import { ReviewsType } from '../../types/reviews';
+import { Card } from '../../types/offer';
+
+export const cards: Card[] = [
   {
     id: 1,
     previewImage: 'img/apartment-01.jpg',
@@ -14,6 +17,12 @@ export const cards = [
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 30,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 2,
@@ -22,14 +31,26 @@ export const cards = [
     premium: false,
     price: 80,
     type: 'Private room',
+    maxAdults: 4,
+    bedrooms: 3,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     rating: 4.8,
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 50,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 3,
+    maxAdults: 4,
+    bedrooms: 3,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     previewImage: 'img/apartment-02.jpg',
     title: 'Canal View Prinsengracht',
     premium: false,
@@ -40,6 +61,12 @@ export const cards = [
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 60,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 4,
@@ -48,11 +75,20 @@ export const cards = [
     premium: true,
     price: 180,
     type: 'Apartment',
+    maxAdults: 4,
+    bedrooms: 3,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     rating: 4.8,
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 10,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
   {
     id: 5,
@@ -61,32 +97,32 @@ export const cards = [
     premium: false,
     price: 80,
     type: 'Private room',
+    maxAdults: 4,
+    bedrooms: 3,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     rating: 4.8,
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
       'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
     ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 20,
+      isPro: true,
+      name: 'Angelina',
+    },
   },
 ];
 
-export const host = [
-  {
-    avatarUrl: 'img/1.png',
-    id: 3,
-    isPro: true,
-    name: 'Angelina',
-  },
-];
-
-export const reviews = [
+export const reviews: ReviewsType[] = [
   {
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     date: '2023-02-09T10:33:21.322Z',
     id: 1,
     rating: 4,
     user: {
-      avatarUrl: 'img/1.png',
-      id: 1,
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 2,
       isPro: false,
       name: 'Oliver.conner'
     }

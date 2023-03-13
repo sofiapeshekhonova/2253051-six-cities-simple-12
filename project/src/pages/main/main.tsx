@@ -1,18 +1,25 @@
-import Card from '../../components/card/card';
-import Cities from '../../components/cities/cities';
-import {cards} from '../../components/mocks/mocks';
+import { Helmet } from 'react-helmet-async';
+import PlaceCard from '../../components/placeCard/placeCard';
+import CityNav from '../../components/cityNav/cityNav';
 import { CITIES } from '../../constants';
-import HeaderLogged from '../../components/header/headerLogged';
-function Main(): JSX.Element {
+import { Card } from '../../types/offer';
+
+type AppScreenProps = {
+  cards: Card[];
+}
+
+function Main({cards}: AppScreenProps): JSX.Element {
   return (
     <>
-      <HeaderLogged/>
+      <Helmet>
+        <title>Six Cities. Main</title>
+      </Helmet>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {CITIES.map((city) => <Cities city={city} key={city} />)}
+              {CITIES.map((city) => <CityNav city={city} key={city} />)}
             </ul>
           </section>
         </div>
@@ -20,7 +27,7 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
+              <b className="places__found">{cards.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -38,7 +45,7 @@ function Main(): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {cards.map((card) => (
-                  <Card key={card.id} card={card} />
+                  <PlaceCard key={card.id} card={card} />
                 ))}
               </div>
             </section>

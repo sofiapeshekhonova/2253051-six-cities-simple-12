@@ -1,20 +1,31 @@
+import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Goods from '../../components/goods/goods';
-import { CardProps, Host } from '../../types/offer';
 import Reviews from '../../components/reviews/reviews';
-import { reviews } from '../../components/mocks/mocks';
 import PropertyGallery from '../../components/propertyGallery/propertyGallery';
 import NearPlaces from '../../components/nearPlaces/nearPlaces';
-import HeaderLogged from '../../components/header/headerLogged';
+import Host from '../../components/host/host';
+import { Card } from '../../types/offer';
+import { ReviewsType } from '../../types/reviews';
 
-type Props = {
-  card: CardProps;
-  host: Host;
+type AppScreenProps = {
+  cards: Card[];
+  reviews: ReviewsType[];
 }
 
-function Property({ card, host }: Props): JSX.Element {
+function Room({cards, reviews}: AppScreenProps): JSX.Element {
+  const cardId = Number(useParams().id);
+
+  const card: Card | undefined = cards.find((element) => element.id === cardId);
+  if(card === undefined) {
+    return <p>Информация по жилью не найдена</p>;
+  }
+
   return (
     <>
-      <HeaderLogged />
+      <Helmet>
+        <title>Six Cities. Rooms</title>
+      </Helmet>
       <main className="page__main page__main--property">
         <section className="property">
           {card.images.map((image) => <PropertyGallery image={image} key={image} />)}
@@ -56,28 +67,7 @@ function Property({ card, host }: Props): JSX.Element {
                   {card.goods.map((item) => <Goods item={item} key={item} />)}
                 </ul>
               </div>
-              <div className="property__host">
-                <h2 className="property__host-title">Meet the host</h2>
-                <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src={host.avatarUrl} width="74" height="74" alt="Host avatar" />
-                  </div>
-                  <span className="property__user-name">
-                    {host.name}
-                  </span>
-                  <span className="property__user-status">
-                    {!host.name ? '' : 'Pro'}
-                  </span>
-                </div>
-                <div className="property__description">
-                  <p className="property__text">
-                    {card.description}
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-                  </p>
-                </div>
-              </div>
+              <Host card={card} />
               {reviews.map((review) => (
                 <Reviews key={review.id} review={review} />
               ))}
@@ -93,4 +83,4 @@ function Property({ card, host }: Props): JSX.Element {
   );
 }
 
-export default Property;
+export default Room;

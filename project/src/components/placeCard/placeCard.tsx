@@ -1,18 +1,23 @@
-import { CardProps } from '../../types/offer';
+import {Link} from 'react-router-dom';
+import { Card } from '../../types/offer';
+
 type Props = {
-  card: CardProps;
+  card: Card;
 }
 
-function Card({card}: Props): JSX.Element {
+function PlaceCard({card}: Props): JSX.Element {
+  const {id} = card;
+  const offerId = `/offer/${id}`;
+
   return (
     <article className="cities__card place-card">
       <div className={!card.premium ? '' : 'place-card__mark'}>
         <span>{!card.premium ? '' : 'Premium'}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href='../../pages/property/property.tsx'>
+        <Link to={offerId}>
           <img className="place-card__image" src={card.previewImage} width="260" height="200" alt="Place"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -28,7 +33,7 @@ function Card({card}: Props): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href='../../pages/property/property.tsx'>{card.title}</a>
+          <Link to={offerId}>{card.title}</Link>
         </h2>
         <p className="place-card__type">{card.type}</p>
       </div>
@@ -36,4 +41,4 @@ function Card({card}: Props): JSX.Element {
   );
 }
 
-export default Card;
+export default PlaceCard;
