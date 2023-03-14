@@ -9,6 +9,7 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { AppRoute } from '../../constants';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
+import { City } from 'components/mocks/mocks';
 
 type AppScreenProps = {
   cards: Card[];
@@ -21,7 +22,7 @@ function App({cards, reviews}: AppScreenProps): JSX.Element {
       <BrowserRouter>
         <HeaderLogged />
         <Routes>
-          <Route path={AppRoute.Root} element={<Main cards={cards}/>} />
+          <Route path={AppRoute.Root} element={<Main cards={cards} city={City}/>} />
           <Route path={AppRoute.Login} element={<Login />} />
           <Route path={AppRoute.Room} element={<Room cards={cards} reviews={reviews}/>} />
           <Route path='*' element={<NotFoundScreen />} />

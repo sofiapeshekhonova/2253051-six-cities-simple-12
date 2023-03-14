@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Card } from '../../types/offer';
+import { Card } from 'types/offer';
 
 type Props = {
   card: Card;
@@ -11,7 +11,6 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
   const offerId = `/offer/${id}`;
 
   function mouseOverHandler() {
-    // console.log(setActiveCard(id))
     setActiveCard(id);
   }
 

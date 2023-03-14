@@ -1,4 +1,4 @@
-import { Card } from '../../types/offer';
+import { Card } from 'types/offer';
 
 type Props = {
   card: Card;

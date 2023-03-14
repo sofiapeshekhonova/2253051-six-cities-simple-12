@@ -1,4 +1,4 @@
-import { ReviewsType } from '../../types/reviews';
+import { ReviewsType } from 'types/reviews';
 import ReviewsForm from 'components/reviewsForm/reviewsForm';
 
 type Props = {

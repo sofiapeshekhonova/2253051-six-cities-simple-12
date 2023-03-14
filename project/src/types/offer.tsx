@@ -21,5 +21,7 @@ export type Card = {
   images: string[];
   host: Host;
   length?: number;
+  lat: number;
+  lng: number;
  }
 

@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import PlaceCard from 'components/placeCard/placeCard';
 import { Card } from 'types/offer';
 
 type OffersProps = {
   cards: Card[];
+  setActiveCard: (id: number | null) => void;
 }
 
-function Offers({ cards }: OffersProps): JSX.Element {
-
-  const [, setActiveCard] = useState<null | number>(null);
+function Offers({ cards, setActiveCard }: OffersProps): JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content">

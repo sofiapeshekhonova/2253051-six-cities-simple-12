@@ -1,14 +1,21 @@
+import {useState} from 'react';
 import { Helmet } from 'react-helmet-async';
 import CityNav from '../../components/cityNav/cityNav';
+import Offers from 'components/offers/offers';
+import Map from 'components/map/map';
 import { CITIES } from '../../constants';
 import { Card } from '../../types/offer';
-import Offers from 'components/offers/offers';
+import { CityType } from 'types/city';
 
 type AppScreenProps = {
   cards: Card[];
+  city: CityType;
 }
 
-function Main({ cards }: AppScreenProps): JSX.Element {
+function Main({ cards, city }: AppScreenProps): JSX.Element {
+
+  const [activeCard, setActiveCard] = useState< null | number >(null);
+
   return (
     <>
       <Helmet>
@@ -19,7 +26,7 @@ function Main({ cards }: AppScreenProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {CITIES.map((city) => <CityNav city={city} key={city} />)}
+              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} />)}
             </ul>
           </section>
         </div>
@@ -43,10 +50,10 @@ function Main({ cards }: AppScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <Offers cards={cards} />
+              <Offers cards={cards} setActiveCard={setActiveCard}/>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map" />
+              <Map className='cities__map map' city={city} cards={cards} activeCard={activeCard}/>
             </div>
           </div>
         </div>
