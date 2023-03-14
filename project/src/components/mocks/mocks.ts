@@ -1,5 +1,6 @@
-import { ReviewsType } from '../../types/reviews';
-import { Card } from '../../types/offer';
+import { ReviewsType } from 'types/reviews';
+import { Card } from 'types/offer';
+import { CityType } from 'types/city';
 
 export const cards: Card[] = [
   {
@@ -15,7 +16,7 @@ export const cards: Card[] = [
     description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
-      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg',
     ],
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
@@ -23,6 +24,8 @@ export const cards: Card[] = [
       isPro: true,
       name: 'Angelina',
     },
+    lat: 52.3909553943508,
+    lng: 4.85309666406198,
   },
   {
     id: 2,
@@ -37,7 +40,7 @@ export const cards: Card[] = [
     rating: 4.8,
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
-      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg',
     ],
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
@@ -45,6 +48,8 @@ export const cards: Card[] = [
       isPro: true,
       name: 'Angelina',
     },
+    lat: 52.3609553943508,
+    lng:  4.85309666406198,
   },
   {
     id: 3,
@@ -59,7 +64,7 @@ export const cards: Card[] = [
     rating: 4.8,
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
-      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg',
     ],
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
@@ -67,6 +72,8 @@ export const cards: Card[] = [
       isPro: true,
       name: 'Angelina',
     },
+    lat: 52.3909553943508,
+    lng: 4.929309666406198,
   },
   {
     id: 4,
@@ -81,7 +88,7 @@ export const cards: Card[] = [
     rating: 4.8,
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
-      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg',
     ],
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
@@ -89,6 +96,8 @@ export const cards: Card[] = [
       isPro: true,
       name: 'Angelina',
     },
+    lat: 52.3809553943508,
+    lng: 4.939309666406198,
   },
   {
     id: 5,
@@ -103,7 +112,7 @@ export const cards: Card[] = [
     rating: 4.8,
     goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
     images: [
-      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg',
     ],
     host: {
       avatarUrl: 'img/avatar-angelina.jpg',
@@ -111,6 +120,8 @@ export const cards: Card[] = [
       isPro: true,
       name: 'Angelina',
     },
+    lat: 52.372764,
+    lng: 4.881209,
   },
 ];
 
@@ -128,3 +139,10 @@ export const reviews: ReviewsType[] = [
     }
   },
 ];
+
+export const City: CityType = {
+  title: 'Амстердам',
+  lat: 	52.377956,
+  lng: 4.897070,
+  zoom: 12,
+};

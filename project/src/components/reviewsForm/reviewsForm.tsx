@@ -1,24 +1,25 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { STARS } from '../../constants';
-import StarsInput from '../../components/starsInput/starsInput';
+import StarsInput from 'components/starsInput/starsInput';
 
 function ReviewsForm(): JSX.Element {
   const [formData, setFormData] = useState({
     rating: '',
     review: '',
   });
+
   function handleChange(evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
   }
   const { rating, review } = formData;
 
-  function handleFormSubmit(evt: FormEvent<HTMLFormElement>) {
+  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
   }
 
   return (
-    <form className="reviews__form form" action="#" method="post" onSubmit={handleFormSubmit}>
+    <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {STARS.map((star, index) => (
