@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import { Helmet } from 'react-helmet-async';
-import CityNav from '../../components/cityNav/cityNav';
+import CityNav from 'components/cityNav/cityNav';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
 import { CITIES } from '../../constants';
-import { Card } from '../../types/offer';
+import { Card } from 'types/offer';
 import { CityType } from 'types/city';
 
 type AppScreenProps = {
