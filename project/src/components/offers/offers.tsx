@@ -8,8 +8,7 @@ type OffersProps = {
 
 function Offers({ cards }: OffersProps): JSX.Element {
 
-  const [activeCard, setActiveCard] = useState<null | number>(null);
-  console.log(activeCard);
+  const [, setActiveCard] = useState<null | number>(null);
 
   return (
     <div className="cities__places-list places__list tabs__content">
