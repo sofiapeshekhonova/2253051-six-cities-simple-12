@@ -1,22 +1,28 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Card } from '../../types/offer';
 
 type Props = {
   card: Card;
+  setActiveCard: (id: number | null) => void;
 }
 
-function PlaceCard({card}: Props): JSX.Element {
-  const {id} = card;
+function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
+  const { id } = card;
   const offerId = `/offer/${id}`;
 
+  function mouseOverHandler() {
+    // console.log(setActiveCard(id))
+    setActiveCard(id);
+  }
+
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={mouseOverHandler}>
       <div className={!card.premium ? '' : 'place-card__mark'}>
         <span>{!card.premium ? '' : 'Premium'}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={offerId}>
-          <img className="place-card__image" src={card.previewImage} width="260" height="200" alt="Place"/>
+          <img className="place-card__image" src={card.previewImage} width="260" height="200" alt="Place" />
         </Link>
       </div>
       <div className="place-card__info">
@@ -28,7 +34,7 @@ function PlaceCard({card}: Props): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${Math.round(card.rating / 5 * 100)}%`}} />
+            <span style={{ width: `${Math.round(card.rating / 5 * 100)}%` }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

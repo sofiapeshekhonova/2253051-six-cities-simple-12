@@ -2,7 +2,7 @@ type Props = {
   image: string;
 }
 
-function PropertyGallery({image}: Props): JSX.Element {
+function PropertyGallery({ image }: Props): JSX.Element {
   return (
     <div className="property__gallery-container container">
       <div className="property__gallery">

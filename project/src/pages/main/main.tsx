@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet-async';
-import PlaceCard from '../../components/placeCard/placeCard';
 import CityNav from '../../components/cityNav/cityNav';
 import { CITIES } from '../../constants';
 import { Card } from '../../types/offer';
+import Offers from 'components/offers/offers';
 
 type AppScreenProps = {
   cards: Card[];
 }
 
-function Main({cards}: AppScreenProps): JSX.Element {
+function Main({ cards }: AppScreenProps): JSX.Element {
   return (
     <>
       <Helmet>
@@ -43,11 +43,7 @@ function Main({cards}: AppScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {cards.map((card) => (
-                  <PlaceCard key={card.id} card={card} />
-                ))}
-              </div>
+              <Offers cards={cards} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map" />
