@@ -49,7 +49,7 @@ export const cards: Card[] = [
       name: 'Angelina',
     },
     lat: 52.3609553943508,
-    lng:  4.85309666406198,
+    lng: 4.85309666406198,
   },
   {
     id: 3,
@@ -142,7 +142,82 @@ export const reviews: ReviewsType[] = [
 
 export const City: CityType = {
   title: 'Амстердам',
-  lat: 	52.377956,
+  lat: 52.377956,
   lng: 4.897070,
   zoom: 12,
 };
+
+export const nearPlaceCards: Card[] = [
+  {
+    id: 1,
+    previewImage: 'img/apartment-01.jpg',
+    title: 'Beautiful &amp; luxurious apartment at great location',
+    premium: true,
+    price: 120,
+    type: 'Apartment',
+    maxAdults: 4,
+    bedrooms: 3,
+    rating: 4.8,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg',
+    ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 30,
+      isPro: true,
+      name: 'Angelina',
+    },
+    lat: 52.3909553943508,
+    lng: 4.85309666406198,
+  },
+  {
+    id: 2,
+    previewImage: 'img/room.jpg',
+    title: 'Wood and stone place',
+    premium: false,
+    price: 80,
+    type: 'Private room',
+    maxAdults: 4,
+    bedrooms: 3,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    rating: 4.8,
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+    ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 50,
+      isPro: true,
+      name: 'Angelina',
+    },
+    lat: 52.3609553943508,
+    lng: 4.85309666406198,
+  },
+  {
+    id: 3,
+    maxAdults: 4,
+    bedrooms: 3,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    previewImage: 'img/apartment-02.jpg',
+    title: 'Canal View Prinsengracht',
+    premium: false,
+    price: 132,
+    type: 'Apartment',
+    rating: 4.8,
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg', 'img/apartment-01.jpg'
+    ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 60,
+      isPro: true,
+      name: 'Angelina',
+    },
+    lat: 52.3909553943508,
+    lng: 4.929309666406198,
+  },
+];

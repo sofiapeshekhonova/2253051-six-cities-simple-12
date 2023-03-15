@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react';
-import leaflet from 'leaflet';
+import { Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from 'hooks/useMap';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants';
@@ -17,13 +17,13 @@ function Map({ city, cards, activeCard, className }: MapScreenProps): JSX.Elemen
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
-  const defaultCustomIcon = leaflet.icon({
+  const defaultCustomIcon = new Icon({
     iconUrl: URL_MARKER_DEFAULT,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
   });
 
-  const currentCustomIcon = leaflet.icon({
+  const currentCustomIcon = new Icon({
     iconUrl: URL_MARKER_CURRENT,
     iconSize: [40, 40],
     iconAnchor: [20, 40],
@@ -32,15 +32,17 @@ function Map({ city, cards, activeCard, className }: MapScreenProps): JSX.Elemen
   useEffect(() => {
     if (map) {
       cards.forEach((card) => {
-        leaflet
-          .marker({
-            lat: card.lat,
-            lng: card.lng,
-          }, {
-            icon: (card.id === activeCard)
+        const marker = new Marker({
+          lat: card.lat,
+          lng: card.lng,
+        });
+
+        marker
+          .setIcon(
+            card.id === activeCard
               ? currentCustomIcon
               : defaultCustomIcon,
-          })
+          )
           .addTo(map);
       });
     }
