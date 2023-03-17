@@ -14,17 +14,18 @@ import { City } from 'components/mocks/mocks';
 type AppScreenProps = {
   cards: Card[];
   reviews: ReviewsType[];
+  nearPlaceCards: Card[];
 }
 
-function App({cards, reviews}: AppScreenProps): JSX.Element {
+function App({ cards, reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <HeaderLogged />
         <Routes>
-          <Route path={AppRoute.Root} element={<Main cards={cards} city={City}/>} />
+          <Route path={AppRoute.Root} element={<Main cards={cards} city={City} />} />
           <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={AppRoute.Room} element={<Room cards={cards} reviews={reviews}/>} />
+          <Route path={AppRoute.Room} element={<Room cards={cards} reviews={reviews} city={City} nearPlaceCards={nearPlaceCards} />} />
           <Route path='*' element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>

@@ -1,21 +1,27 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import Goods from '../../components/goods/goods';
-import Reviews from '../../components/reviews/reviews';
-import PropertyGallery from '../../components/propertyGallery/propertyGallery';
-import NearPlaces from '../../components/nearPlaces/nearPlaces';
-import Host from '../../components/host/host';
-import { Card } from '../../types/offer';
-import { ReviewsType } from '../../types/reviews';
+import Goods from 'components/goods/goods';
+import Reviews from 'components/reviews/reviews';
+import PropertyGallery from 'components/propertyGallery/propertyGallery';
+import NearPlaces from 'components/nearPlaces/nearPlaces';
+import Host from 'components/host/host';
+import Map from 'components/map/map';
+import { Card } from 'types/offer';
+import { ReviewsType } from 'types/reviews';
+import { CityType } from 'types/city';
+
 
 type AppScreenProps = {
   cards: Card[];
+  city: CityType;
   reviews: ReviewsType[];
+  nearPlaceCards: Card[];
 }
 
-function Room({ cards, reviews }: AppScreenProps): JSX.Element {
+function Room({ cards, reviews, city, nearPlaceCards }: AppScreenProps): JSX.Element {
   const cardId = Number(useParams().id);
-
+  const [activeCard, setActiveCard] = useState<null | number>(null);
   const card: Card | undefined = cards.find((element) => element.id === cardId);
 
   if (card === undefined) {
@@ -69,15 +75,13 @@ function Room({ cards, reviews }: AppScreenProps): JSX.Element {
                 </ul>
               </div>
               <Host card={card} />
-              {reviews.map((review) => (
-                <Reviews key={review.id} review={review} reviews={reviews} />
-              ))}
+              <Reviews reviews={reviews} />
             </div>
           </div>
-          <section className="property__map map"></section>
+          <Map className='property__map map' city={city} cards={cards} activeCard={activeCard} />
         </section>
         <div className="container">
-          <NearPlaces />
+          <NearPlaces nearPlaceCards={nearPlaceCards} setActiveCard={setActiveCard} />
         </div>
       </main>
     </>
