@@ -23,7 +23,7 @@ function App({ cards, reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
       <BrowserRouter>
         <HeaderLogged />
         <Routes>
-          <Route path={AppRoute.Root} element={<Main cards={cards} city={City} />} />
+          <Route path={AppRoute.Root} element={<Main cityAddress={City} />} />
           <Route path={AppRoute.Login} element={<Login />} />
           <Route path={AppRoute.Room} element={<Room cards={cards} reviews={reviews} city={City} nearPlaceCards={nearPlaceCards} />} />
           <Route path='*' element={<NotFoundScreen />} />

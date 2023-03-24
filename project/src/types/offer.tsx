@@ -6,6 +6,18 @@ export type Host = {
   name: string;
  }
 
+export type Location = {
+  latitude: number;
+  longitude: number;
+  zoom: number;
+};
+
+export type CityType = {
+  location: Location;
+  name: string;
+};
+
+
 export type Card = {
   title: string;
   previewImage: string;
@@ -21,7 +33,6 @@ export type Card = {
   images: string[];
   host: Host;
   length?: number;
-  lat: number;
-  lng: number;
+  city: CityType;
+  location: Location;
  }
-

@@ -9,7 +9,7 @@ import Host from 'components/host/host';
 import Map from 'components/map/map';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
-import { CityType } from 'types/city';
+import { CityType } from 'types/offer';
 
 
 type AppScreenProps = {
@@ -78,7 +78,7 @@ function Room({ cards, reviews, city, nearPlaceCards }: AppScreenProps): JSX.Ele
               <Reviews reviews={reviews} />
             </div>
           </div>
-          <Map className='property__map map' city={city} cards={cards} activeCard={activeCard} />
+          <Map className='property__map map' cards={cards} activeCard={activeCard} />
         </section>
         <div className="container">
           <NearPlaces nearPlaceCards={nearPlaceCards} setActiveCard={setActiveCard} />
