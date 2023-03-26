@@ -9,14 +9,15 @@ import Host from 'components/host/host';
 import Map from 'components/map/map';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
+import { useAppSelector } from 'hooks';
 
 type AppScreenProps = {
-  cards: Card[];
   reviews: ReviewsType[];
   nearPlaceCards: Card[];
 }
 
-function Room({ cards, reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+  const cards = useAppSelector((state) => state.cards);
   const cardId = Number(useParams().id);
   const [activeCard, setActiveCard] = useState<null | number>(null);
   const card: Card | undefined = cards.find((element) => element.id === cardId);

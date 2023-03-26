@@ -5,6 +5,7 @@ import App from './components/app/app';
 import { reviews, nearPlaceCards } from './components/mocks/mocks';
 import { store } from './store';
 import { fetchHotelsAction } from 'store/api-actions';
+import ErrorMessage from './components/error-message/error-message';
 
 store.dispatch(fetchHotelsAction());
 
@@ -15,8 +16,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ErrorMessage />
       <App reviews={reviews} nearPlaceCards={nearPlaceCards} />
-      {/* <App cards={cards} reviews={reviews} nearPlaceCards={nearPlaceCards} /> */}
     </Provider>
   </React.StrictMode>,
 );

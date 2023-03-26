@@ -57,7 +57,7 @@ function Main(): JSX.Element {
               <Offers cards={selectedCards} setActiveCard={setActiveCard}/>
             </section>
             <div className="cities__right-section">
-              <Map className='cities__map map' cards={selectedCards} activeCard={activeCard}/>
+              <Map className='cities__map map' cards={selectedCards} activeCard={activeCard} />
             </div>
           </div>
         </div>

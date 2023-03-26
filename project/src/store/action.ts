@@ -7,4 +7,21 @@ export const changeCity = createAction('changeCity',
     payload: city,
   }));
 
-export const loadHotels = createAction<Card>('data/loadHotels');
+export const loadHotels = createAction('data/loadHotels',
+  (cards: Card[]) => ({
+    payload: cards
+  })
+);
+
+export const setError = createAction('cards/setError',
+  (error: string | null) => ({
+    payload: error
+  })
+);
+
+export const setCardsDataLoadingStatus = createAction('data/setCardsDataLoadingStatus',
+  (isCardsDataLoading: boolean) => ({
+    payload: isCardsDataLoading
+  })
+);
+

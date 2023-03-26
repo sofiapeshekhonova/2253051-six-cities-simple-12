@@ -1,29 +1,35 @@
 import {createReducer} from '@reduxjs/toolkit';
-//import { cards } from 'components/mocks/mocks';
+import { Card } from 'types/offer';
 import { CITIES } from '../constants';
-import { changeCity, loadHotels } from './action';
+import { changeCity, loadHotels, setCardsDataLoadingStatus, setError } from './action';
 
-// Объект начального состояния
-const defaultState = {
-  city: CITIES[0], // город (используется для отбора списка предложений в определённом городе)
-  //cards: cards, // список предложений по аренде.
-  //hotels: []
-  cards: []
+type InitialState = {
+  city: string;
+  cards: Card[];
+  error: string | null;
+  isCardsDataLoading: boolean;
 };
 
-// Функцию-редьюсер. Она принимает в качестве параметров текущий state и действие (action).
-// Результатом выполнения редьюсера станет новое состояние. Обратите внимание, для именования функций-редьюсеров применяются существительные.
-
-//вся логика тут
+const defaultState: InitialState = {
+  cards: [],
+  city: CITIES[0],
+  error: null,
+  isCardsDataLoading: false,
+};
 
 const reducer = createReducer(defaultState, (builder) => {
   builder // addCase. Первым аргументом он ожидает функцию, с помощью которой создаётся действие.
     .addCase(changeCity, (state, action) => {
       state.city = action.payload;
-      // const {city} = action.payload;
     })
     .addCase(loadHotels, (state, action) => {
       state.cards = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
+    })
+    .addCase(setCardsDataLoadingStatus, (state, action) => {
+      state.isCardsDataLoading = action.payload;
     });
 });
 
