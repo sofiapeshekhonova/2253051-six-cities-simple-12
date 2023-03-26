@@ -17,14 +17,19 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40],
 });
 
+type StyleMap = {
+  height: string;
+
+ }
 type MapScreenProps = {
   cards: Card[];
   activeCard: null | number;
   className: string;
+  style: StyleMap;
 }
 
 
-function Map({ cards, activeCard, className }: MapScreenProps): JSX.Element {
+function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Element {
   const mapRef = useRef(null);
   const city = cards[0].city;
   const map = useMap(mapRef, city);
@@ -54,7 +59,7 @@ function Map({ cards, activeCard, className }: MapScreenProps): JSX.Element {
   }, [map, cards, activeCard]);
 
   return (
-    <section className={className} ref={mapRef} style={{ height: '600px' }}/>
+    <section className={className} ref={mapRef} style={style} />
   );
 }
 

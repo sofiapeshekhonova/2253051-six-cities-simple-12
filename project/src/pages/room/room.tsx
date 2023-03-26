@@ -14,7 +14,7 @@ import { useAppSelector } from 'hooks';
 type AppScreenProps = {
   reviews: ReviewsType[];
   nearPlaceCards: Card[];
-}
+};
 
 function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   const cards = useAppSelector((state) => state.cards);
@@ -33,23 +33,29 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
       </Helmet>
       <main className="page__main page__main--property">
         <section className="property">
-          {card.images.map((image) => <PropertyGallery image={image} key={image} />)}
+          <div className="property__gallery-container container">
+            <div className="property__gallery">
+              {card.images.map((image) => (
+                <PropertyGallery image={image} key={image} />
+              ))}
+            </div>
+          </div>
           <div className="property__container container">
             <div className="property__wrapper">
               <div className="property__mark">
                 <span>{!card.premium ? '' : 'Premium'}</span>
               </div>
               <div className="property__name-wrapper">
-                <h1 className="property__name">
-                  {card.title}
-                </h1>
+                <h1 className="property__name">{card.title}</h1>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{ width: `${card.rating / 5 * 100}%` }}></span>
+                  <span style={{ width: `${(card.rating / 5) * 100}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{card.rating}</span>
+                <span className="property__rating-value rating__value">
+                  {card.rating}
+                </span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
@@ -69,17 +75,27 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {card.goods.map((item) => <Goods item={item} key={item} />)}
+                  {card.goods.map((item) => (
+                    <Goods item={item} key={item} />
+                  ))}
                 </ul>
               </div>
               <Host card={card} />
               <Reviews reviews={reviews} />
             </div>
           </div>
-          <Map className='property__map map' cards={cards} activeCard={activeCard} />
+          <Map
+            className="property__map map"
+            cards={cards}
+            activeCard={activeCard}
+            style={{ height: '500px' }}
+          />
         </section>
         <div className="container">
-          <NearPlaces nearPlaceCards={nearPlaceCards} setActiveCard={setActiveCard} />
+          <NearPlaces
+            nearPlaceCards={nearPlaceCards}
+            setActiveCard={setActiveCard}
+          />
         </div>
       </main>
     </>

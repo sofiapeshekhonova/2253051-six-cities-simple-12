@@ -1,6 +1,11 @@
+import './loading-screen.css';
+
 function LoadingScreen(): JSX.Element {
   return (
-    <p>Loading ...</p>
+    <div className="loading-screen">
+      <h1 className='loading-screen__title'>Loading ...</h1>
+    </div>
+
   );
 }
 
