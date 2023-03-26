@@ -9,17 +9,14 @@ import Host from 'components/host/host';
 import Map from 'components/map/map';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
-import { CityType } from 'types/offer';
-
 
 type AppScreenProps = {
   cards: Card[];
-  city: CityType;
   reviews: ReviewsType[];
   nearPlaceCards: Card[];
 }
 
-function Room({ cards, reviews, city, nearPlaceCards }: AppScreenProps): JSX.Element {
+function Room({ cards, reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   const cardId = Number(useParams().id);
   const [activeCard, setActiveCard] = useState<null | number>(null);
   const card: Card | undefined = cards.find((element) => element.id === cardId);

@@ -4,15 +4,10 @@ import CityNav from 'components/cityNav/cityNav';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
 import { CITIES } from '../../constants';
-import { CityType } from 'types/offer';
 import { changeCity } from 'store/action';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
-type AppScreenProps = {
-  cityAddress: CityType;
-}
-
-function Main({ cityAddress }: AppScreenProps): JSX.Element {
+function Main(): JSX.Element {
 
   const [activeCard, setActiveCard] = useState< null | number >(null);
 
