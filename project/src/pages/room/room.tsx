@@ -26,6 +26,8 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
     return <p>Информация по жилью не найдена</p>;
   }
 
+  const cardMap = [card];
+
   return (
     <>
       <Helmet>
@@ -86,7 +88,7 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
           </div>
           <Map
             className="property__map map"
-            cards={cards}
+            cards={cardMap}
             activeCard={activeCard}
             style={{ height: '500px' }}
           />
