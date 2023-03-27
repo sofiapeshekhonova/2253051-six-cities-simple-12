@@ -9,23 +9,21 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { AppRoute } from '../../constants';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
-import { City } from 'components/mocks/mocks';
 
 type AppScreenProps = {
-  cards: Card[];
   reviews: ReviewsType[];
   nearPlaceCards: Card[];
 }
 
-function App({ cards, reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <HeaderLogged />
         <Routes>
-          <Route path={AppRoute.Root} element={<Main cityAddress={City} />} />
+          <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={AppRoute.Room} element={<Room cards={cards} reviews={reviews} city={City} nearPlaceCards={nearPlaceCards} />} />
+          <Route path={AppRoute.Room} element={<Room reviews={reviews} nearPlaceCards={nearPlaceCards} />} />
           <Route path='*' element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>

@@ -5,11 +5,22 @@ import useMap from 'hooks/useMap';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants';
 import { Card } from 'types/offer';
 
-const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
+// объекты отличаются только лишь строкой iconUrl, так может сделать функцию, что возвращает данный объект и получает строку?)
+type Props = {
+  iconUrl: string;
+  iconSize: number[];
+  iconAnchor: number[];
+
+}
+function createIcon(icon:string): Props {
+  return {
+    iconUrl: icon,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+  };
+}
+
+const defaultCustomIcon = new Icon(createIcon(URL_MARKER_DEFAULT));
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
@@ -54,7 +65,7 @@ function Map({ cards, activeCard, className }: MapScreenProps): JSX.Element {
   }, [map, cards, activeCard]);
 
   return (
-    <section className={className} ref={mapRef} style={{ height: '600px' }}/>
+    <section className={className} ref={mapRef} style={{ height: '1100px' }} />
   );
 }
 
