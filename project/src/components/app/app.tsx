@@ -33,7 +33,6 @@ function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
-          {/* <Route path={AppRoute.Room} element={<Room cards={cards} reviews={reviews} nearPlaceCards={nearPlaceCards} />} /> */}
           <Route path={AppRoute.Room} element={<Room reviews={reviews} nearPlaceCards={nearPlaceCards} />} />
           <Route path='*' element={<NotFoundScreen />} />
         </Routes>

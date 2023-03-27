@@ -14,6 +14,11 @@ export const loadHotels = createAction('data/loadHotels',
   })
 );
 
+export const changeCardsSort = createAction('cards/changeCardsSort',
+  (sort: string) => ({
+    payload: sort
+  }));
+
 export const setError = createAction('cards/setError',
   (error: string | null) => ({
     payload: error
