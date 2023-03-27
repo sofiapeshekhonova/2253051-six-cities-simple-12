@@ -449,9 +449,6 @@ export const nearPlaceCards: Card[] = [
       },
       name: 'Amsterdam',
     }
-    // lat: 52.3909553943508,
-    // lng: 4.85309666406198,
-    // name: Amsterdam
   },
   {
     id: 2,
@@ -487,8 +484,6 @@ export const nearPlaceCards: Card[] = [
       },
       name: 'Amsterdam',
     }
-    // lat: 52.3609553943508,
-    // lng: 4.85309666406198,
   },
   {
     id: 3,
@@ -524,7 +519,5 @@ export const nearPlaceCards: Card[] = [
       },
       name: 'Amsterdam',
     }
-    // lat: 52.3909553943508,
-    // lng: 4.929309666406198,
   },
 ];

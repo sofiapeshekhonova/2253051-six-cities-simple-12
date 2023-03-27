@@ -7,6 +7,11 @@ export const changeCity = createAction('changeCity',
     payload: city,
   }));
 
+export const changeCardsSort = createAction('cards/changeCardsSort',
+  (sort: string) => ({
+    payload: sort
+  }));
+
 export const loadHotels = createAction('data/loadHotels',
   (cards: Card[]) => ({
     payload: cards

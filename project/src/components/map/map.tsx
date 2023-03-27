@@ -1,21 +1,20 @@
 import { useRef, useEffect } from 'react';
-import { Icon, Marker } from 'leaflet';
+import { BaseIconOptions, Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from 'hooks/useMap';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants';
 import { Card } from 'types/offer';
 
-const defaultCustomIcon = new Icon({
-  iconUrl: URL_MARKER_DEFAULT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
+function createIcon (icon:string): BaseIconOptions {
+  return {
+    iconUrl: icon,
+    iconSize: [30, 40],
+    iconAnchor: [20, 40],
+  };
+}
 
-const currentCustomIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
+const defaultCustomIcon = new Icon(createIcon(URL_MARKER_DEFAULT));
+const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
 
 type StyleMap = {
   height: string;

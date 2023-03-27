@@ -3,9 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import CityNav from 'components/cityNav/cityNav';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
-import { CITIES } from '../../constants';
+import { CITIES, SortCards } from '../../constants';
 import { changeCity } from 'store/action';
 import { useAppDispatch, useAppSelector } from 'hooks';
+import SortOptions from 'components/sortOptions/sortOptions';
 
 function Main(): JSX.Element {
 
@@ -13,13 +14,15 @@ function Main(): JSX.Element {
 
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
-  const cards = useAppSelector((state) => state.cards);
+  const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
 
-  const selectedCards = cards.filter((card) => card.city.name === selectedCity);
+  const selectedSortItem = useAppSelector((state) => state.sortOption);
+  const sortCards = SortCards(cards, selectedSortItem);
 
   const handelChangeCity = (city: string) => {
     dispatch(changeCity(city));
   };
+
   return (
     <>
       <Helmet>
@@ -38,26 +41,12 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{selectedCards.length} places to stay in {selectedCity}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
-              <Offers cards={selectedCards} setActiveCard={setActiveCard}/>
+              <b className="places__found">{cards.length} places to stay in {selectedCity}</b>
+              <SortOptions selectedSortItem={selectedSortItem}/>
+              <Offers cards={sortCards} setActiveCard={setActiveCard}/>
             </section>
             <div className="cities__right-section">
-              <Map className='cities__map map' cards={selectedCards} activeCard={activeCard} style={{ height: '1100px' }} />
+              <Map className='cities__map map' cards={cards} activeCard={activeCard} style={{ height: '1100px' }} />
             </div>
           </div>
         </div>
