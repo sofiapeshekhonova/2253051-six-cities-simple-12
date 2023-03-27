@@ -3,10 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import CityNav from 'components/cityNav/cityNav';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
+import SortOptions from 'components/sortOptions/sortOptions';
 import { CITIES, SortCards } from '../../constants';
 import { changeCity } from 'store/action';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import SortOptions from 'components/sortOptions/sortOptions';
 
 function Main(): JSX.Element {
 

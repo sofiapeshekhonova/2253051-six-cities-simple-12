@@ -18,15 +18,14 @@ const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
 
 type StyleMap = {
   height: string;
+}
 
- }
 type MapScreenProps = {
   cards: Card[];
   activeCard: null | number;
   className: string;
   style: StyleMap;
 }
-
 
 function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Element {
   const mapRef = useRef(null);
