@@ -11,12 +11,11 @@ import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
 
 type AppScreenProps = {
-  cards: Card[];
   reviews: ReviewsType[];
   nearPlaceCards: Card[];
 }
 
-function App({ cards, reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+function App({reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
@@ -24,7 +23,7 @@ function App({ cards, reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={AppRoute.Room} element={<Room cards={cards} reviews={reviews} nearPlaceCards={nearPlaceCards} />} />
+          <Route path={AppRoute.Room} element={<Room reviews={reviews} nearPlaceCards={nearPlaceCards} />} />
           <Route path='*' element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>

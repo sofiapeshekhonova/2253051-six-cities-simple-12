@@ -13,11 +13,10 @@ function Main(): JSX.Element {
   const [activeCard, setActiveCard] = useState< null | number >(null);
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
-  const cards = useAppSelector((state) => state.cards);
-  const selectedCards = cards.filter((card) => card.city.name === selectedCity);
+  const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
 
   const selectedSortItem = useAppSelector((state) => state.sortOption);
-  const sortCards = SortCards(selectedCards, selectedSortItem);
+  const sortCards = SortCards(cards, selectedSortItem);
 
   const handelChangeCity = (city: string) => {
     dispatch(changeCity(city));
@@ -41,12 +40,12 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{selectedCards.length} places to stay in {selectedCity}</b>
+              <b className="places__found">{cards.length} places to stay in {selectedCity}</b>
               <SortOptions selectedSortItem={selectedSortItem}/>
               <Offers cards={sortCards} setActiveCard={setActiveCard}/>
             </section>
             <div className="cities__right-section">
-              <Map className='cities__map map' cards={selectedCards} activeCard={activeCard} />
+              <Map className='cities__map map' cards={cards} activeCard={activeCard} />
             </div>
           </div>
         </div>
