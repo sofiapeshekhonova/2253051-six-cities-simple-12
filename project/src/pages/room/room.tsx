@@ -25,6 +25,7 @@ function Room({ reviews, nearPlaceCards}: AppScreenProps): JSX.Element {
   if (card === undefined) {
     return <p>Информация по жилью не найдена</p>;
   }
+
   const cardMap = [card];
 
   return (
