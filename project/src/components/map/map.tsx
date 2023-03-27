@@ -1,18 +1,12 @@
 import { useRef, useEffect } from 'react';
-import { Icon, Marker } from 'leaflet';
+import { BaseIconOptions, Icon, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from 'hooks/useMap';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants';
 import { Card } from 'types/offer';
 
-// объекты отличаются только лишь строкой iconUrl, так может сделать функцию, что возвращает данный объект и получает строку?)
-type Props = {
-  iconUrl: string;
-  iconSize: number[];
-  iconAnchor: number[];
 
-}
-function createIcon(icon:string): Props {
+function createIcon (icon:string): BaseIconOptions {
   return {
     iconUrl: icon,
     iconSize: [40, 40],
@@ -22,11 +16,7 @@ function createIcon(icon:string): Props {
 
 const defaultCustomIcon = new Icon(createIcon(URL_MARKER_DEFAULT));
 
-const currentCustomIcon = new Icon({
-  iconUrl: URL_MARKER_CURRENT,
-  iconSize: [40, 40],
-  iconAnchor: [20, 40],
-});
+const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
 
 type MapScreenProps = {
   cards: Card[];
