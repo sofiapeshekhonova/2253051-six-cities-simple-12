@@ -6,10 +6,10 @@ import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Room from '../../pages/room/room';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
+import LoadingScreen from 'pages/loading-screen/loading-screen';
 import { AppRoute } from '../../constants';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
-import LoadingScreen from 'pages/loading-screen/loading-screen';
 import { useAppSelector } from 'hooks';
 
 type AppScreenProps = {
@@ -26,6 +26,7 @@ function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
       <LoadingScreen />
     );
   }
+
   return (
     <HelmetProvider>
       <BrowserRouter>
