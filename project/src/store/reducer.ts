@@ -1,13 +1,14 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { Card } from 'types/offer';
-import { CITIES } from '../constants';
-import { changeCity, loadHotels, setCardsDataLoadingStatus, setError } from './action';
+import { AuthorizationStatus, CITIES } from '../constants';
+import { changeCity, loadHotels, requireAuthorization, setCardsDataLoadingStatus, setError } from './action';
 
 type InitialState = {
   city: string;
   cards: Card[];
   error: string | null;
   isCardsDataLoading: boolean;
+  authorizationStatus: AuthorizationStatus;
 };
 
 const defaultState: InitialState = {
@@ -15,6 +16,7 @@ const defaultState: InitialState = {
   city: CITIES[0],
   error: null,
   isCardsDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
 };
 
 const reducer = createReducer(defaultState, (builder) => {
@@ -30,6 +32,9 @@ const reducer = createReducer(defaultState, (builder) => {
     })
     .addCase(setCardsDataLoadingStatus, (state, action) => {
       state.isCardsDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 

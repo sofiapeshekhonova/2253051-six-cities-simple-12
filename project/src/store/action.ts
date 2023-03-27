@@ -1,5 +1,6 @@
 // действие что нужно сделать
 import { createAction } from '@reduxjs/toolkit';
+import { AuthorizationStatus } from '../constants';
 import { Card } from 'types/offer';
 
 export const changeCity = createAction('changeCity',
@@ -22,6 +23,12 @@ export const setError = createAction('cards/setError',
 export const setCardsDataLoadingStatus = createAction('data/setCardsDataLoadingStatus',
   (isCardsDataLoading: boolean) => ({
     payload: isCardsDataLoading
+  })
+);
+
+export const requireAuthorization = createAction('user/requireAuthorization',
+  (authorizationStatus: AuthorizationStatus) => ({
+    payload: authorizationStatus,
   })
 );
 
