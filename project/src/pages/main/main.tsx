@@ -4,17 +4,20 @@ import CityNav from 'components/cityNav/cityNav';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
 import { CITIES } from '../../constants';
-import { Card } from 'types/offer';
-import { CityType } from 'types/city';
+import { changeCity } from 'store/action';
+import { useAppDispatch, useAppSelector } from 'hooks';
 
-type AppScreenProps = {
-  cards: Card[];
-  city: CityType;
-}
-
-function Main({ cards, city }: AppScreenProps): JSX.Element {
+function Main(): JSX.Element {
 
   const [activeCard, setActiveCard] = useState< null | number >(null);
+
+  const dispatch = useAppDispatch();
+  const selectedCity = useAppSelector((state) => state.city);
+  const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
+
+  const handelChangeCity = (city: string) => {
+    dispatch(changeCity(city));
+  };
 
   return (
     <>
@@ -26,7 +29,7 @@ function Main({ cards, city }: AppScreenProps): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} />)}
+              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} handelChangeCity={handelChangeCity}/>)}
             </ul>
           </section>
         </div>
@@ -34,7 +37,7 @@ function Main({ cards, city }: AppScreenProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cards.length} places to stay in Amsterdam</b>
+              <b className="places__found">{cards.length} places to stay in {selectedCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -53,7 +56,7 @@ function Main({ cards, city }: AppScreenProps): JSX.Element {
               <Offers cards={cards} setActiveCard={setActiveCard}/>
             </section>
             <div className="cities__right-section">
-              <Map className='cities__map map' city={city} cards={cards} activeCard={activeCard}/>
+              <Map className='cities__map map' cards={cards} activeCard={activeCard}/>
             </div>
           </div>
         </div>
