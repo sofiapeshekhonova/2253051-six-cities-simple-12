@@ -9,7 +9,6 @@ type InitialState = {
   cards: Card[];
 };
 
-
 // Объект начального состояния
 const defaultState: InitialState = {
   city: CITIES[0],
