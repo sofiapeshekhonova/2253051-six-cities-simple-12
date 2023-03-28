@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов (простой)»
 
 * Студент: [Софья  Пешехонова](https://up.htmlacademy.ru/react/12/user/2253051).
-* Наставник: [Артём Рудов](https://htmlacademy.ru/profile/id345377).
+* Наставник: [Елена Грицук](https://htmlacademy.ru/profile/id199079).
 
 ---
 
