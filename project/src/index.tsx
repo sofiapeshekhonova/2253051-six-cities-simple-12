@@ -4,10 +4,11 @@ import { Provider } from 'react-redux';
 import App from './components/app/app';
 import { reviews, nearPlaceCards } from './components/mocks/mocks';
 import { store } from './store';
-import { fetchHotelsAction } from 'store/api-actions';
+import { checkAuthAction, fetchHotelsAction } from 'store/api-actions';
 import ErrorMessage from './components/error-message/error-message';
 
 store.dispatch(fetchHotelsAction());
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,

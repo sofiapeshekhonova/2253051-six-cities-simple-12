@@ -3,7 +3,7 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../constants';
 import { Card } from 'types/offer.js';
-import { loadHotels, setError, setCardsDataLoadingStatus, requireAuthorization } from './action';
+import { loadHotels, setError, setCardsDataLoadingStatus, requireAuthorization, getUserInformation } from './action';
 import { store } from './index';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from 'types/user-data.js';
@@ -24,7 +24,7 @@ export const fetchHotelsAction = createAsyncThunk<void, undefined, {
 );
 
 export const clearErrorAction = createAsyncThunk(
-  'game/clearError',
+  'cards/clearError',
   () => {
     setTimeout(
       () => store.dispatch(setError(null)),
@@ -32,7 +32,6 @@ export const clearErrorAction = createAsyncThunk(
     );
   },
 );
-
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -43,7 +42,9 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     try {
       await api.get(APIRoute.Login);
+      const { data } = await api.get<UserData>(APIRoute.Login);
       dispatch(requireAuthorization(AuthorizationStatus.Auth));
+      dispatch(getUserInformation(data));
     } catch {
       dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
@@ -57,8 +58,10 @@ export const loginAction = createAsyncThunk<void, AuthData, {
 }>(
   'user/login',
   async ({login: email, password}, {dispatch, extra: api}) => {
-    const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
-    saveToken(token);
+    const { data } = await api.post<UserData>(APIRoute.Login, {email, password});
+    saveToken(data.token);
+    //console.log(data.email)
+    dispatch(getUserInformation(data));
     dispatch(requireAuthorization(AuthorizationStatus.Auth));
   },
 );
@@ -72,6 +75,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+    dispatch(getUserInformation(null));
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   },
 );

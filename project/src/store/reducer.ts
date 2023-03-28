@@ -1,7 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { Card } from 'types/offer';
+import { UserData } from 'types/user-data';
 import { AuthorizationStatus, CITIES, sortList } from '../constants';
-import { changeCardsSort, changeCity, loadHotels, requireAuthorization, setCardsDataLoadingStatus, setError } from './action';
+import { changeCardsSort, changeCity, getUserInformation, loadHotels, requireAuthorization, setCardsDataLoadingStatus, setError } from './action';
 
 type InitialState = {
   city: string;
@@ -9,7 +10,8 @@ type InitialState = {
   error: string | null;
   sortOption: string;
   isCardsDataLoading: boolean;
-  authorizationStatus: AuthorizationStatus;
+  authorizationStatus: string;
+  userInformation: UserData | null;
 };
 
 const defaultState: InitialState = {
@@ -19,10 +21,11 @@ const defaultState: InitialState = {
   error: null,
   isCardsDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
+  userInformation: null
 };
 
 const reducer = createReducer(defaultState, (builder) => {
-  builder // addCase. Первым аргументом он ожидает функцию, с помощью которой создаётся действие.
+  builder
     .addCase(changeCity, (state, action) => {
       state.city = action.payload;
     })
@@ -40,6 +43,9 @@ const reducer = createReducer(defaultState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(getUserInformation, (state, action) => {
+      state.userInformation = action.payload;
     });
 });
 

@@ -1,6 +1,14 @@
+import { useAppSelector } from 'hooks';
 import { Route, Link, Routes } from 'react-router-dom';
 
 function HeaderLogged(): JSX.Element {
+
+  const user = useAppSelector((state) => state.userInformation);
+  let email;
+  if( user !== null) {
+    email = user.email;
+  }
+
   return (
     <header className="header">
       <div className="container">
@@ -17,7 +25,7 @@ function HeaderLogged(): JSX.Element {
                   <li className="header__nav-item user">
                     <div className="header__nav-profile">
                       <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      <span className="header__user-name user__name">{email}</span>
                     </div>
                   </li>
                   <li className="header__nav-item">
