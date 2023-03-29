@@ -16,7 +16,7 @@ type AppScreenProps = {
   nearPlaceCards: Card[];
 }
 
-function Room({ reviews, nearPlaceCards}: AppScreenProps): JSX.Element {
+function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   const cardId = Number(useParams().id);
   const cards = useAppSelector((state) => state.cards);
   const [activeCard, setActiveCard] = useState<null | number>(null);

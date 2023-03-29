@@ -12,9 +12,7 @@ function createIcon (icon:string): BaseIconOptions {
     iconAnchor: [20, 20],
   };
 }
-
 const defaultCustomIcon = new Icon(createIcon(URL_MARKER_DEFAULT));
-
 const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
 
 type MapScreenProps = {
