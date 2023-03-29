@@ -1,5 +1,6 @@
 import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
+import { MouseEvent } from 'react';
 
 type cityProps = {
   city: string;
@@ -11,6 +12,11 @@ function CityNav({ city, handleChangeCity }: cityProps): JSX.Element {
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     handleChangeCity(city);
+  };
+
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    handelChangeCity(city);
   };
 
   return (

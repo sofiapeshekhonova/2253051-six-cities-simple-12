@@ -5,6 +5,7 @@ import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
 import SortOptions from 'components/sortOptions/sortOptions';
 import { CITIES, SortCards } from '../../constants';
+
 import { changeCity } from 'store/action';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
@@ -14,7 +15,6 @@ function Main(): JSX.Element {
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
   const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
-
   const selectedSortItem = useAppSelector((state) => state.sortOption);
   const sortCards = SortCards(cards, selectedSortItem);
 
