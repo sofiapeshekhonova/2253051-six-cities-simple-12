@@ -10,7 +10,6 @@ type InitialState = {
   sortOption: string;
 };
 
-// Объект начального состояния
 const defaultState: InitialState = {
   city: CITIES[0],
   cards: cards,
@@ -25,7 +24,6 @@ const reducer = createReducer(defaultState, (builder) => {
     .addCase(changeCardsSort, (state, action) => {
       state.sortOption = action.payload;
     });
-
 });
 
 export { reducer };

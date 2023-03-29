@@ -9,7 +9,6 @@ import { changeCity } from 'store/action';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
 function Main(): JSX.Element {
-
   const [activeCard, setActiveCard] = useState< null | number >(null);
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
@@ -17,7 +16,6 @@ function Main(): JSX.Element {
 
   const selectedSortItem = useAppSelector((state) => state.sortOption);
   const sortCards = SortCards(cards, selectedSortItem);
-
   const handleChangeCity = (city: string) => {
     dispatch(changeCity(city));
   };

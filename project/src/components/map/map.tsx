@@ -52,7 +52,7 @@ function Map({ cards, activeCard, className }: MapScreenProps): JSX.Element {
   }, [map, cards, activeCard]);
 
   return (
-    <section className={className} ref={mapRef} style={{ height: '1100px' }}/>
+    <section className={className} ref={mapRef} style={{ height: '1100px' }} />
   );
 }
 
