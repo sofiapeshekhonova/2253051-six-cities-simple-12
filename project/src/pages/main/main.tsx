@@ -18,7 +18,7 @@ function Main(): JSX.Element {
   const selectedSortItem = useAppSelector((state) => state.sortOption);
   const sortCards = SortCards(cards, selectedSortItem);
 
-  const handelChangeCity = (city: string) => {
+  const handleChangeCity = (city: string) => {
     dispatch(changeCity(city));
   };
 
@@ -32,7 +32,7 @@ function Main(): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} handelChangeCity={handelChangeCity}/>)}
+              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} handleChangeCity={handleChangeCity}/>)}
             </ul>
           </section>
         </div>
