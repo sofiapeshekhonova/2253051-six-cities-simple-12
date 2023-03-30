@@ -4,9 +4,10 @@ import ReviewItem from 'components/reviewItem/reviewItem';
 
 type Props = {
   reviews: ReviewsType[];
+  cardId: number;
 }
 
-function Reviews({ reviews }: Props): JSX.Element {
+function Reviews({ reviews, cardId }: Props): JSX.Element {
 
   return (
     <section className="property__reviews reviews">
@@ -15,7 +16,7 @@ function Reviews({ reviews }: Props): JSX.Element {
         {reviews.map((review) => <ReviewItem review={review} key={review.id} />)}
       </ul>
       {/* если пользователь зарегестрированн */}
-      <ReviewsForm />
+      <ReviewsForm cardId={cardId}/>
     </section>
   );
 }

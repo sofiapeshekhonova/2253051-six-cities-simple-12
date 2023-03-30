@@ -44,6 +44,11 @@ export const getRoomComments = createAction('room/getRoomcomments',
     payload: roomComments
   })
 );
+export const postRoomComments = createAction('room/postRoomcomments',
+  (roomComments: ReviewsType[]) => ({
+    payload: roomComments
+  })
+);
 
 export const getNearHotels = createAction('card/getNearHotels',
   (nearHotels: Card[]) => ({

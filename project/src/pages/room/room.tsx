@@ -9,7 +9,7 @@ import Host from 'components/host/host';
 import Map from 'components/map/map';
 import { Card } from 'types/offer';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { fetchNearOffersAction, fetchRoomCommentsAction } from 'store/api-actions';
+import { fetchNearOffersAction, fetchRoomCommentsAction} from 'store/api-actions';
 
 function Room(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -89,7 +89,7 @@ function Room(): JSX.Element {
                 </ul>
               </div>
               <Host card={card} />
-              <Reviews reviews={roomComments} />
+              <Reviews reviews={roomComments} cardId={cardId}/>
             </div>
           </div>
           <Map

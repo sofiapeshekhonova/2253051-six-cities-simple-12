@@ -3,11 +3,12 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import { APIRoute, AppRoute, AuthorizationStatus} from '../constants';
 import { Card } from 'types/offer.js';
-import { loadHotels, setCardsDataLoadingStatus, requireAuthorization, getUserInformation, redirectToRoute, getRoomComments, getNearHotels } from './action';
+import { loadHotels, setCardsDataLoadingStatus, requireAuthorization, getUserInformation, redirectToRoute, getRoomComments, getNearHotels, postRoomComments } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from 'types/user-data.js';
 import { AuthData } from 'types/auth-data.js';
 import { ReviewsType } from 'types/reviews.js';
+import { CommentType } from 'types/commentType.js';
 
 export const fetchHotelsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -34,6 +35,20 @@ export const fetchRoomCommentsAction = createAsyncThunk<void, number, {
     dispatch(getRoomComments(data));
   }
 );
+
+export const postRoomCommentsAction = createAsyncThunk<void, CommentType, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/postRoomCommentsAction',
+  async ({cardId, rating, comment}, {dispatch, extra: api}) => {
+    const {data} = await api.post<ReviewsType[]>(`${APIRoute.Comments}/${cardId}`, {rating, comment});
+    dispatch(postRoomComments(data));
+
+  }
+);
+
 
 export const fetchNearOffersAction = createAsyncThunk<void, number, {
   dispatch: AppDispatch;

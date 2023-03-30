@@ -3,7 +3,7 @@ import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
 import { UserData } from 'types/user-data';
 import { AuthorizationStatus, CITIES, sortList } from '../constants';
-import { changeCardsSort, changeCity, getNearHotels, getRoomComments, getUserInformation, loadHotels, requireAuthorization, setCardsDataLoadingStatus } from './action';
+import { changeCardsSort, changeCity, getNearHotels, getRoomComments, getUserInformation, loadHotels, postRoomComments, requireAuthorization, setCardsDataLoadingStatus } from './action';
 
 type InitialState = {
   city: string;
@@ -48,6 +48,9 @@ const reducer = createReducer(defaultState, (builder) => {
       state.userInformation = action.payload;
     })
     .addCase(getRoomComments, (state, action) => {
+      state.roomComments = action.payload;
+    })
+    .addCase(postRoomComments, (state, action) => {
       state.roomComments = action.payload;
     })
     .addCase(getNearHotels, (state, action) => {
