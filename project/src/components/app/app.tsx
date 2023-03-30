@@ -9,15 +9,10 @@ import Room from 'pages/room/room';
 import NotFoundScreen from 'pages/not-found-screen/not-found-screen';
 import LoadingScreen from 'pages/loading-screen/loading-screen';
 import { AppRoute } from '../../constants';
-import { Card } from 'types/offer';
 import { useAppSelector } from 'hooks';
 import HistoryRouter from 'components/history-route/history-route';
 
-type AppScreenProps = {
-  nearPlaceCards: Card[];
-}
-
-function App({ nearPlaceCards }: AppScreenProps): JSX.Element {
+function App(): JSX.Element {
 
   const isCardsDataLoading = useAppSelector((state) => state.isCardsDataLoading);
 
