@@ -3,14 +3,14 @@ import { MouseEvent } from 'react';
 
 type cityProps = {
   city: string;
-  handelChangeCity: (city: string) => void;
+  handleChangeCity: (city: string) => void;
 };
 
-function CityNav({ city, handelChangeCity }: cityProps): JSX.Element {
+function CityNav({ city, handleChangeCity }: cityProps): JSX.Element {
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    handelChangeCity(city);
+    handleChangeCity(city);
   };
 
   return (

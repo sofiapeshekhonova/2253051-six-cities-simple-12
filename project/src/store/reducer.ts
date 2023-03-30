@@ -1,25 +1,28 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { cards } from 'components/mocks/mocks';
+import { CITIES, sortList } from '../constants';
+import { changeCity, changeCardsSort } from './action';
 import { Card } from 'types/offer';
-import { CITIES } from '../constants';
-import { changeCity } from './action';
 
 type InitialState = {
   city: string;
   cards: Card[];
+  sortOption: string;
 };
 
-// Объект начального состояния
 const defaultState: InitialState = {
   city: CITIES[0],
-  cards: cards
+  cards: cards,
+  sortOption: sortList[0]
 };
 
-
 const reducer = createReducer(defaultState, (builder) => {
-  builder // addCase. Первым аргументом он ожидает функцию, с помощью которой создаётся действие.
+  builder
     .addCase(changeCity, (state, action) => {
       state.city = action.payload;
+    })
+    .addCase(changeCardsSort, (state, action) => {
+      state.sortOption = action.payload;
     });
 });
 

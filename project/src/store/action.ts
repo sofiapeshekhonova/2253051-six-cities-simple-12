@@ -5,3 +5,8 @@ export const changeCity = createAction('changeCity',
   (city: string) => ({
     payload: city,
   }));
+
+export const changeCardsSort = createAction('cards/changeCardsSort',
+  (sort: string) => ({
+    payload: sort
+  }));

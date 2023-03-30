@@ -178,7 +178,6 @@ export const cards: Card[] = [
       name: 'Amsterdam',
     }
   },
-
   {
     id: 8,
     previewImage: 'img/room.jpg',
@@ -352,6 +351,41 @@ export const cards: Card[] = [
         longitude: 6.776314,
         zoom: 13
       }
+    }
+  },
+  {
+    id: 20,
+    previewImage: 'img/room.jpg',
+    title: 'Wood and stone place',
+    premium: false,
+    price: 80,
+    type: 'Private room',
+    maxAdults: 4,
+    bedrooms: 3,
+    description: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
+    rating: 4.8,
+    goods: ['Wi-Fi', 'Washing machine', ' Towels', ' Heating', 'Coffee machine', 'Baby seat', 'Kitchen', 'Dishwasher', 'Cabel TV', 'Fridge'],
+    images: [
+      'img/room.jpg', 'img/apartment-01.jpg', 'img/apartment-02.jpg', 'img/apartment-03.jpg', 'img/studio-01.jpg',
+    ],
+    host: {
+      avatarUrl: 'img/avatar-angelina.jpg',
+      id: 50,
+      isPro: true,
+      name: 'Angelina',
+    },
+    location: {
+      latitude: 48.85437,
+      longitude: 2.29448,
+      zoom: 16
+    },
+    city: {
+      location: {
+        latitude: 48.85661,
+        longitude: 2.351499,
+        zoom: 11
+      },
+      name: 'Paris'
     }
   },
 ];

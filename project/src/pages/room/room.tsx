@@ -11,7 +11,6 @@ import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
 import { useAppSelector } from 'hooks';
 
-
 type AppScreenProps = {
   reviews: ReviewsType[];
   nearPlaceCards: Card[];
@@ -26,6 +25,8 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   if (card === undefined) {
     return <p>Информация по жилью не найдена</p>;
   }
+
+  const cardMap = [card];
 
   return (
     <>
@@ -77,7 +78,7 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
               <Reviews reviews={reviews} />
             </div>
           </div>
-          <Map className='property__map map' cards={cards} activeCard={activeCard} />
+          <Map className='property__map map' cards={cardMap} activeCard={activeCard} />
         </section>
         <div className="container">
           <NearPlaces nearPlaceCards={nearPlaceCards} setActiveCard={setActiveCard} />

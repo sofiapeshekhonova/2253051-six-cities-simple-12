@@ -8,13 +8,11 @@ import { Card } from 'types/offer';
 function createIcon (icon:string): BaseIconOptions {
   return {
     iconUrl: icon,
-    iconSize: [40, 40],
+    iconSize: [30, 40],
     iconAnchor: [20, 20],
   };
 }
-
 const defaultCustomIcon = new Icon(createIcon(URL_MARKER_DEFAULT));
-
 const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
 
 type MapScreenProps = {

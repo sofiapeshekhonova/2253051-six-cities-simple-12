@@ -15,7 +15,7 @@ type AppScreenProps = {
   nearPlaceCards: Card[];
 }
 
-function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+function App({reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
