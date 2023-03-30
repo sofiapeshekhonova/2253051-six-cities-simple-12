@@ -9,9 +9,7 @@ import { changeCity } from 'store/action';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
 function Main(): JSX.Element {
-
   const [activeCard, setActiveCard] = useState< null | number >(null);
-
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
   const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
@@ -19,7 +17,7 @@ function Main(): JSX.Element {
   const selectedSortItem = useAppSelector((state) => state.sortOption);
   const sortCards = SortCards(cards, selectedSortItem);
 
-  const handelChangeCity = (city: string) => {
+  const handleChangeCity = (city: string) => {
     dispatch(changeCity(city));
   };
 
@@ -33,7 +31,7 @@ function Main(): JSX.Element {
         <div className="tabs">
           <section className="locations container">
             <ul className="locations__list tabs__list">
-              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} handelChangeCity={handelChangeCity}/>)}
+              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} handleChangeCity={handleChangeCity}/>)}
             </ul>
           </section>
         </div>

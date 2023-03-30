@@ -20,7 +20,7 @@ const defaultState: InitialState = {
 };
 
 const reducer = createReducer(defaultState, (builder) => {
-  builder // addCase. Первым аргументом он ожидает функцию, с помощью которой создаётся действие.
+  builder
     .addCase(changeCity, (state, action) => {
       state.city = action.payload;
     })

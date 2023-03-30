@@ -29,4 +29,3 @@ export const setCardsDataLoadingStatus = createAction('data/setCardsDataLoadingS
     payload: isCardsDataLoading
   })
 );
-
