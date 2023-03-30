@@ -24,9 +24,7 @@ function Header(): JSX.Element {
           </div>
           <Routes>
             <Route path={AppRoute.Root} element={
-              <>
-                {user ? <HeaderLogged email={email} avatar={avatar}/> : <HeaderNotLogged/> }
-              </>
+              user ? <HeaderLogged email={email} avatar={avatar}/> : <HeaderNotLogged/>
             }
             />
           </Routes>
