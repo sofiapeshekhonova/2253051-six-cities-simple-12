@@ -1,19 +1,22 @@
 import {createReducer} from '@reduxjs/toolkit';
-import { cards } from 'components/mocks/mocks';
-import { CITIES, sortList } from '../constants';
-import { changeCity, changeCardsSort } from './action';
 import { Card } from 'types/offer';
+import { CITIES, sortList } from '../constants';
+import { changeCardsSort, changeCity, loadHotels, setCardsDataLoadingStatus, setError } from './action';
 
 type InitialState = {
   city: string;
-  cards: Card[];
   sortOption: string;
+  cards: Card[];
+  error: string | null;
+  isCardsDataLoading: boolean;
 };
 
 const defaultState: InitialState = {
+  cards: [],
   city: CITIES[0],
-  cards: cards,
-  sortOption: sortList[0]
+  sortOption: sortList[0],
+  error: null,
+  isCardsDataLoading: false,
 };
 
 const reducer = createReducer(defaultState, (builder) => {
@@ -23,6 +26,15 @@ const reducer = createReducer(defaultState, (builder) => {
     })
     .addCase(changeCardsSort, (state, action) => {
       state.sortOption = action.payload;
+    })
+    .addCase(loadHotels, (state, action) => {
+      state.cards = action.payload;
+    })
+    .addCase(setError, (state, action) => {
+      state.error = action.payload;
+    })
+    .addCase(setCardsDataLoadingStatus, (state, action) => {
+      state.isCardsDataLoading = action.payload;
     });
 });
 

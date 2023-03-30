@@ -9,13 +9,23 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import { AppRoute } from '../../constants';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
+import LoadingScreen from 'pages/loading-screen/loading-screen';
+import { useAppSelector } from 'hooks';
 
 type AppScreenProps = {
   reviews: ReviewsType[];
   nearPlaceCards: Card[];
 }
 
-function App({reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+
+  const isCardsDataLoading = useAppSelector((state) => state.isCardsDataLoading);
+
+  if (isCardsDataLoading) {
+    return (
+      <LoadingScreen />
+    );
+  }
   return (
     <HelmetProvider>
       <BrowserRouter>

@@ -16,6 +16,7 @@ function Main(): JSX.Element {
 
   const selectedSortItem = useAppSelector((state) => state.sortOption);
   const sortCards = SortCards(cards, selectedSortItem);
+
   const handleChangeCity = (city: string) => {
     dispatch(changeCity(city));
   };
@@ -43,7 +44,7 @@ function Main(): JSX.Element {
               <Offers cards={sortCards} setActiveCard={setActiveCard}/>
             </section>
             <div className="cities__right-section">
-              <Map className='cities__map map' cards={cards} activeCard={activeCard} />
+              <Map className='cities__map map' cards={cards} activeCard={activeCard} style={{ height: '1100px' }} />
             </div>
           </div>
         </div>

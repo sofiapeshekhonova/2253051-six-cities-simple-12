@@ -9,20 +9,25 @@ function createIcon (icon:string): BaseIconOptions {
   return {
     iconUrl: icon,
     iconSize: [30, 40],
-    iconAnchor: [20, 20],
+    iconAnchor: [20, 40],
   };
 }
+
 const defaultCustomIcon = new Icon(createIcon(URL_MARKER_DEFAULT));
 const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
+
+type StyleMap = {
+  height: string;
+}
 
 type MapScreenProps = {
   cards: Card[];
   activeCard: null | number;
   className: string;
+  style: StyleMap;
 }
 
-
-function Map({ cards, activeCard, className }: MapScreenProps): JSX.Element {
+function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Element {
   const mapRef = useRef(null);
   const city = cards[0].city;
   const map = useMap(mapRef, city);
@@ -52,7 +57,7 @@ function Map({ cards, activeCard, className }: MapScreenProps): JSX.Element {
   }, [map, cards, activeCard]);
 
   return (
-    <section className={className} ref={mapRef} style={{ height: '1100px' }} />
+    <section className={className} ref={mapRef} style={style} />
   );
 }
 
