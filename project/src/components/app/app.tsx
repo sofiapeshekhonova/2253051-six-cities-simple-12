@@ -34,7 +34,7 @@ function App({ nearPlaceCards }: AppScreenProps): JSX.Element {
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={AppRoute.Room} element={<Room nearPlaceCards={nearPlaceCards} />} />
+          <Route path={AppRoute.Room} element={<Room />} />
           <Route path='*' element={<NotFoundScreen />} />
         </Routes>
       </HistoryRouter>

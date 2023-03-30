@@ -45,7 +45,11 @@ export const getRoomComments = createAction('room/getRoomcomments',
   })
 );
 
-export const getNearHotels = createAction<ReviewsType>('data/getNearHotels');
+export const getNearHotels = createAction('card/getNearHotels',
+  (nearHotels: Card[]) => ({
+    payload: nearHotels
+  })
+);
 
 export const redirectToRoute = createAction('data/redirectToRoute',
   (redirect: AppRoute) => ({ payload: redirect })

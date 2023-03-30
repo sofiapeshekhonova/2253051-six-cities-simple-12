@@ -9,23 +9,21 @@ import Host from 'components/host/host';
 import Map from 'components/map/map';
 import { Card } from 'types/offer';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { fetchRoomCommentsAction } from 'store/api-actions';
+import { fetchNearOffersAction, fetchRoomCommentsAction } from 'store/api-actions';
 
-type AppScreenProps = {
-  nearPlaceCards: Card[];
-};
-
-function Room({ nearPlaceCards }: AppScreenProps): JSX.Element {
+function Room(): JSX.Element {
   const dispatch = useAppDispatch();
 
   const cardId = Number(useParams().id);
 
   useEffect(() => {
     dispatch(fetchRoomCommentsAction(cardId));
+    dispatch(fetchNearOffersAction(cardId));
   }, [dispatch, cardId]);
 
   const cards = useAppSelector((state) => state.cards);
   const roomComments = useAppSelector((state) => state.roomComments);
+  const nearPlaces = useAppSelector((state) => state.nearHotels);
 
   const [activeCard, setActiveCard] = useState<null | number>(null);
   const card: Card | undefined = cards.find((element) => element.id === cardId);
@@ -98,12 +96,12 @@ function Room({ nearPlaceCards }: AppScreenProps): JSX.Element {
             className="property__map map"
             cards={cardMap}
             activeCard={activeCard}
-            style={{ height: '500px' }}
+            style={{ height: '400px' }}
           />
         </section>
         <div className="container">
           <NearPlaces
-            nearPlaceCards={nearPlaceCards}
+            nearPlaceCards={nearPlaces}
             setActiveCard={setActiveCard}
           />
         </div>
