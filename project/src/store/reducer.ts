@@ -2,12 +2,11 @@ import {createReducer} from '@reduxjs/toolkit';
 import { Card } from 'types/offer';
 import { UserData } from 'types/user-data';
 import { AuthorizationStatus, CITIES, sortList } from '../constants';
-import { changeCardsSort, changeCity, getUserInformation, loadHotels, requireAuthorization, setCardsDataLoadingStatus, setError } from './action';
+import { changeCardsSort, changeCity, getUserInformation, loadHotels, requireAuthorization, setCardsDataLoadingStatus } from './action';
 
 type InitialState = {
   city: string;
   cards: Card[];
-  error: string | null;
   sortOption: string;
   isCardsDataLoading: boolean;
   authorizationStatus: string;
@@ -18,7 +17,6 @@ const defaultState: InitialState = {
   cards: [],
   city: CITIES[0],
   sortOption: sortList[0],
-  error: null,
   isCardsDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   userInformation: null
@@ -34,9 +32,6 @@ const reducer = createReducer(defaultState, (builder) => {
     })
     .addCase(loadHotels, (state, action) => {
       state.cards = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     })
     .addCase(setCardsDataLoadingStatus, (state, action) => {
       state.isCardsDataLoading = action.payload;

@@ -1,6 +1,7 @@
 
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import browserHistory from 'browser-history';
 import Header from '../header/header';
 import Main from 'pages/main/main';
 import Login from 'pages/login/login';
@@ -11,6 +12,7 @@ import { AppRoute } from '../../constants';
 import { Card } from 'types/offer';
 import { ReviewsType } from 'types/reviews';
 import { useAppSelector } from 'hooks';
+import HistoryRouter from 'components/history-route/history-route';
 
 type AppScreenProps = {
   reviews: ReviewsType[];
@@ -29,7 +31,7 @@ function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
 
   return (
     <HelmetProvider>
-      <BrowserRouter>
+      <HistoryRouter history={browserHistory}>
         <Header />
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
@@ -37,7 +39,7 @@ function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
           <Route path={AppRoute.Room} element={<Room reviews={reviews} nearPlaceCards={nearPlaceCards} />} />
           <Route path='*' element={<NotFoundScreen />} />
         </Routes>
-      </BrowserRouter>
+      </HistoryRouter>
     </HelmetProvider>
   );
 }

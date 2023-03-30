@@ -1,15 +1,13 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ChangeEvent, FormEvent, useState} from 'react';
 import { useAppDispatch } from 'hooks';
 import { loginAction } from 'store/api-actions';
 import { AuthData } from 'types/auth-data';
-import { AppRoute } from '../../constants';
 import './form__text-error.css';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const [errors, setErrors] = useState({
     email: '',
@@ -46,7 +44,7 @@ function Login(): JSX.Element {
       login: formValue.email,
       password: formValue.password,
     });
-    navigate(AppRoute.Root);
+    // navigate(AppRoute.Root);
   }
 
   return (

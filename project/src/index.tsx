@@ -5,7 +5,8 @@ import App from './components/app/app';
 import { reviews, nearPlaceCards } from './components/mocks/mocks';
 import { store } from './store';
 import { checkAuthAction, fetchHotelsAction } from 'store/api-actions';
-import ErrorMessage from './components/error-message/error-message';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 store.dispatch(fetchHotelsAction());
 store.dispatch(checkAuthAction());
@@ -17,7 +18,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ErrorMessage />
+      <ToastContainer />
       <App reviews={reviews} nearPlaceCards={nearPlaceCards} />
     </Provider>
   </React.StrictMode>,
