@@ -3,6 +3,7 @@ import { createAction } from '@reduxjs/toolkit';
 import { AppRoute } from '../constants';
 import { Card } from 'types/offer';
 import { UserData } from 'types/user-data';
+import { ReviewsType } from 'types/reviews';
 
 export const changeCity = createAction('changeCity',
   (city: string) => ({
@@ -38,7 +39,14 @@ export const getUserInformation = createAction('user/getUserInformation',
   })
 );
 
-// export const redirectToRoute = createAction<AppRoute>('data/redirectToRoute');
+export const getRoomComments = createAction('room/getRoomcomments',
+  (roomComments: ReviewsType[]) => ({
+    payload: roomComments
+  })
+);
+
+export const getNearHotels = createAction<ReviewsType>('data/getNearHotels');
+
 export const redirectToRoute = createAction('data/redirectToRoute',
   (redirect: AppRoute) => ({ payload: redirect })
 );

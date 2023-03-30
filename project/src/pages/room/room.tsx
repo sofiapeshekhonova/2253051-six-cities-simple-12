@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Goods from 'components/goods/goods';
@@ -8,17 +8,25 @@ import NearPlaces from 'components/nearPlaces/nearPlaces';
 import Host from 'components/host/host';
 import Map from 'components/map/map';
 import { Card } from 'types/offer';
-import { ReviewsType } from 'types/reviews';
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { fetchRoomCommentsAction } from 'store/api-actions';
 
 type AppScreenProps = {
-  reviews: ReviewsType[];
   nearPlaceCards: Card[];
 };
 
-function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
-  const cards = useAppSelector((state) => state.cards);
+function Room({ nearPlaceCards }: AppScreenProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
   const cardId = Number(useParams().id);
+
+  useEffect(() => {
+    dispatch(fetchRoomCommentsAction(cardId));
+  }, [dispatch, cardId]);
+
+  const cards = useAppSelector((state) => state.cards);
+  const roomComments = useAppSelector((state) => state.roomComments);
+
   const [activeCard, setActiveCard] = useState<null | number>(null);
   const card: Card | undefined = cards.find((element) => element.id === cardId);
 
@@ -83,7 +91,7 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
                 </ul>
               </div>
               <Host card={card} />
-              <Reviews reviews={reviews} />
+              <Reviews reviews={roomComments} />
             </div>
           </div>
           <Map

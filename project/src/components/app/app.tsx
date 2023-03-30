@@ -10,16 +10,14 @@ import NotFoundScreen from 'pages/not-found-screen/not-found-screen';
 import LoadingScreen from 'pages/loading-screen/loading-screen';
 import { AppRoute } from '../../constants';
 import { Card } from 'types/offer';
-import { ReviewsType } from 'types/reviews';
 import { useAppSelector } from 'hooks';
 import HistoryRouter from 'components/history-route/history-route';
 
 type AppScreenProps = {
-  reviews: ReviewsType[];
   nearPlaceCards: Card[];
 }
 
-function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
+function App({ nearPlaceCards }: AppScreenProps): JSX.Element {
 
   const isCardsDataLoading = useAppSelector((state) => state.isCardsDataLoading);
 
@@ -36,7 +34,7 @@ function App({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
-          <Route path={AppRoute.Room} element={<Room reviews={reviews} nearPlaceCards={nearPlaceCards} />} />
+          <Route path={AppRoute.Room} element={<Room nearPlaceCards={nearPlaceCards} />} />
           <Route path='*' element={<NotFoundScreen />} />
         </Routes>
       </HistoryRouter>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import App from './components/app/app';
-import { reviews, nearPlaceCards } from './components/mocks/mocks';
+import { nearPlaceCards } from './components/mocks/mocks';
 import { store } from './store';
 import { checkAuthAction, fetchHotelsAction } from 'store/api-actions';
 import { ToastContainer } from 'react-toastify';
@@ -19,7 +19,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ToastContainer />
-      <App reviews={reviews} nearPlaceCards={nearPlaceCards} />
+      <App nearPlaceCards={nearPlaceCards} />
     </Provider>
   </React.StrictMode>,
 );

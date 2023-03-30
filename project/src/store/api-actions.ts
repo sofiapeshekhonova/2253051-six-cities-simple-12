@@ -3,10 +3,11 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import { APIRoute, AppRoute, AuthorizationStatus} from '../constants';
 import { Card } from 'types/offer.js';
-import { loadHotels, setCardsDataLoadingStatus, requireAuthorization, getUserInformation, redirectToRoute } from './action';
+import { loadHotels, setCardsDataLoadingStatus, requireAuthorization, getUserInformation, redirectToRoute, getRoomComments } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from 'types/user-data.js';
 import { AuthData } from 'types/auth-data.js';
+import { ReviewsType } from 'types/reviews.js';
 
 export const fetchHotelsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -21,6 +22,19 @@ export const fetchHotelsAction = createAsyncThunk<void, undefined, {
     dispatch(loadHotels(data));
   },
 );
+
+export const fetchRoomCommentsAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchRoomCommentsAction',
+  async (offerId, {dispatch, extra: api}) => {
+    const {data} = await api.get<ReviewsType[]>(`${APIRoute.Comments}/${offerId}`);
+    dispatch(getRoomComments(data));
+  }
+);
+
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
