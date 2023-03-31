@@ -6,8 +6,8 @@ import { changeCardsSort, changeCity, getUserInformation, loadHotels, requireAut
 
 type InitialState = {
   city: string;
-  cards: Card[];
   sortOption: string;
+  cards: Card[];
   isCardsDataLoading: boolean;
   authorizationStatus: string;
   userInformation: UserData | null;

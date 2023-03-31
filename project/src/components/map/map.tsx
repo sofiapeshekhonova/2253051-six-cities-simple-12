@@ -27,7 +27,6 @@ type MapScreenProps = {
   style: StyleMap;
 }
 
-
 function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Element {
   const mapRef = useRef(null);
   const city = cards[0].city;
