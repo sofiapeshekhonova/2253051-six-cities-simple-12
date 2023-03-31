@@ -49,7 +49,6 @@ export const postRoomCommentsAction = createAsyncThunk<void, CommentType, {
   }
 );
 
-
 export const fetchNearOffersAction = createAsyncThunk<void, number, {
   dispatch: AppDispatch;
   state: State;

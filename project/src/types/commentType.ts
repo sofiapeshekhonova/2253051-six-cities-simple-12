@@ -1,5 +1,5 @@
 export type CommentType = {
-  rating: string;
+  rating: number;
   comment: string;
   cardId: number;
 }

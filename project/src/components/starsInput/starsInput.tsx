@@ -1,10 +1,11 @@
 type StarsInputProps = {
   name: string;
   starId: number;
+  value: number;
   handleChange: (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-function StarsInput({ handleChange, starId, name }: StarsInputProps): JSX.Element {
+function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX.Element {
   return (
     <>
       <input
@@ -12,7 +13,7 @@ function StarsInput({ handleChange, starId, name }: StarsInputProps): JSX.Elemen
         name="rating"
         type="radio"
         onChange={handleChange}
-        value={`${starId}`}
+        value={starId}
         id={`${starId}-stars`}
       />
       <label

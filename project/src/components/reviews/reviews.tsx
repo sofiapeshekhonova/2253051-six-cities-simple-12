@@ -1,6 +1,7 @@
 import { ReviewsType } from '../../types/reviews';
 import ReviewsForm from 'components/reviewsForm/reviewsForm';
 import ReviewItem from 'components/reviewItem/reviewItem';
+import { useAppSelector } from 'hooks';
 
 type Props = {
   reviews: ReviewsType[];
@@ -8,6 +9,7 @@ type Props = {
 }
 
 function Reviews({ reviews, cardId }: Props): JSX.Element {
+  const user = useAppSelector((state) => state.userInformation);
 
   return (
     <section className="property__reviews reviews">
@@ -15,8 +17,7 @@ function Reviews({ reviews, cardId }: Props): JSX.Element {
       <ul className="reviews__list">
         {reviews.map((review) => <ReviewItem review={review} key={review.id} />)}
       </ul>
-      {/* если пользователь зарегестрированн */}
-      <ReviewsForm cardId={cardId}/>
+      {user ? <ReviewsForm cardId={cardId}/> : ''}
     </section>
   );
 }

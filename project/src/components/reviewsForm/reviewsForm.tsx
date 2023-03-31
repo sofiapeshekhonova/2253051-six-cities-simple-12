@@ -11,7 +11,7 @@ type Props = {
 function ReviewsForm({cardId}: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({
-    rating: '',
+    rating: 0,
     comment: '',
     cardId
   });
@@ -20,10 +20,13 @@ function ReviewsForm({cardId}: Props): JSX.Element {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
   }
-
+// console.log(formData)
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     dispatch(postRoomCommentsAction(formData));
+    formData.comment = '';
+    // рейтинг не стирается
+    formData.rating = 0;
   }
 
   return (
@@ -31,7 +34,7 @@ function ReviewsForm({cardId}: Props): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {STARS.map((star) => (
-          <StarsInput key={star.id} name={star.name} starId={star.id} handleChange={handleChange} />
+          <StarsInput key={star.id} name={star.name} starId={star.id} value={formData.rating} handleChange={handleChange} />
         ))}
       </div>
       <textarea
@@ -46,7 +49,7 @@ function ReviewsForm({cardId}: Props): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit">Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={(formData.comment === '' || formData.rating === 0)}>Submit</button>
       </div>
     </form>
   );
