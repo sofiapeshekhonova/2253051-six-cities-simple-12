@@ -7,20 +7,10 @@ import Main from 'pages/main/main';
 import Login from 'pages/login/login';
 import Room from 'pages/room/room';
 import NotFoundScreen from 'pages/not-found-screen/not-found-screen';
-import LoadingScreen from 'pages/loading-screen/loading-screen';
 import { AppRoute } from '../../constants';
-import { useAppSelector } from 'hooks';
 import HistoryRouter from 'components/history-route/history-route';
 
 function App(): JSX.Element {
-
-  const isCardsDataLoading = useAppSelector((state) => state.isCardsDataLoading);
-
-  if (isCardsDataLoading) {
-    return (
-      <LoadingScreen />
-    );
-  }
 
   return (
     <HelmetProvider>

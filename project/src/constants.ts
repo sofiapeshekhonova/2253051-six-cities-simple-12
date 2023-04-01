@@ -19,7 +19,6 @@ export const STARS = [
 ];
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
-
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
 export const sortList = [
@@ -30,14 +29,15 @@ export const sortList = [
 ];
 
 export function SortCards(cards: Card[], sortListItem: string) {
-  if(sortListItem === sortList[1]) {
-    return cards.sort((a, b) => a.price - b.price);
-  } else if (sortListItem === sortList[2]) {
-    return cards.sort((a, b) => b.price - a.price);
-  } else if(sortListItem === sortList[3]) {
-    return cards.sort((a, b) => b.rating - a.rating);
-  } else {
-    return cards;
+  switch (sortListItem) {
+    case sortList[1]:
+      return cards.sort((a, b) => a.price - b.price);
+    case sortList[2]:
+      return cards.sort((b, a) => a.price - b.price);
+    case sortList[3]:
+      return cards.sort((b, a) => a.rating - b.rating);
+    default:
+      return cards;
   }
 }
 
