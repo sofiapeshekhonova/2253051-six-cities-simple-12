@@ -1,22 +1,25 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { Card } from 'types/offer';
-import { CITIES, sortList } from '../constants';
-import { changeCardsSort, changeCity, loadHotels, setCardsDataLoadingStatus, setError } from './action';
+import { UserData } from 'types/user-data';
+import { AuthorizationStatus, CITIES, sortList } from '../constants';
+import { changeCardsSort, changeCity, getUserInformation, loadHotels, requireAuthorization, setCardsDataLoadingStatus } from './action';
 
 type InitialState = {
   city: string;
   sortOption: string;
   cards: Card[];
-  error: string | null;
   isCardsDataLoading: boolean;
+  authorizationStatus: string;
+  userInformation: UserData | null;
 };
 
 const defaultState: InitialState = {
   cards: [],
   city: CITIES[0],
   sortOption: sortList[0],
-  error: null,
   isCardsDataLoading: false,
+  authorizationStatus: AuthorizationStatus.Unknown,
+  userInformation: null
 };
 
 const reducer = createReducer(defaultState, (builder) => {
@@ -30,11 +33,14 @@ const reducer = createReducer(defaultState, (builder) => {
     .addCase(loadHotels, (state, action) => {
       state.cards = action.payload;
     })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
-    })
     .addCase(setCardsDataLoadingStatus, (state, action) => {
       state.isCardsDataLoading = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
+    })
+    .addCase(getUserInformation, (state, action) => {
+      state.userInformation = action.payload;
     });
 });
 

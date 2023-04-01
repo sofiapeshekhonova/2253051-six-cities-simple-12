@@ -18,7 +18,7 @@ const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
 
 type StyleMap = {
   height: string;
-}
+ }
 
 type MapScreenProps = {
   cards: Card[];
