@@ -9,13 +9,6 @@ function Header(): JSX.Element {
   const user = useAppSelector(getUserInformation);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
-  let email;
-  let avatar;
-  if (user !== null) {
-    email = user.email;
-    avatar = user.avatarUrl;
-  }
-
   return (
     <header className="header">
       <div className="container">
@@ -27,7 +20,7 @@ function Header(): JSX.Element {
           </div>
           <Routes>
             <Route path={AppRoute.Root} element={
-              authorizationStatus === AuthorizationStatus.Auth ? <HeaderLogged email={email} avatar={avatar}/> : <HeaderNotLogged/>
+              authorizationStatus === AuthorizationStatus.Auth ? <HeaderLogged email={user?.email} avatar={user?.avatarUrl}/> : <HeaderNotLogged/>
             }
             />
           </Routes>
