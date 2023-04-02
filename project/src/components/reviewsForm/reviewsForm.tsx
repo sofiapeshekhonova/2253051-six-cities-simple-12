@@ -20,7 +20,7 @@ function ReviewsForm({cardId}: Props): JSX.Element {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
   }
-// console.log(formData)
+
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     dispatch(postRoomCommentsAction(formData));
