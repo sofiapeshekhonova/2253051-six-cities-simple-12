@@ -6,12 +6,6 @@ import HeaderNotLogged from './headerNotLoged';
 
 function Header(): JSX.Element {
   const user = useAppSelector((state) => state.userInformation);
-  let email;
-  let avatar;
-  if (user !== null) {
-    email = user.email;
-    avatar = user.avatarUrl;
-  }
 
   return (
     <header className="header">
@@ -24,7 +18,7 @@ function Header(): JSX.Element {
           </div>
           <Routes>
             <Route path={AppRoute.Root} element={
-              user ? <HeaderLogged email={email} avatar={avatar}/> : <HeaderNotLogged/>
+              user ? <HeaderLogged email={user.email} avatar={user.avatarUrl}/> : <HeaderNotLogged/>
             }
             />
           </Routes>
