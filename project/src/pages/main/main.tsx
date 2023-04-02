@@ -2,27 +2,43 @@ import {useState} from 'react';
 import { Helmet } from 'react-helmet-async';
 import CityNav from 'components/cityNav/cityNav';
 import Offers from 'components/offers/offers';
-import Map from 'components/map/map';
+// //import Map from 'components/map/map';
 import SortOptions from 'components/sortOptions/sortOptions';
 import { CITIES, SortCards } from '../../constants';
-import { changeCity } from 'store/action';
+// import { changeCity } from 'store/action';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import LoadingScreen from 'pages/loading-screen/loading-screen';
+import { getOffers } from 'store/hotels/selectors';
+import { selectCity, selectHotels, selectOffersCity } from 'store/app/selectors';
+import { changeCity } from 'store/app/app-slice';
+//import LoadingScreen from 'pages/loading-screen/loading-screen';
 
 function Main(): JSX.Element {
   const [activeCard, setActiveCard] = useState< null | number >(null);
   const dispatch = useAppDispatch();
-  const selectedCity = useAppSelector((state) => state.city);
-  const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
 
-  const selectedSortItem = useAppSelector((state) => state.sortOption);
+  // const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
+  const selectedCity = useAppSelector(selectOffersCity);
+  const allHotels = useAppSelector(getOffers);
+  const cards = allHotels.filter((card) => card.city.name === selectedCity);
+
+  const { selectedSortItem } = useAppSelector(selectHotels);
   const sortCards = SortCards(cards, selectedSortItem);
+
+
+  console.log(selectedSortItem)
+  // работает
+  // console.log(selectedCity)
+  // console.log(cards)
+  //console.log(sortCards)
+  // const selectedSortItem = useAppSelector((state) => state.sortOption);
+  // const selectedSortItem = useAppSelector((state) => state.sortOption);
+  // const sortCards = SortCards(cards, selectedSortItem);
 
   const handleChangeCity = (city: string) => {
     dispatch(changeCity(city));
   };
 
-  const isCardsDataLoading = useAppSelector((state) => state.isCardsDataLoading);
+  // const isCardsDataLoading = useAppSelector((state) => state.isCardsDataLoading);
 
   return (
     <>
@@ -44,12 +60,14 @@ function Main(): JSX.Element {
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{cards.length} places to stay in {selectedCity}</b>
               <SortOptions selectedSortItem={selectedSortItem}/>
-              {isCardsDataLoading ? <LoadingScreen /> : <Offers cards={sortCards} setActiveCard={setActiveCard}/>}
+              {/* {isCardsDataLoading ? <LoadingScreen /> : */}
+              <Offers cards={sortCards} setActiveCard={setActiveCard}/>
+              {/* } */}
             </section>
-            <div className="cities__right-section">
+            {/* <div className="cities__right-section">
               {isCardsDataLoading ? <LoadingScreen /> :
                 <Map className='cities__map map' cards={cards} activeCard={activeCard} style={{ height: '1100px' }} />}
-            </div>
+            </div> */}
           </div>
         </div>
       </main>

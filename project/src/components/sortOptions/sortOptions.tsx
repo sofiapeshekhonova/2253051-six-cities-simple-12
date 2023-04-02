@@ -1,6 +1,7 @@
 import { useAppDispatch } from 'hooks';
 import { useState } from 'react';
-import { changeCardsSort } from 'store/action';
+import { changeHotelsSort } from 'store/app/app-slice';
+//import { changeCardsSort } from 'store/action';
 import { sortList } from '../../constants';
 
 type SortScreenProps = {
@@ -17,7 +18,7 @@ function SortOptions({selectedSortItem}: SortScreenProps) {
   }
 
   function handelChooseSort(item: string) {
-    dispatch(changeCardsSort(item));
+    dispatch(changeHotelsSort(item));
     setIsOpenSortList(false);
   }
 

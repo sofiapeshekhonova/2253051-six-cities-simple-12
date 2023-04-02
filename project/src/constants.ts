@@ -53,3 +53,17 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum NameSpace {
+  Room = 'ROOM',
+  Hotels = 'HOTELS',
+  User = 'USER',
+  App = 'APP'
+}
+
+export enum Status {
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Success = 'Success',
+  Failed = 'Failed',
+}
