@@ -2,16 +2,16 @@ import PlaceCard from 'components/placeCard/placeCard';
 import { Card } from 'types/offer';
 
 type OffersProps = {
-  cards: Card[];
-  setActiveCard: (id: number | null) => void;
+  offers: Card[];
+  setActiveOffer: (id: number | null) => void;
 }
 
-function Offers({ cards, setActiveCard }: OffersProps): JSX.Element {
+function Offers({ offers, setActiveOffer }: OffersProps): JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      {cards.map((card) => (
-        <PlaceCard key={card.id} card={card} setActiveCard={setActiveCard} />
+      {offers.map((offer) => (
+        <PlaceCard key={offer.id} card={offer} setActiveCard={setActiveOffer} />
       ))}
     </div>
   );

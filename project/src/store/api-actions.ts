@@ -3,7 +3,6 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state.js';
 import { APIRoute } from '../constants';
 import { Card } from 'types/offer.js';
-//import { loadHotels, setCardsDataLoadingStatus, getUserInformation, redirectToRoute, getRoomComments, getNearHotels, postRoomComments } from './action';
 import { dropToken, saveToken } from '../services/token';
 import { UserData } from 'types/user-data.js';
 import { AuthData } from 'types/auth-data.js';
@@ -11,7 +10,7 @@ import { ReviewsType } from 'types/reviews.js';
 import { CommentType } from 'types/commentType.js';
 import { toast } from 'react-toastify';
 
-export const fetchHotelsAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -20,7 +19,6 @@ export const fetchHotelsAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     try {
       const {data} = await api.get<Card[]>(APIRoute.Hotels);
-      //dispatch(loadHotels(data));
       return data;
     } catch (error) {
       toast.error('Error: get offers');
@@ -38,7 +36,6 @@ export const fetchRoomCommentsAction = createAsyncThunk<void, number, {
   async (offerId, { dispatch, extra: api }) => {
     try {
       const { data } = await api.get<ReviewsType[]>(`${APIRoute.Comments}/${offerId}`);
-      //dispatch(getRoomComments(data));
       return data;
     } catch (error) {
       toast.error('Error: get comments');
@@ -56,7 +53,6 @@ export const postRoomCommentsAction = createAsyncThunk<void, CommentType, {
   async ({ cardId, rating, comment }, { dispatch, extra: api }) => {
     try {
       const { data } = await api.post<ReviewsType[]>(`${APIRoute.Comments}/${cardId}`, { rating, comment });
-      //dispatch(postRoomComments(data));
       return data;
     } catch (error) {
       toast.error('Error: post comment');
@@ -74,7 +70,6 @@ export const fetchNearOffersAction = createAsyncThunk<void, number, {
   async (hotelId, { dispatch, extra: api }) => {
     try {
       const { data } = await api.get<Card[]>(`${APIRoute.Hotels}/${hotelId}/nearby`);
-      //dispatch(getNearHotels(data));
       return data;
     } catch (error) {
       toast.error('Error: get near hotels');
@@ -92,7 +87,6 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   async (_arg, { dispatch, extra: api }) => {
     try {
       const { data } = await api.get<UserData>(APIRoute.Login);
-      //dispatch(getUserInformation(data));
       return data;
     } catch (error) {
       toast.error('failed to verify authorization');
@@ -111,7 +105,6 @@ export const loginAction = createAsyncThunk<void, AuthData, {
     const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(data.token);
     return data;
-    //dispatch(getUserInformation(data));
   },
 );
 

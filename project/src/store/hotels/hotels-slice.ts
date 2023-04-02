@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Card } from 'types/offer';
 import { NameSpace, Status } from '../../constants';
-import { fetchHotelsAction } from '../api-actions';
+import { fetchOffersAction } from '../api-actions';
 
 export type OffersData = {
-  hotels: Card[];
+  offers: Card[];
   status: Status;
 };
 
 const initialState: OffersData = {
-  hotels: [],
+  offers: [],
   status: Status.Idle,
 };
 
@@ -19,14 +19,14 @@ export const houtelsProsess = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchHotelsAction.pending, (state) => {
+      .addCase(fetchOffersAction.pending, (state) => {
         state.status = Status.Loading;
       })
-      .addCase(fetchHotelsAction.fulfilled, (state, action) => {
+      .addCase(fetchOffersAction.fulfilled, (state, action) => {
         state.status = Status.Success;
-        state.hotels = action.payload;
+        state.offers = action.payload;
       })
-      .addCase(fetchHotelsAction.rejected, (state) => {
+      .addCase(fetchOffersAction.rejected, (state) => {
         state.status = Status.Failed;
       });
   }

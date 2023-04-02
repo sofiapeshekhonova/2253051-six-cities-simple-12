@@ -26,18 +26,15 @@ export const roomProcess = createSlice({
       .addCase(fetchRoomCommentsAction.fulfilled, (state, action) => {
         state.roomComments = action.payload;
       })
-      .addCase(postRoomCommentsAction.pending, (state) => {
-        state.status = Status.Loading;
-      })
+      // .addCase(postRoomCommentsAction.pending, (state) => {
+      //   state.status = Status.Loading;
+      // })
       .addCase(postRoomCommentsAction.fulfilled, (state, action) => {
         state.status = Status.Success;
         state.roomComments = action.payload;
       })
-      .addCase(postRoomCommentsAction.rejected, (state) => {
-        state.status = Status.Failed;
-      })
-      // .addCase(fetchNearOffersAction.rejected, (state, action) => {
-      //   state.nearHotels = action.payload;
+      // .addCase(postRoomCommentsAction.rejected, (state) => {
+      //   state.status = Status.Failed;
       // })
       .addCase(fetchNearOffersAction.fulfilled, (state, action) => {
         state.nearHotels = action.payload;

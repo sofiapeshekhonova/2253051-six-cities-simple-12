@@ -2,14 +2,16 @@ import { ReviewsType } from '../../types/reviews';
 import ReviewsForm from 'components/reviewsForm/reviewsForm';
 import ReviewItem from 'components/reviewItem/reviewItem';
 import { useAppSelector } from 'hooks';
+import { getAuthorizationStatus } from 'store/user-process/selectors';
+import { AuthorizationStatus } from '../../constants';
 
 type Props = {
   reviews: ReviewsType[];
-  cardId: number;
+  roomId: number;
 }
 
-function Reviews({ reviews, cardId }: Props): JSX.Element {
-  const user = useAppSelector((state) => state.userInformation);
+function Reviews({ reviews, roomId }: Props): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <section className="property__reviews reviews">
@@ -17,7 +19,7 @@ function Reviews({ reviews, cardId }: Props): JSX.Element {
       <ul className="reviews__list">
         {reviews.map((review) => <ReviewItem review={review} key={review.id} />)}
       </ul>
-      {user ? <ReviewsForm cardId={cardId}/> : ''}
+      {authorizationStatus === AuthorizationStatus.Auth ? <ReviewsForm cardId={roomId}/> : ''}
     </section>
   );
 }

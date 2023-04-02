@@ -18,12 +18,10 @@ export const appProcess = createSlice({
     changeCity: (state, action: PayloadAction<string>) => {
       state.city = action.payload;
     },
-    changeHotelsSort: (state, action: PayloadAction<string>) => {
+    changeOffersSort: (state, action: PayloadAction<string>) => {
       state.sortOption = action.payload;
     },
   }
 });
 
-//export const {changeCity, changeHotelsSort} = appProcess.actions;
-
-export const { changeCity, changeHotelsSort } = appProcess.actions;
+export const { changeCity, changeOffersSort } = appProcess.actions;

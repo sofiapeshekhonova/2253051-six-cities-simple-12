@@ -21,15 +21,15 @@ type StyleMap = {
  }
 
 type MapScreenProps = {
-  cards: Card[];
-  activeCard: null | number;
+  offers: Card[];
+  activeOffer: null | number;
   className: string;
   style: StyleMap;
 }
 
-function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Element {
+function Map({ offers, activeOffer, className, style }: MapScreenProps): JSX.Element {
   const mapRef = useRef(null);
-  const city = cards[0].city;
+  const city = offers[0].city;
   const map = useMap(mapRef, city);
 
   useEffect(() => {
@@ -40,21 +40,21 @@ function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Eleme
 
   useEffect(() => {
     if (map) {
-      cards.forEach((card) => {
+      offers.forEach((offer) => {
         const marker = new Marker({
-          lat: card.location.latitude,
-          lng: card.location.longitude,
+          lat: offer.location.latitude,
+          lng: offer.location.longitude,
         });
         marker
           .setIcon(
-            card.id === activeCard
+            offer.id === activeOffer
               ? currentCustomIcon
               : defaultCustomIcon,
           )
           .addTo(map);
       });
     }
-  }, [map, cards, activeCard]);
+  }, [map, offers, activeOffer]);
 
   return (
     <section className={className} ref={mapRef} style={style} />

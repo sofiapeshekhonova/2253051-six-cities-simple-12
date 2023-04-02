@@ -1,11 +1,11 @@
 import { Card } from 'types/offer';
 
 type Props = {
-  card: Card;
+  room: Card;
 }
 
-function Host({ card }: Props): JSX.Element {
-  const { host } = card;
+function Host({ room }: Props): JSX.Element {
+  const { host } = room;
   return (
     <div className="property__host">
       <h2 className="property__host-title">Meet the host</h2>
@@ -22,7 +22,7 @@ function Host({ card }: Props): JSX.Element {
       </div>
       <div className="property__description">
         <p className="property__text">
-          {card.description}
+          {room.description}
         </p>
         <p className="property__text">
           An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
