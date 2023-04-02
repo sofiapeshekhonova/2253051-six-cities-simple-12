@@ -21,7 +21,6 @@ export const loadHotels = createAction('data/loadHotels',
   })
 );
 
-
 export const setCardsDataLoadingStatus = createAction('data/setCardsDataLoadingStatus',
   (isCardsDataLoading: boolean) => ({
     payload: isCardsDataLoading

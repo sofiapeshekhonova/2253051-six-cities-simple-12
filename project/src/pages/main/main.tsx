@@ -14,7 +14,6 @@ function Main(): JSX.Element {
   const dispatch = useAppDispatch();
   const selectedCity = useAppSelector((state) => state.city);
   const cards = useAppSelector((state) => state.cards.filter((card) => card.city.name === selectedCity));
-
   const selectedSortItem = useAppSelector((state) => state.sortOption);
   const sortCards = SortCards(cards, selectedSortItem);
 
