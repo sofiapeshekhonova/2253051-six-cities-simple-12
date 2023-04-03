@@ -18,7 +18,7 @@ function App(): JSX.Element {
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
           <Route path={AppRoute.Room} element={<Room />} />
-          <Route path='*' element={<NotFoundScreen />} />
+          <Route path={AppRoute.NotFoundPage} element={<NotFoundScreen />} />
         </Routes>
       </HistoryRouter>
     </HelmetProvider>

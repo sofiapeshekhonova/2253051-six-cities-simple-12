@@ -1,11 +1,12 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { ChangeEvent, FormEvent, useState} from 'react';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { loginAction } from 'store/api-actions';
 import { AuthData } from 'types/auth-data';
 import './form__text-error.css';
-import { AppRoute } from '../../constants';
+import { AppRoute, AuthorizationStatus } from '../../constants';
 import Layout from 'components/layout/layout';
+import { getAuthorizationStatus } from 'store/user-process/selectors';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -49,8 +50,17 @@ function Login(): JSX.Element {
     navigate(AppRoute.Root);
   }
 
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return (
+      <Navigate to={AppRoute.Root} />
+    );
+  }
+
   return (
-    <Layout className="page page--gray page--login" title="Login">
+    <Layout className="page page--gray page--login" title="Login" navigation={false}>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">

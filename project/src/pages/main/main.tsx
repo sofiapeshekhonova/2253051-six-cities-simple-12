@@ -23,7 +23,7 @@ function Main(): JSX.Element {
   const sortOffers = SortCards(offers, selectedSortItem);
 
   return (
-    <Layout className=" page page--gray page--main" title="Main">
+    <Layout className=" page page--gray page--main" title="Main" navigation>
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

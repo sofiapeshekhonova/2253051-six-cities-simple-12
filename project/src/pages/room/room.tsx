@@ -44,7 +44,7 @@ function Room(): JSX.Element {
   }
 
   return (
-    <Layout className="page" title="Rooms">
+    <Layout className="page" title="Rooms" navigation>
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">

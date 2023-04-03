@@ -6,11 +6,12 @@ type LayoutProps = {
   className: string;
   title: string;
   children: ReactNode;
+  navigation: boolean;
 };
 
-const Layout: FC<LayoutProps> = ({ className,title,children }) => (
+const Layout: FC<LayoutProps> = ({ className, title, children, navigation }) => (
   <div className={className}>
-    <Header />
+    <Header navigation={navigation}/>
     <Helmet>
       <title>Six Cities. {title}</title>
     </Helmet>

@@ -6,6 +6,7 @@ export enum AppRoute {
   Login = '/login',
   Root = '/',
   Room = '/offer/:id',
+  NotFoundPage = '*'
 }
 
 // export const STARS: string[] = ['perfect', 'good','not bad','badly','terribly'];
