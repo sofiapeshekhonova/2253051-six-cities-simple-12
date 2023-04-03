@@ -18,7 +18,11 @@ function Header(): JSX.Element {
           </div>
           <Routes>
             <Route path={AppRoute.Root} element={
-              user ? <HeaderLogged email={user.email} avatar={user.avatarUrl}/> : <HeaderNotLogged/>
+              user ? <HeaderLogged email={user.email} avatar={user.avatarUrl} /> : <HeaderNotLogged />
+            }
+            />
+            <Route path={AppRoute.Room} element={
+              user ? <HeaderLogged email={user.email} avatar={user.avatarUrl} /> : <HeaderNotLogged />
             }
             />
           </Routes>
