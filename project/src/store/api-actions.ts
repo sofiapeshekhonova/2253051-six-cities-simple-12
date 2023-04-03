@@ -10,13 +10,13 @@ import { ReviewsType } from 'types/reviews.js';
 import { CommentType } from 'types/commentType.js';
 import { toast } from 'react-toastify';
 
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+export const fetchOffersAction = createAsyncThunk<Card[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'data/fetchHoutels',
-  async (_arg, {dispatch, extra: api}) => {
+  async (_arg, {extra: api}) => {
     try {
       const {data} = await api.get<Card[]>(APIRoute.Hotels);
       return data;
@@ -27,13 +27,13 @@ export const fetchOffersAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchRoomCommentsAction = createAsyncThunk<void, number, {
+export const fetchRoomCommentsAction = createAsyncThunk<ReviewsType[], number, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'room/fetchRoomCommentsAction',
-  async (offerId, { dispatch, extra: api }) => {
+  async (offerId, { extra: api }) => {
     try {
       const { data } = await api.get<ReviewsType[]>(`${APIRoute.Comments}/${offerId}`);
       return data;
@@ -44,13 +44,13 @@ export const fetchRoomCommentsAction = createAsyncThunk<void, number, {
   }
 );
 
-export const postRoomCommentsAction = createAsyncThunk<void, CommentType, {
+export const postRoomCommentsAction = createAsyncThunk<ReviewsType[], CommentType, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'room/postRoomCommentsAction',
-  async ({ cardId, rating, comment }, { dispatch, extra: api }) => {
+  async ({ cardId, rating, comment }, { extra: api }) => {
     try {
       const { data } = await api.post<ReviewsType[]>(`${APIRoute.Comments}/${cardId}`, { rating, comment });
       return data;
@@ -61,13 +61,13 @@ export const postRoomCommentsAction = createAsyncThunk<void, CommentType, {
   }
 );
 
-export const fetchNearOffersAction = createAsyncThunk<void, number, {
+export const fetchNearOffersAction = createAsyncThunk<Card[], number, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'room/fetchNearOffersAction',
-  async (hotelId, { dispatch, extra: api }) => {
+  async (hotelId, { extra: api }) => {
     try {
       const { data } = await api.get<Card[]>(`${APIRoute.Hotels}/${hotelId}/nearby`);
       return data;
@@ -78,13 +78,13 @@ export const fetchNearOffersAction = createAsyncThunk<void, number, {
   }
 );
 
-export const checkAuthAction = createAsyncThunk<void, undefined, {
+export const checkAuthAction = createAsyncThunk<UserData, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/checkAuth',
-  async (_arg, { dispatch, extra: api }) => {
+  async (_arg, { extra: api }) => {
     try {
       const { data } = await api.get<UserData>(APIRoute.Login);
       return data;
@@ -95,13 +95,13 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   }
 );
 
-export const loginAction = createAsyncThunk<void, AuthData, {
+export const loginAction = createAsyncThunk<UserData, AuthData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({ login: email, password }, { dispatch, extra: api }) => {
+  async ({ login: email, password }, { extra: api }) => {
     const { data } = await api.post<UserData>(APIRoute.Login, { email, password });
     saveToken(data.token);
     return data;
@@ -114,7 +114,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   extra: AxiosInstance;
 }>(
   'user/logout',
-  async (_arg, { dispatch, extra: api }) => {
+  async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Logout);
     dropToken();
   },
