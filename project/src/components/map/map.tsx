@@ -35,16 +35,9 @@ function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Eleme
   const map = useMap(mapRef, city);
 
   useEffect(() => {
-    if (map) {
-      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
-    }
-  }, [map, city]);
-
-
-  useEffect(() => {
     const markers = leaflet.layerGroup();
     if (map) {
-
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
       cards.forEach((card) => {
         const marker = new Marker({
           lat: card.location.latitude,
@@ -64,7 +57,7 @@ function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Eleme
     return (() => {
       markers.clearLayers();
     });
-  }, [map, cards, activeCard]);
+  }, [map, cards, activeCard, city]);
 
   return (
     <section className={className} ref={mapRef} style={style} />
