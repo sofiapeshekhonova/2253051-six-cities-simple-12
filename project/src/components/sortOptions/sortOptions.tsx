@@ -1,5 +1,5 @@
 import { useAppDispatch } from 'hooks';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { changeOffersSort } from 'store/app/app-slice';
 import { sortList } from '../../constants';
 
@@ -9,6 +9,7 @@ type SortScreenProps = {
 
 function SortOptions({selectedSortItem}: SortScreenProps) {
 
+  console.log('sortOp')
   const dispatch = useAppDispatch();
   const [isOpenSortList, setIsOpenSortList] = useState(false);
 
@@ -39,4 +40,4 @@ function SortOptions({selectedSortItem}: SortScreenProps) {
   );
 }
 
-export default SortOptions;
+export default memo(SortOptions);

@@ -10,10 +10,11 @@ import { getOffers, getStatus } from 'store/hotels/selectors';
 import { selectOffers, selectOffersCity } from 'store/app/selectors';
 import { changeCity} from 'store/app/app-slice';
 import LoadingScreen from 'pages/loading-screen/loading-screen';
+import Locations from 'components/locations/locations';
 
 function Main(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<null | number>(null);
-  const dispatch = useAppDispatch();
+
   const isOffersDataLoading = useAppSelector(getStatus);
 
   const selectedCity = useAppSelector(selectOffersCity);
@@ -23,10 +24,11 @@ function Main(): JSX.Element {
   const selectedSortItem = useAppSelector(selectOffers);
   const sortOffers = SortCards(offers, selectedSortItem);
 
-  const handleChangeCity = (city: string) => {
-    dispatch(changeCity(city));
-  };
+  // const handleChangeCity = (city: string) => {
+  //   dispatch(changeCity(city));
+  // };
 
+  console.log('main')
   return (
     <>
       <Helmet>
@@ -35,11 +37,12 @@ function Main(): JSX.Element {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
+          <Locations />
+          {/* <section className="locations container">
             <ul className="locations__list tabs__list">
               {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} handleChangeCity={handleChangeCity} />)}
             </ul>
-          </section>
+          </section> */}
         </div>
         <div className="cities">
           <div className="cities__places-container container">

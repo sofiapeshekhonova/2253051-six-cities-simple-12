@@ -6,6 +6,8 @@ type Props = {
 
 function Host({ room }: Props): JSX.Element {
   const { host } = room;
+
+console.log('host')
   return (
     <div className="property__host">
       <h2 className="property__host-title">Meet the host</h2>

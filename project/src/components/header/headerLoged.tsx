@@ -9,6 +9,7 @@ type Props = {
 
 function HeaderLogged({ email, avatar }: Props): JSX.Element {
 
+  console.log('headerLog')
   const dispatch = useAppDispatch();
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'types/offer';
 
@@ -18,6 +19,8 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
     setActiveCard(null);
   }
 
+
+console.log('placeCard')
   return (
     <article className="cities__card place-card" onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler}>
       <div className={!card.premium ? '' : 'place-card__mark'}>
@@ -50,4 +53,4 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default memo(PlaceCard);

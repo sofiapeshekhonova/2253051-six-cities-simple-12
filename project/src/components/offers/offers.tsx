@@ -8,6 +8,7 @@ type OffersProps = {
 
 function Offers({ offers, setActiveOffer }: OffersProps): JSX.Element {
 
+  console.log('offers')
   return (
     <div className="cities__places-list places__list tabs__content">
       {offers.map((offer) => (

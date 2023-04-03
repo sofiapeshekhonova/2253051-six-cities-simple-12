@@ -11,6 +11,7 @@ function Login(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  console.log('login')
   const [errors, setErrors] = useState({
     email: '',
     password: '',

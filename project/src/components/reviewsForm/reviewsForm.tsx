@@ -28,7 +28,7 @@ function ReviewsForm({cardId}: Props): JSX.Element {
     // рейтинг не стирается
     formData.rating = 0;
   }
-
+  console.log('revForm')
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

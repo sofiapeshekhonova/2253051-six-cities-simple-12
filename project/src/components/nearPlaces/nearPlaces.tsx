@@ -7,6 +7,8 @@ type Props = {
 }
 
 function NearPlaces({ setActiveCard, nearPlaceCards }: Props): JSX.Element {
+
+console.log('nearPla')
   return (
     <section className="near-places places">
       <h2 className="near-places__title">Other places in the neighbourhood</h2>

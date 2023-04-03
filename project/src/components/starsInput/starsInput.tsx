@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type StarsInputProps = {
   name: string;
   starId: number;
@@ -6,6 +8,7 @@ type StarsInputProps = {
 }
 
 function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX.Element {
+  console.log('stars')
   return (
     <>
       <input
@@ -29,4 +32,4 @@ function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX
   );
 }
 
-export default StarsInput;
+export default memo(StarsInput);

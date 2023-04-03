@@ -34,6 +34,7 @@ function Room(): JSX.Element {
     return <p>Информация по жилью не найдена</p>;
   }
 
+  console.log('rooom')
   const cardMap = [room];
 
   return (

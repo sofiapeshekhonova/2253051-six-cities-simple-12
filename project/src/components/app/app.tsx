@@ -12,6 +12,7 @@ import HistoryRouter from 'components/history-route/history-route';
 
 function App(): JSX.Element {
 
+  console.log('app')
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
