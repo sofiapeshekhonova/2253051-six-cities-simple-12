@@ -3,7 +3,7 @@ import { Card } from 'types/offer';
 
 type Props = {
   card: Card;
-  setActiveCard: (id: number | null) => void;
+  setActiveCard?: (id: number | null) => void;
 }
 
 function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
@@ -11,11 +11,15 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
   const offerId = `/offer/${id}`;
 
   function mouseOverHandler() {
-    setActiveCard(id);
+    if (setActiveCard !== undefined) {
+      setActiveCard(id);
+    }
   }
 
   function mouseLeaveHandler() {
-    setActiveCard(null);
+    if (setActiveCard !== undefined) {
+      setActiveCard(null);
+    }
   }
 
   return (

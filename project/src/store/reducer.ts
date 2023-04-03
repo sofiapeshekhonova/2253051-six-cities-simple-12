@@ -24,7 +24,7 @@ const defaultState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   userInformation: null,
   roomComments: [],
-  nearHotels: []
+  nearHotels: [],
 };
 
 const reducer = createReducer(defaultState, (builder) => {

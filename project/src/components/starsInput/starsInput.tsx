@@ -15,6 +15,7 @@ function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX
         onChange={handleChange}
         value={starId}
         id={`${starId}-stars`}
+        checked={starId === Number(value)}
       />
       <label
         htmlFor={`${starId}-stars`}

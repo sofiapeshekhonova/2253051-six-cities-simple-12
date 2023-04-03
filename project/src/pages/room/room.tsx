@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Goods from 'components/goods/goods';
 import Reviews from 'components/reviews/reviews';
 import PropertyGallery from 'components/propertyGallery/propertyGallery';
@@ -10,6 +9,7 @@ import Map from 'components/map/map';
 import { Card } from 'types/offer';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { fetchNearOffersAction, fetchRoomCommentsAction} from 'store/api-actions';
+import Layout from 'components/layout/layout';
 
 function Room(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,25 +25,29 @@ function Room(): JSX.Element {
   const roomComments = useAppSelector((state) => state.roomComments);
   const nearPlaces = useAppSelector((state) => state.nearHotels);
 
-  const [activeCard, setActiveCard] = useState<null | number>(null);
   const card: Card | undefined = cards.find((element) => element.id === cardId);
 
   if (card === undefined) {
     return <p>Информация по жилью не найдена</p>;
   }
 
-  const cardMap = [card];
+  let images : string[] = [];
+
+  const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
+
+  while (images.length !== 6) {
+    const index = getRandomInt(card.images.length);
+    images.push(card.images[index]);
+    images = images.filter((v, i, arr) => arr.indexOf(v) === i);
+  }
 
   return (
-    <>
-      <Helmet>
-        <title>Six Cities. Rooms</title>
-      </Helmet>
+    <Layout className="page" title="Rooms">
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {card.images.map((image) => (
+              {images.map((image) => (
                 <PropertyGallery image={image} key={image} />
               ))}
             </div>
@@ -94,19 +98,18 @@ function Room(): JSX.Element {
           </div>
           <Map
             className="property__map map"
-            cards={cardMap}
-            activeCard={activeCard}
-            style={{ height: '400px' }}
+            cards={[card, ...nearPlaces]}
+            activeCard={cardId}
+            style={{ height: '600px'}}
           />
         </section>
         <div className="container">
           <NearPlaces
             nearPlaceCards={nearPlaces}
-            setActiveCard={setActiveCard}
           />
         </div>
       </main>
-    </>
+    </Layout>
   );
 }
 

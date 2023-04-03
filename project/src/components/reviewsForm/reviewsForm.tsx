@@ -24,9 +24,11 @@ function ReviewsForm({cardId}: Props): JSX.Element {
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     dispatch(postRoomCommentsAction(formData));
-    formData.comment = '';
-    // рейтинг не стирается
-    formData.rating = 0;
+    setFormData({
+      rating: 0,
+      comment: '',
+      cardId
+    });
   }
 
   return (
@@ -48,8 +50,9 @@ function ReviewsForm({cardId}: Props): JSX.Element {
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          {(formData.comment && formData.comment.length < 51) && <b> Сharacters left: {51 - formData.comment.length}</b>}
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={(formData.comment === '' || formData.rating === 0)}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={(formData.comment.length <= 50 || formData.rating === 0)}>Submit</button>
       </div>
     </form>
   );

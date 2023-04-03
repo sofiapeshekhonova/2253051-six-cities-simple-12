@@ -2,7 +2,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import browserHistory from 'browser-history';
-import Header from '../header/header';
+// import Header from '../header/header';
 import Main from 'pages/main/main';
 import Login from 'pages/login/login';
 import Room from 'pages/room/room';
@@ -15,7 +15,7 @@ function App(): JSX.Element {
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
-        <Header />
+        {/* <Header /> */}
         <Routes>
           <Route path={AppRoute.Root} element={<Main />} />
           <Route path={AppRoute.Login} element={<Login />} />
