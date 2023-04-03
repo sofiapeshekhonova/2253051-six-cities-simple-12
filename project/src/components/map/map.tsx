@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { BaseIconOptions, Icon, Marker } from 'leaflet';
+import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from 'hooks/useMap';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants';
@@ -21,40 +22,42 @@ type StyleMap = {
  }
 
 type MapScreenProps = {
-  offers: Card[];
-  activeOffer: null | number;
+  cards: Card[];
+  activeCard: null | number;
   className: string;
   style: StyleMap;
 }
 
-function Map({ offers, activeOffer, className, style }: MapScreenProps): JSX.Element {
+function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Element {
+
   const mapRef = useRef(null);
-  const city = offers[0].city;
+  const city = cards[0].city;
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const markers = leaflet.layerGroup();
     if (map) {
       map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
-    }
-  }, [map, city]);
-
-  useEffect(() => {
-    if (map) {
-      offers.forEach((offer) => {
+      cards.forEach((card) => {
         const marker = new Marker({
-          lat: offer.location.latitude,
-          lng: offer.location.longitude,
+          lat: card.location.latitude,
+          lng: card.location.longitude,
         });
+
         marker
           .setIcon(
-            offer.id === activeOffer
+            card.id === activeCard
               ? currentCustomIcon
               : defaultCustomIcon,
-          )
-          .addTo(map);
+          );
+        marker.addTo(markers);
       });
+      markers.addTo(map);
     }
-  }, [map, offers, activeOffer]);
+    return (() => {
+      markers.clearLayers();
+    });
+  }, [map, cards, activeCard, city]);
 
   return (
     <section className={className} ref={mapRef} style={style} />

@@ -4,13 +4,13 @@ import HeaderLogged from './headerLoged';
 import HeaderNotLogged from './headerNotLoged';
 import { getAuthorizationStatus, getUserInformation } from 'store/user-process/selectors';
 import { AppRoute, AuthorizationStatus } from '../../constants';
+import { memo } from 'react';
 
 function Header(): JSX.Element {
   const user = useAppSelector(getUserInformation);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
 
-  console.log('header')
   return (
     <header className="header">
       <div className="container">
@@ -36,5 +36,5 @@ function Header(): JSX.Element {
   );
 }
 
-export default Header;
+export default memo(Header);
 

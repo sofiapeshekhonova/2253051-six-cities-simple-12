@@ -1,16 +1,14 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import CityNav from 'components/cityNav/cityNav';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
 import SortOptions from 'components/sortOptions/sortOptions';
-import { CITIES, SortCards } from '../../constants';
-import { useAppDispatch, useAppSelector } from 'hooks';
+import { SortCards } from '../../constants';
+import { useAppSelector } from 'hooks';
 import { getOffers, getStatus } from 'store/hotels/selectors';
 import { selectOffers, selectOffersCity } from 'store/app/selectors';
-import { changeCity} from 'store/app/app-slice';
 import LoadingScreen from 'pages/loading-screen/loading-screen';
 import Locations from 'components/locations/locations';
+import Layout from 'components/layout/layout';
 
 function Main(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<null | number>(null);
@@ -24,25 +22,12 @@ function Main(): JSX.Element {
   const selectedSortItem = useAppSelector(selectOffers);
   const sortOffers = SortCards(offers, selectedSortItem);
 
-  // const handleChangeCity = (city: string) => {
-  //   dispatch(changeCity(city));
-  // };
-
-  console.log('main')
   return (
-    <>
-      <Helmet>
-        <title>Six Cities. Main</title>
-      </Helmet>
+    <Layout className=" page page--gray page--main" title="Main">
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <Locations />
-          {/* <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {CITIES.map((cityNav) => <CityNav city={cityNav} key={cityNav} handleChangeCity={handleChangeCity} />)}
-            </ul>
-          </section> */}
         </div>
         <div className="cities">
           <div className="cities__places-container container">
@@ -55,12 +40,12 @@ function Main(): JSX.Element {
             </section>
             <div className="cities__right-section">
               {isOffersDataLoading === 'Loading' ? <LoadingScreen /> :
-                <Map className='cities__map map' offers={offers} activeOffer={activeOffer} style={{ height: '1100px' }} />}
+                <Map className='cities__map map' cards={offers} activeCard={activeOffer} style={{ height: '770px' }} />}
             </div>
           </div>
         </div>
       </main>
-    </>
+    </Layout>
   );
 }
 

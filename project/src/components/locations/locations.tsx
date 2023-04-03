@@ -12,7 +12,6 @@ function Locations(): JSX.Element {
     dispatch(changeCity(city));
   };
 
-  console.log('locations')
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">

@@ -8,7 +8,6 @@ type cityProps = {
 
 function CityNav({ city, handleChangeCity }: cityProps): JSX.Element {
 
-  console.log('cityNav')
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     handleChangeCity(city);

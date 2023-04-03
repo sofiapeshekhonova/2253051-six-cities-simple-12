@@ -1,17 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import { ChangeEvent, FormEvent, useState} from 'react';
 import { useAppDispatch } from 'hooks';
 import { loginAction } from 'store/api-actions';
 import { AuthData } from 'types/auth-data';
 import './form__text-error.css';
 import { AppRoute } from '../../constants';
+import Layout from 'components/layout/layout';
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  console.log('login')
   const [errors, setErrors] = useState({
     email: '',
     password: '',
@@ -51,10 +50,7 @@ function Login(): JSX.Element {
   }
 
   return (
-    <>
-      <Helmet>
-        <title>Six Cities. Login</title>
-      </Helmet>
+    <Layout className="page page--gray page--login" title="Login">
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -94,7 +90,6 @@ function Login(): JSX.Element {
               </div>
               <button
                 disabled={!(errors.email === '' && errors.password === '')}
-                //onClick={() => navigate(AppRoute.Root)}
                 className="login__submit form__submit button"
                 type="submit"
               > Sign in
@@ -110,8 +105,7 @@ function Login(): JSX.Element {
           </section>
         </div>
       </main>
-
-    </>
+    </Layout>
   );
 }
 

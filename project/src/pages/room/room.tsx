@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Goods from 'components/goods/goods';
 import Reviews from 'components/reviews/reviews';
 import PropertyGallery from 'components/propertyGallery/propertyGallery';
@@ -12,9 +11,9 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { fetchNearOffersAction, fetchRoomCommentsAction} from 'store/api-actions';
 import { getOffers } from 'store/hotels/selectors';
 import { getNearOffers, getroomComments } from 'store/room/selectors';
+import Layout from 'components/layout/layout';
 
 function Room(): JSX.Element {
-  const [activeRoom, setActiveRoom] = useState<null | number>(null);
   const dispatch = useAppDispatch();
   const roomId = Number(useParams().id);
 
@@ -34,19 +33,23 @@ function Room(): JSX.Element {
     return <p>Информация по жилью не найдена</p>;
   }
 
-  console.log('rooom')
-  const cardMap = [room];
+  let images : string[] = [];
+
+  const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
+
+  while (images.length !== 6) {
+    const index = getRandomInt(room.images.length);
+    images.push(room.images[index]);
+    images = images.filter((v, i, arr) => arr.indexOf(v) === i);
+  }
 
   return (
-    <>
-      <Helmet>
-        <title>Six Cities. Rooms</title>
-      </Helmet>
+    <Layout className="page" title="Rooms">
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {room.images.map((image) => (
+              {images.map((image) => (
                 <PropertyGallery image={image} key={image} />
               ))}
             </div>
@@ -97,19 +100,18 @@ function Room(): JSX.Element {
           </div>
           <Map
             className="property__map map"
-            offers={cardMap}
-            activeOffer={activeRoom}
-            style={{ height: '400px' }}
+            cards={[room, ...nearPlaces]}
+            activeCard={roomId}
+            style={{ height: '600px'}}
           />
         </section>
         <div className="container">
           <NearPlaces
             nearPlaceCards={nearPlaces}
-            setActiveCard={setActiveRoom}
           />
         </div>
       </main>
-    </>
+    </Layout>
   );
 }
 

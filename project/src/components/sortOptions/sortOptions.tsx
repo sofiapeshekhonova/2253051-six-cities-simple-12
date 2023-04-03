@@ -9,7 +9,6 @@ type SortScreenProps = {
 
 function SortOptions({selectedSortItem}: SortScreenProps) {
 
-  console.log('sortOp')
   const dispatch = useAppDispatch();
   const [isOpenSortList, setIsOpenSortList] = useState(false);
 

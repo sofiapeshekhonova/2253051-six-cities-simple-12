@@ -4,7 +4,7 @@ import { Card } from 'types/offer';
 
 type Props = {
   card: Card;
-  setActiveCard: (id: number | null) => void;
+  setActiveCard?: (id: number | null) => void;
 }
 
 function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
@@ -12,15 +12,17 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
   const offerId = `/offer/${id}`;
 
   function mouseOverHandler() {
-    setActiveCard(id);
+    if (setActiveCard !== undefined) {
+      setActiveCard(id);
+    }
   }
 
   function mouseLeaveHandler() {
-    setActiveCard(null);
+    if (setActiveCard !== undefined) {
+      setActiveCard(null);
+    }
   }
 
-
-console.log('placeCard')
   return (
     <article className="cities__card place-card" onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler}>
       <div className={!card.premium ? '' : 'place-card__mark'}>

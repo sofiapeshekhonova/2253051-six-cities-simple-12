@@ -9,7 +9,7 @@ function ReviewItem({ review }: Props): JSX.Element {
   const date = new Date(review.date);
   const month = date.toLocaleString('en-EN', { month: 'long' });
   const year = date.getFullYear();
-  console.log('review')
+
   return (
     <li className="reviews__item">
       <div className="reviews__user user">

@@ -24,11 +24,13 @@ function ReviewsForm({cardId}: Props): JSX.Element {
   function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
     dispatch(postRoomCommentsAction(formData));
-    formData.comment = '';
-    // рейтинг не стирается
-    formData.rating = 0;
+    setFormData({
+      rating: 0,
+      comment: '',
+      cardId
+    });
   }
-  console.log('revForm')
+
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

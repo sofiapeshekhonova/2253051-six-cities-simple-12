@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo } from 'react';
 
 type StarsInputProps = {
   name: string;
@@ -8,7 +8,7 @@ type StarsInputProps = {
 }
 
 function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX.Element {
-  console.log('stars')
+
   return (
     <>
       <input
@@ -18,6 +18,7 @@ function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX
         onChange={handleChange}
         value={starId}
         id={`${starId}-stars`}
+        checked={starId === Number(value)}
       />
       <label
         htmlFor={`${starId}-stars`}
