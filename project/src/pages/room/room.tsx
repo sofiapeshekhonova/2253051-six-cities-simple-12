@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
 import Goods from 'components/goods/goods';
 import Reviews from 'components/reviews/reviews';
 import PropertyGallery from 'components/propertyGallery/propertyGallery';
@@ -8,36 +7,47 @@ import NearPlaces from 'components/nearPlaces/nearPlaces';
 import Host from 'components/host/host';
 import Map from 'components/map/map';
 import { Card } from 'types/offer';
-import { ReviewsType } from 'types/reviews';
-import { useAppSelector } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { fetchNearOffersAction, fetchRoomCommentsAction} from 'store/api-actions';
+import Layout from 'components/layout/layout';
 
-type AppScreenProps = {
-  reviews: ReviewsType[];
-  nearPlaceCards: Card[];
-};
+function Room(): JSX.Element {
+  const dispatch = useAppDispatch();
 
-function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
-  const cards = useAppSelector((state) => state.cards);
   const cardId = Number(useParams().id);
-  const [activeCard, setActiveCard] = useState<null | number>(null);
+
+  useEffect(() => {
+    dispatch(fetchRoomCommentsAction(cardId));
+    dispatch(fetchNearOffersAction(cardId));
+  }, [dispatch, cardId]);
+
+  const cards = useAppSelector((state) => state.cards);
+  const roomComments = useAppSelector((state) => state.roomComments);
+  const nearPlaces = useAppSelector((state) => state.nearHotels);
+
   const card: Card | undefined = cards.find((element) => element.id === cardId);
 
   if (card === undefined) {
     return <p>Информация по жилью не найдена</p>;
   }
 
-  const cardMap = [card];
+  let images : string[] = [];
+
+  const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
+
+  while (images.length !== 6) {
+    const index = getRandomInt(card.images.length);
+    images.push(card.images[index]);
+    images = images.filter((v, i, arr) => arr.indexOf(v) === i);
+  }
 
   return (
-    <>
-      <Helmet>
-        <title>Six Cities. Rooms</title>
-      </Helmet>
+    <Layout className="page" title="Rooms">
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {card.images.map((image) => (
+              {images.map((image) => (
                 <PropertyGallery image={image} key={image} />
               ))}
             </div>
@@ -83,24 +93,23 @@ function Room({ reviews, nearPlaceCards }: AppScreenProps): JSX.Element {
                 </ul>
               </div>
               <Host card={card} />
-              <Reviews reviews={reviews} />
+              <Reviews reviews={roomComments} cardId={cardId}/>
             </div>
           </div>
           <Map
             className="property__map map"
-            cards={cardMap}
-            activeCard={activeCard}
-            style={{ height: '500px' }}
+            cards={[card, ...nearPlaces]}
+            activeCard={cardId}
+            style={{ height: '600px'}}
           />
         </section>
         <div className="container">
           <NearPlaces
-            nearPlaceCards={nearPlaceCards}
-            setActiveCard={setActiveCard}
+            nearPlaceCards={nearPlaces}
           />
         </div>
       </main>
-    </>
+    </Layout>
   );
 }
 

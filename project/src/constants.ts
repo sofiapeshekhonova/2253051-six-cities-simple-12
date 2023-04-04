@@ -8,10 +8,17 @@ export enum AppRoute {
   Room = '/offer/:id',
 }
 
-export const STARS: string[] = ['perfect', 'good','not bad','badly','terribly'];
+// export const STARS: string[] = ['perfect', 'good','not bad','badly','terribly'];
+
+export const STARS = [
+  { id: 5, name: 'perfect' },
+  { id: 4, name: 'good' },
+  { id: 3, name: 'not bad' },
+  { id: 2, name: 'terribly' },
+  { id: 1, name: 'badly' },
+];
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
-
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
 export const sortList = [
@@ -38,6 +45,8 @@ export enum APIRoute {
   Hotels = '/hotels',
   Login = '/login',
   Logout = '/logout',
+  Comments = '/comments',
+  Offer = '/offer'
 }
 
 export enum AuthorizationStatus {

@@ -1,8 +1,9 @@
 import {createReducer} from '@reduxjs/toolkit';
 import { Card } from 'types/offer';
+import { ReviewsType } from 'types/reviews';
 import { UserData } from 'types/user-data';
 import { AuthorizationStatus, CITIES, sortList } from '../constants';
-import { changeCardsSort, changeCity, getUserInformation, loadHotels, requireAuthorization, setCardsDataLoadingStatus } from './action';
+import { changeCardsSort, changeCity, getNearHotels, getRoomComments, getUserInformation, loadHotels, postRoomComments, requireAuthorization, setCardsDataLoadingStatus } from './action';
 
 type InitialState = {
   city: string;
@@ -11,6 +12,8 @@ type InitialState = {
   isCardsDataLoading: boolean;
   authorizationStatus: string;
   userInformation: UserData | null;
+  roomComments: ReviewsType[];
+  nearHotels: Card[];
 };
 
 const defaultState: InitialState = {
@@ -19,7 +22,9 @@ const defaultState: InitialState = {
   sortOption: sortList[0],
   isCardsDataLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  userInformation: null
+  userInformation: null,
+  roomComments: [],
+  nearHotels: [],
 };
 
 const reducer = createReducer(defaultState, (builder) => {
@@ -41,6 +46,15 @@ const reducer = createReducer(defaultState, (builder) => {
     })
     .addCase(getUserInformation, (state, action) => {
       state.userInformation = action.payload;
+    })
+    .addCase(getRoomComments, (state, action) => {
+      state.roomComments = action.payload;
+    })
+    .addCase(postRoomComments, (state, action) => {
+      state.roomComments = action.payload;
+    })
+    .addCase(getNearHotels, (state, action) => {
+      state.nearHotels = action.payload;
     });
 });
 

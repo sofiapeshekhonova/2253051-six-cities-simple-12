@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { BaseIconOptions, Icon, Marker } from 'leaflet';
+import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from 'hooks/useMap';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants';
@@ -28,33 +29,35 @@ type MapScreenProps = {
 }
 
 function Map({ cards, activeCard, className, style }: MapScreenProps): JSX.Element {
+
   const mapRef = useRef(null);
   const city = cards[0].city;
   const map = useMap(mapRef, city);
 
   useEffect(() => {
+    const markers = leaflet.layerGroup();
     if (map) {
       map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
-    }
-  }, [map, city]);
-
-  useEffect(() => {
-    if (map) {
       cards.forEach((card) => {
         const marker = new Marker({
           lat: card.location.latitude,
           lng: card.location.longitude,
         });
+
         marker
           .setIcon(
             card.id === activeCard
               ? currentCustomIcon
               : defaultCustomIcon,
-          )
-          .addTo(map);
+          );
+        marker.addTo(markers);
       });
+      markers.addTo(map);
     }
-  }, [map, cards, activeCard]);
+    return (() => {
+      markers.clearLayers();
+    });
+  }, [map, cards, activeCard, city]);
 
   return (
     <section className={className} ref={mapRef} style={style} />
