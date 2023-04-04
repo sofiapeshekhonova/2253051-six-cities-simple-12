@@ -6,40 +6,42 @@ import PropertyGallery from 'components/propertyGallery/propertyGallery';
 import NearPlaces from 'components/nearPlaces/nearPlaces';
 import Host from 'components/host/host';
 import Map from 'components/map/map';
-import { Card } from 'types/offer';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { fetchNearOffersAction, fetchRoomCommentsAction} from 'store/api-actions';
-import { getOffers } from 'store/hotels/selectors';
+import { fetchActiveOfferAction, fetchNearOffersAction, fetchRoomCommentsAction} from 'store/api-actions';
+import { getActiveOffer, getStatusOffer } from 'store/hotels/selectors';
 import { getNearOffers, getroomComments } from 'store/room/selectors';
 import Layout from 'components/layout/layout';
+import { Status } from '../../constants';
+import LoadingScreen from 'pages/loading-screen/loading-screen';
 
 function Room(): JSX.Element {
   const dispatch = useAppDispatch();
   const roomId = Number(useParams().id);
 
   useEffect(() => {
+    dispatch(fetchActiveOfferAction(roomId));
     dispatch(fetchRoomCommentsAction(roomId));
     dispatch(fetchNearOffersAction(roomId));
   }, [dispatch, roomId]);
 
-  const offers = useAppSelector(getOffers);
   const roomComments = useAppSelector(getroomComments);
   const nearPlaces = useAppSelector(getNearOffers);
+  const status = useAppSelector(getStatusOffer);
+  const offer = useAppSelector(getActiveOffer);
 
-
-  const room: Card | undefined = offers.find((element) => element.id === roomId);
-
-  if (room === undefined) {
-    return <p>Информация по жилью не найдена</p>;
+  if (offer === null || status === Status.Idle || status === Status.Loading) {
+    return (
+      <LoadingScreen />
+    );
   }
 
+  const sortRoomComments = roomComments.slice(0, 9).sort((a,b) => Date.parse(b.date) - Date.parse(a.date));
+
   let images : string[] = [];
-
   const getRandomInt = (max: number) => Math.floor(Math.random() * Math.floor(max));
-
   while (images.length !== 6) {
-    const index = getRandomInt(room.images.length);
-    images.push(room.images[index]);
+    const index = getRandomInt(offer.images.length);
+    images.push(offer.images[index]);
     images = images.filter((v, i, arr) => arr.indexOf(v) === i);
   }
 
@@ -57,50 +59,50 @@ function Room(): JSX.Element {
           <div className="property__container container">
             <div className="property__wrapper">
               <div className="property__mark">
-                <span>{!room.premium ? '' : 'Premium'}</span>
+                <span>{!offer.isPremium ? '' : 'Premium'}</span>
               </div>
               <div className="property__name-wrapper">
-                <h1 className="property__name">{room.title}</h1>
+                <h1 className="property__name">{offer.title}</h1>
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{ width: `${(room.rating / 5) * 100}%` }}></span>
+                  <span style={{ width: `${(offer.rating / 5) * 100}%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">
-                  {room.rating}
+                  {offer.rating}
                 </span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {room.type}
+                  {offer.type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  {room.bedrooms} Bedrooms
+                  {offer.bedrooms} Bedrooms
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max {room.maxAdults} adults
+                  Max {offer.maxAdults} adults
                 </li>
               </ul>
               <div className="property__price">
-                <b className="property__price-value">&euro;{room.price}</b>
+                <b className="property__price-value">&euro;{offer.price}</b>
                 <span className="property__price-text">&nbsp;night</span>
               </div>
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {room.goods.map((item) => (
+                  {offer.goods.map((item) => (
                     <Goods item={item} key={item} />
                   ))}
                 </ul>
               </div>
-              <Host room={room} />
-              <Reviews reviews={roomComments} roomId={roomId}/>
+              <Host room={offer} />
+              <Reviews reviews={sortRoomComments} roomCommentsLength={roomComments.length} roomId={roomId}/>
             </div>
           </div>
           <Map
             className="property__map map"
-            cards={[room, ...nearPlaces]}
+            cards={[offer, ...nearPlaces]}
             activeCard={roomId}
             style={{ height: '600px'}}
           />

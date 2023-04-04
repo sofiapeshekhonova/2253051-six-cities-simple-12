@@ -5,21 +5,22 @@ import SortOptions from 'components/sortOptions/sortOptions';
 import { SortCards } from '../../constants';
 import { useAppSelector } from 'hooks';
 import { getOffers, getStatus } from 'store/hotels/selectors';
-import { selectOffers, selectOffersCity } from 'store/app/selectors';
+import { getSortOffers, getOffersCity } from 'store/app/selectors';
 import LoadingScreen from 'pages/loading-screen/loading-screen';
 import Locations from 'components/locations/locations';
 import Layout from 'components/layout/layout';
+import MainEmpty from 'components/main-empty/main-empty';
 
 function Main(): JSX.Element {
   const [activeOffer, setActiveOffer] = useState<null | number>(null);
 
   const isOffersDataLoading = useAppSelector(getStatus);
 
-  const selectedCity = useAppSelector(selectOffersCity);
+  const selectedCity = useAppSelector(getOffersCity);
   const allOffers = useAppSelector(getOffers);
   const offers = allOffers.filter((card) => card.city.name === selectedCity);
 
-  const selectedSortItem = useAppSelector(selectOffers);
+  const selectedSortItem = useAppSelector(getSortOffers);
   const sortOffers = SortCards(offers, selectedSortItem);
 
   return (
@@ -29,21 +30,21 @@ function Main(): JSX.Element {
         <div className="tabs">
           <Locations />
         </div>
-        <div className="cities">
-          <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {selectedCity}</b>
-              <SortOptions selectedSortItem={selectedSortItem} />
-              {isOffersDataLoading === 'Loading' ? <LoadingScreen /> :
-                <Offers offers={sortOffers} setActiveOffer={setActiveOffer} />}
-            </section>
-            <div className="cities__right-section">
-              {isOffersDataLoading === 'Loading' ? <LoadingScreen /> :
-                <Map className='cities__map map' cards={offers} activeCard={activeOffer} style={{ height: '770px' }} />}
-            </div>
-          </div>
-        </div>
+        {isOffersDataLoading === 'Loading' ? <LoadingScreen /> :
+          <div className="cities">
+            {offers.length === 0 ? <MainEmpty city={selectedCity} /> :
+              <div className="cities__places-container container">
+                <section className="cities__places places">
+                  <h2 className="visually-hidden">Places</h2>
+                  <b className="places__found">{offers.length} places to stay in {selectedCity}</b>
+                  <SortOptions selectedSortItem={selectedSortItem} />
+                  <Offers offers={sortOffers} setActiveOffer={setActiveOffer} />
+                </section>
+                <div className="cities__right-section">
+                  <Map className='cities__map map' cards={offers} activeCard={activeOffer} style={{ height: '770px' }} />
+                </div>
+              </div>}
+          </div>}
       </main>
     </Layout>
   );

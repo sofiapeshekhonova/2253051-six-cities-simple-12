@@ -10,3 +10,7 @@ export const checkAuthorizationStatus = (state: State): boolean =>
   state[NameSpace.User].authorizationStatus !== AuthorizationStatus.Unknown;
 
 export const getUserInformation = (state: State): UserData | null => state[NameSpace.User].userInformation;
+
+export const getLoginStatus = (state: State): string => (
+  state[NameSpace.User].status
+);

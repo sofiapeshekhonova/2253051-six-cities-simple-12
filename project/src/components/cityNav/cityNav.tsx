@@ -1,12 +1,14 @@
+import { useAppSelector } from 'hooks';
 import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
-
+import { getOffersCity } from '../../store/app/selectors';
 type cityProps = {
   city: string;
   handleChangeCity: (city: string) => void;
 };
 
 function CityNav({ city, handleChangeCity }: cityProps): JSX.Element {
+  const activeCity = useAppSelector(getOffersCity);
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
@@ -15,7 +17,7 @@ function CityNav({ city, handleChangeCity }: cityProps): JSX.Element {
 
   return (
     <li className="locations__item" >
-      <Link to={'/'} className="locations__item-link tabs__item" onClick={handleClick}>
+      <Link to={'/'} className={activeCity === city ? 'locations__item-link tabs__item tabs__item--active' : ' locations__item-link tabs__item'} onClick={handleClick}>
         <span>{city}</span>
       </Link>
     </li>

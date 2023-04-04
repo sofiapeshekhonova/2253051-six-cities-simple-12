@@ -5,6 +5,7 @@ import { UserData } from './user-data';
 export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
   userInformation: UserData | null;
+  status: string;
 };
 
 export type State = ReturnType<typeof store.getState>;

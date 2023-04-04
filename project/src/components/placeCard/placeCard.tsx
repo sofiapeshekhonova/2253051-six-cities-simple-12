@@ -25,8 +25,8 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
 
   return (
     <article className="cities__card place-card" onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler}>
-      <div className={!card.premium ? '' : 'place-card__mark'}>
-        <span>{!card.premium ? '' : 'Premium'}</span>
+      <div className={!card.isPremium ? '' : 'place-card__mark'}>
+        <span>{!card.isPremium ? '' : 'Premium'}</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={offerId}>

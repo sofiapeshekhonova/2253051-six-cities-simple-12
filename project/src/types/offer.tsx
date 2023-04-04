@@ -21,7 +21,7 @@ export type CityType = {
 export type Card = {
   title: string;
   previewImage: string;
-  premium: boolean;
+  isPremium: boolean;
   price: number;
   type: string;
   id: number;
