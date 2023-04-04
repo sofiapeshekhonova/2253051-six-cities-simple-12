@@ -100,4 +100,3 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     dropToken();
   },
 );
-

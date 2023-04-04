@@ -65,7 +65,6 @@ function Login(): JSX.Element {
     });
   }
 
-
   return (
     <Layout className="page page--gray page--login" title="Login" navigation={false}>
       <main className="page__main page__main--login">
