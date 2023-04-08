@@ -6,7 +6,7 @@ function NotFoundScreen(): JSX.Element {
   return (
     <>
       <Helmet>
-        <title>Six Cities. Rooms</title>
+        <title>Six Cities</title>
       </Helmet>
       <section className={styles.notFounPage}>
         <h1 className={styles.notFoundPage__title}>Page not found</h1>

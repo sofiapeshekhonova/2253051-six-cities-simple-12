@@ -1,11 +1,18 @@
-import { AppRoute } from '../../constants';
 import { useAppSelector } from 'hooks';
-import { Route, Link, Routes } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import HeaderLogged from './headerLoged';
 import HeaderNotLogged from './headerNotLoged';
+import { getAuthorizationStatus, getUserInformation } from 'store/user-process/selectors';
+import { AppRoute, AuthorizationStatus } from '../../constants';
+import { memo } from 'react';
 
-function Header(): JSX.Element {
-  const user = useAppSelector((state) => state.userInformation);
+type Props = {
+  isLoggedIn: boolean;
+}
+
+function Header({isLoggedIn}: Props): JSX.Element {
+  const user = useAppSelector(getUserInformation);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   return (
     <header className="header">
@@ -16,21 +23,12 @@ function Header(): JSX.Element {
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>
-          <Routes>
-            <Route path={AppRoute.Root} element={
-              user ? <HeaderLogged email={user.email} avatar={user.avatarUrl} /> : <HeaderNotLogged />
-            }
-            />
-            <Route path={AppRoute.Room} element={
-              user ? <HeaderLogged email={user.email} avatar={user.avatarUrl} /> : <HeaderNotLogged />
-            }
-            />
-          </Routes>
+          {isLoggedIn && (authorizationStatus === AuthorizationStatus.Auth ? <HeaderLogged email={user?.email} avatar={user?.avatarUrl} /> : <HeaderNotLogged />)}
         </div>
       </div>
     </header>
   );
 }
 
-export default Header;
+export default memo(Header);
 

@@ -6,9 +6,8 @@ export enum AppRoute {
   Login = '/login',
   Root = '/',
   Room = '/offer/:id',
+  NotFoundPage = '*'
 }
-
-// export const STARS: string[] = ['perfect', 'good','not bad','badly','terribly'];
 
 export const STARS = [
   { id: 5, name: 'perfect' },
@@ -46,11 +45,25 @@ export enum APIRoute {
   Login = '/login',
   Logout = '/logout',
   Comments = '/comments',
-  Offer = '/offer'
+  Room = '/offer'
 }
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
+}
+
+export enum NameSpace {
+  Room = 'ROOM',
+  Hotels = 'HOTELS',
+  User = 'USER',
+  App = 'APP'
+}
+
+export enum Status {
+  Idle = 'Idle',
+  Loading = 'Loading',
+  Success = 'Success',
+  Failed = 'Failed',
 }

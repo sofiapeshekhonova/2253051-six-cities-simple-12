@@ -1,35 +1,54 @@
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { ChangeEvent, FormEvent, useState} from 'react';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
 import { loginAction } from 'store/api-actions';
 import { AuthData } from 'types/auth-data';
 import './form__text-error.css';
+import { Status } from '../../constants';
 import Layout from 'components/layout/layout';
+import { getLoginStatus } from 'store/user-process/selectors';
+
+type Props = {
+  value: string;
+  error: string;
+  regex: RegExp;
+  isValid: boolean;
+  hasValue: boolean;
+}
+
+type FormProps = {
+  [key: string]: Props;
+}
 
 function Login(): JSX.Element {
   const dispatch = useAppDispatch();
+  const loginStatus = useAppSelector(getLoginStatus);
 
-  const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-  });
-
-  const [formValue, setFormValue] = useState({
-    email: '',
-    password: '',
+  const [formValue, setFormValue] = useState<FormProps>({
+    email: {
+      value: '',
+      error: 'Please enter a real email address',
+      regex: /[a-zA-Z0-9._]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}/,
+      isValid: false,
+      hasValue: false,
+    },
+    password: {
+      value: '',
+      error: 'At least one letter and number',
+      regex: /\d+[a-zA-Z]+|[a-zA-Z]+\d+/,
+      isValid: false,
+      hasValue: false,
+    }
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const {name, value} = e.target;
+    const isValid = formValue[name].regex.test(value);
+    const hasValue = !!value.trim();
 
     setFormValue({
       ...formValue,
-      [name]: value,
-    });
-
-    setErrors({
-      ...errors,
-      [name]: e.target.validationMessage,
+      [name]: {...formValue[name], value, isValid, hasValue},
     });
   }
 
@@ -41,14 +60,13 @@ function Login(): JSX.Element {
     e.preventDefault();
 
     onSubmit({
-      login: formValue.email,
-      password: formValue.password,
+      login: formValue.email.value,
+      password: formValue.password.value,
     });
-    // navigate(AppRoute.Root);
   }
 
   return (
-    <Layout className="page page--gray page--login" title="Login">
+    <Layout className="page page--gray page--login" title="Login" isLoggedIn={false}>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">
@@ -57,7 +75,7 @@ function Login(): JSX.Element {
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
                 <input
-                  value={formValue.email || ''}
+                  value={formValue.email.value || ''}
                   onChange={handleChange}
                   className="login__input form__input"
                   type="email"
@@ -68,12 +86,14 @@ function Login(): JSX.Element {
                   minLength={2}
                   required
                 />
-                <span className={'form__text-error_active'}>{errors.email}</span>
+                <span className={!formValue.email.isValid && formValue.email.hasValue ? 'form__text-error_active' : 'form__text-error'}>
+                  {formValue.email.error}
+                </span>
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
                 <input
-                  value={formValue.password || ''}
+                  value={formValue.password.value || ''}
                   onChange={handleChange}
                   className="login__input form__input"
                   autoComplete="off"
@@ -82,16 +102,18 @@ function Login(): JSX.Element {
                   id="password"
                   placeholder="Password"
                   minLength={2}
+                  pattern="^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)[^\s].+"
                   required
                 />
-                <span className={'form__text-error_active'}>{errors.password}</span>
+                <span className={!formValue.password.isValid && formValue.password.hasValue ? 'form__text-error_active' : 'form__text-error'}>
+                  {formValue.password.error}
+                </span>
               </div>
               <button
-                disabled={!(errors.email === '' && errors.password === '')}
-                //onClick={() => navigate(AppRoute.Root)}
+                disabled={!(formValue.email.isValid && formValue.password.isValid) || loginStatus === Status.Loading || loginStatus === Status.Failed}
                 className="login__submit form__submit button"
                 type="submit"
-              > Sign in
+              > {loginStatus === Status.Loading ? 'Loading..' : 'Sign in'}
               </button>
             </form>
           </section>

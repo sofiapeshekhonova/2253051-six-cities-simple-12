@@ -1,8 +1,9 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
-import { STARS } from '../../constants';
+import { STARS, Status } from '../../constants';
 import StarsInput from 'components/starsInput/starsInput';
 import { postRoomCommentsAction } from 'store/api-actions';
-import { useAppDispatch } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { getPost } from 'store/room/selectors';
 
 type Props = {
   cardId: number;
@@ -10,6 +11,8 @@ type Props = {
 
 function ReviewsForm({cardId}: Props): JSX.Element {
   const dispatch = useAppDispatch();
+  const postStatus = useAppSelector(getPost);
+
   const [formData, setFormData] = useState({
     rating: 0,
     comment: '',
@@ -49,10 +52,19 @@ function ReviewsForm({cardId}: Props): JSX.Element {
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          To submit review please make sure to set <span className="reviews__star">rating</span>
+          and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
           {(formData.comment && formData.comment.length < 51) && <b> Сharacters left: {51 - formData.comment.length}</b>}
+          {(formData.comment && formData.comment.length >= 300) && <b > Max 300 Сharacters</b>}
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={(formData.comment.length <= 50 || formData.rating === 0)}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit"
+          disabled={(formData.comment.length <= 50 ||
+            formData.rating === 0 || formData.comment.length >= 300
+            || postStatus === Status.Loading || postStatus === Status.Failed
+          )}
+        >
+          {postStatus === Status.Loading ? 'Loading' : 'Submit'}
+        </button>
       </div>
     </form>
   );

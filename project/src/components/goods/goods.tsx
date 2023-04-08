@@ -3,6 +3,7 @@ type cityProps = {
 }
 
 function Goods({ item }: cityProps): JSX.Element {
+
   return (
     <li className="property__inside-item">
       {item}
