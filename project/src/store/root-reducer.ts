@@ -1,13 +1,13 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { NameSpace } from '../constants';
-import { appProcess } from './app/app-slice';
-import { houtelsProsess } from './hotels/hotels-slice';
-import { roomProcess } from './room/room';
-import { userProcess } from './user-process/user-process';
+import { Namespace } from '../constants';
+import { app } from './app/app';
+import { hotels } from './hotels/hotels';
+import { currentOffer } from './currentOffer/currentOffer';
+import { user } from './user/user';
 
 export const rootReducer = combineReducers({
-  [NameSpace.User]: userProcess.reducer,
-  [NameSpace.Hotels]: houtelsProsess.reducer,
-  [NameSpace.Room]: roomProcess.reducer,
-  [NameSpace.App]: appProcess.reducer,
+  [Namespace.User]: user.reducer,
+  [Namespace.Hotels]: hotels.reducer,
+  [Namespace.Room]: currentOffer.reducer,
+  [Namespace.App]: app.reducer,
 });

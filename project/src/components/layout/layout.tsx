@@ -11,7 +11,7 @@ type LayoutProps = {
 
 const Layout: FC<LayoutProps> = ({ className, title, children, isLoggedIn }) => (
   <div className={className}>
-    <Header isLoggedIn={isLoggedIn}/>
+    <Header isLoggedIn={isLoggedIn} />
     <Helmet>
       <title>Six Cities. {title}</title>
     </Helmet>

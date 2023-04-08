@@ -1,6 +1,6 @@
-import { NameSpace } from '../../constants';
+import { Namespace } from '../../constants';
 import { State } from 'types/state';
 
-export const getOffersCity = (state: State) => state[NameSpace.App].city;
+export const getOffersCity = (state: State) => state[Namespace.App].city;
 
-export const getSortOffers = (state: State) => state[NameSpace.App].sortOption;
+export const getSortOffers = (state: State) => state[Namespace.App].sortOption;

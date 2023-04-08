@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {NameSpace, AuthorizationStatus, Status} from '../../constants';
+import {Namespace, AuthorizationStatus, Status} from '../../constants';
 import {UserProcess} from '../../types/state';
 import { checkAuthAction, loginAction, logoutAction } from '../api-actions';
 
@@ -9,8 +9,8 @@ const initialState: UserProcess = {
   status: Status.Idle,
 };
 
-export const userProcess = createSlice({
-  name: NameSpace.User,
+export const user = createSlice({
+  name: Namespace.User,
   initialState,
   reducers: {},
   extraReducers(builder) {

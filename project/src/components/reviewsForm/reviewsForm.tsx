@@ -3,13 +3,13 @@ import { STARS, Status } from '../../constants';
 import StarsInput from 'components/starsInput/starsInput';
 import { postRoomCommentsAction } from 'store/api-actions';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { getPost } from 'store/room/selectors';
+import { getPost } from 'store/currentOffer/selectors';
 
 type Props = {
   cardId: number;
 }
 
-function ReviewsForm({cardId}: Props): JSX.Element {
+function ReviewsForm({ cardId }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const postStatus = useAppSelector(getPost);
 

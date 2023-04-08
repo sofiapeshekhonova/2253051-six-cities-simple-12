@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
 import SortOptions from 'components/sortOptions/sortOptions';
@@ -18,7 +18,12 @@ function Main(): JSX.Element {
 
   const selectedCity = useAppSelector(getOffersCity);
   const allOffers = useAppSelector(getOffers);
-  const offers = allOffers.filter((card) => card.city.name === selectedCity);
+  // const offers = allOffers.filter((card) => card.city.name === selectedCity);
+
+  const offers = useMemo(
+    () => allOffers.filter((card) => card.city.name === selectedCity),
+    [allOffers, selectedCity]
+  );
 
   const selectedSortItem = useAppSelector(getSortOffers);
   const sortOffers = SortCards(offers, selectedSortItem);

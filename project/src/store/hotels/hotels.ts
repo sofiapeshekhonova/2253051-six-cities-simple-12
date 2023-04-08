@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Card } from 'types/offer';
-import { NameSpace, Status } from '../../constants';
+import { Namespace, Status } from '../../constants';
 import { fetchActiveOfferAction, fetchOffersAction } from '../api-actions';
 
 export type OffersData = {
@@ -17,8 +17,8 @@ const initialState: OffersData = {
   activeOffer: null,
 };
 
-export const houtelsProsess = createSlice({
-  name: NameSpace.Hotels,
+export const hotels = createSlice({
+  name: Namespace.Hotels,
   initialState,
   reducers: {},
   extraReducers(builder) {
