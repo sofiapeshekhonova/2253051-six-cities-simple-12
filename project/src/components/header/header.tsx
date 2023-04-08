@@ -7,10 +7,10 @@ import { AppRoute, AuthorizationStatus } from '../../constants';
 import { memo } from 'react';
 
 type Props = {
-navigation: boolean;
+  isLoggedIn: boolean;
 }
 
-function Header({navigation}: Props): JSX.Element {
+function Header({isLoggedIn}: Props): JSX.Element {
   const user = useAppSelector(getUserInformation);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -23,7 +23,7 @@ function Header({navigation}: Props): JSX.Element {
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>
-          {navigation && (authorizationStatus === AuthorizationStatus.Auth ? <HeaderLogged email={user?.email} avatar={user?.avatarUrl} /> : <HeaderNotLogged />)}
+          {isLoggedIn && (authorizationStatus === AuthorizationStatus.Auth ? <HeaderLogged email={user?.email} avatar={user?.avatarUrl} /> : <HeaderNotLogged />)}
         </div>
       </div>
     </header>

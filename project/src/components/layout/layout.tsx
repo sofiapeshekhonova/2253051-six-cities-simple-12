@@ -6,12 +6,12 @@ type LayoutProps = {
   className: string;
   title: string;
   children: ReactNode;
-  navigation: boolean;
+  isLoggedIn: boolean;
 };
 
-const Layout: FC<LayoutProps> = ({ className, title, children, navigation }) => (
+const Layout: FC<LayoutProps> = ({ className, title, children, isLoggedIn }) => (
   <div className={className}>
-    <Header navigation={navigation}/>
+    <Header isLoggedIn={isLoggedIn}/>
     <Helmet>
       <title>Six Cities. {title}</title>
     </Helmet>

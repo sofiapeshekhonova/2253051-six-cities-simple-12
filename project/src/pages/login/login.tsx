@@ -66,7 +66,7 @@ function Login(): JSX.Element {
   }
 
   return (
-    <Layout className="page page--gray page--login" title="Login" navigation={false}>
+    <Layout className="page page--gray page--login" title="Login" isLoggedIn={false}>
       <main className="page__main page__main--login">
         <div className="page__login-container container">
           <section className="login">

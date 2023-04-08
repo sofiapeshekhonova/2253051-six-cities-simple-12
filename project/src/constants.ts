@@ -9,8 +9,6 @@ export enum AppRoute {
   NotFoundPage = '*'
 }
 
-// export const STARS: string[] = ['perfect', 'good','not bad','badly','terribly'];
-
 export const STARS = [
   { id: 5, name: 'perfect' },
   { id: 4, name: 'good' },

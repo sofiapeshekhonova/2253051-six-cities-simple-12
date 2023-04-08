@@ -1,4 +1,3 @@
-//import Layout from 'components/layout/layout';
 
 type Props = {
   city: string;
@@ -7,7 +6,6 @@ type Props = {
 function MainEmpty({ city }: Props): JSX.Element {
 
   return (
-    // <Layout className="page__main page__main--index page__main--index-empty" title="Main" navigation>
     <div className="cities__places-container cities__places-container--empty container">
       <section className="cities__no-places">
         <div className="cities__status-wrapper tabs__content">
@@ -16,7 +14,6 @@ function MainEmpty({ city }: Props): JSX.Element {
         </div>
       </section>
     </div>
-    // </Layout>
   );
 }
 

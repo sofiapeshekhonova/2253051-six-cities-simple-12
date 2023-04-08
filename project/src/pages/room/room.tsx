@@ -46,7 +46,7 @@ function Room(): JSX.Element {
   }
 
   return (
-    <Layout className="page" title="Rooms" navigation>
+    <Layout className="page" title="Rooms" isLoggedIn>
       <main className="page__main page__main--property">
         <section className="property">
           <div className="property__gallery-container container">
@@ -58,9 +58,7 @@ function Room(): JSX.Element {
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-              <div className="property__mark">
-                <span>{!offer.isPremium ? '' : 'Premium'}</span>
-              </div>
+              {offer.isPremium && <div className='property__mark'><span>Premium</span></div>}
               <div className="property__name-wrapper">
                 <h1 className="property__name">{offer.title}</h1>
               </div>
