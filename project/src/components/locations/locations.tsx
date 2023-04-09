@@ -1,4 +1,4 @@
-import CityNav from 'components/cityNav/cityNav';
+import CityNav from 'components/city-nav/city-nav';
 import { useAppDispatch } from 'hooks';
 import { memo } from 'react';
 import { changeCity } from 'store/app/app';

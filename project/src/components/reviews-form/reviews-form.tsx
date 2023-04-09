@@ -1,6 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { STARS, Status } from '../../constants';
-import StarsInput from 'components/starsInput/starsInput';
+import StarsInput from 'components/stars-input/stars-input';
 import { postRoomCommentsAction } from 'store/api-actions';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { getPost } from 'store/currentOffer/selectors';

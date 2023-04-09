@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import Offers from 'components/offers/offers';
 import Map from 'components/map/map';
-import SortOptions from 'components/sortOptions/sortOptions';
+import SortOptions from 'components/sort-options/sort-options';
 import { SortCards } from '../../constants';
 import { useAppSelector } from 'hooks';
 import { getOffers, getStatus } from 'store/hotels/selectors';
