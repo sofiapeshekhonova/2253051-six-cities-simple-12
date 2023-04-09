@@ -1,5 +1,5 @@
 
-import { NameSpace, Status } from '../../constants';
+import { Namespace, Status } from '../../constants';
 import { Card } from 'types/offer';
 import { ReviewsType } from '../../types/reviews';
 import { fetchNearOffersAction, fetchRoomCommentsAction, postRoomCommentsAction } from '../api-actions';
@@ -17,8 +17,8 @@ const initialState: InitialState = {
   status: Status.Idle,
 };
 
-export const roomProcess = createSlice({
-  name: NameSpace.Room,
+export const currentOffer = createSlice({
+  name: Namespace.Room,
   initialState,
   reducers: {},
   extraReducers(builder) {

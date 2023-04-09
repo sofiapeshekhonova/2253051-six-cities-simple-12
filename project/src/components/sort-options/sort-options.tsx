@@ -1,13 +1,13 @@
 import { useAppDispatch } from 'hooks';
 import { memo, useState } from 'react';
-import { changeOffersSort } from 'store/app/app-slice';
+import { changeOffersSort } from 'store/app/app';
 import { sortList } from '../../constants';
 
 type SortScreenProps = {
   selectedSortItem: string;
 };
 
-function SortOptions({selectedSortItem}: SortScreenProps) {
+function SortOptions({ selectedSortItem }: SortScreenProps) {
 
   const dispatch = useAppDispatch();
   const [isOpenSortList, setIsOpenSortList] = useState(false);
@@ -32,7 +32,7 @@ function SortOptions({selectedSortItem}: SortScreenProps) {
       </span>
       {isOpenSortList && (
         <ul className="places__options places__options--custom places__options--opened" >
-          {sortList.map((item) => <li className='places__option'onClick={() => handelChooseSort(item)} tabIndex={0} key={item}>{item}</li>)}
+          {sortList.map((item) => <li className='places__option' onClick={() => handelChooseSort(item)} tabIndex={0} key={item}>{item}</li>)}
         </ul>
       )}
     </form>

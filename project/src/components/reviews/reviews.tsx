@@ -1,8 +1,8 @@
 import { ReviewsType } from '../../types/reviews';
-import ReviewsForm from 'components/reviewsForm/reviewsForm';
-import ReviewItem from 'components/reviewItem/reviewItem';
+import ReviewsForm from 'components/reviews-form/reviews-form';
+import ReviewItem from 'components/review-item/review-item';
 import { useAppSelector } from 'hooks';
-import { getAuthorizationStatus } from 'store/user-process/selectors';
+import { getAuthorizationStatus } from 'store/user/selectors';
 import { AuthorizationStatus } from '../../constants';
 
 type Props = {
@@ -20,7 +20,7 @@ function Reviews({ reviews, roomId, roomCommentsLength }: Props): JSX.Element {
       <ul className="reviews__list">
         {reviews.map((review) => <ReviewItem review={review} key={review.id} />)}
       </ul>
-      {authorizationStatus === AuthorizationStatus.Auth ? <ReviewsForm cardId={roomId}/> : ''}
+      {authorizationStatus === AuthorizationStatus.Auth && <ReviewsForm cardId={roomId}/> }
     </section>
   );
 }

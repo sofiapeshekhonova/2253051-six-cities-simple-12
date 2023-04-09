@@ -1,8 +1,8 @@
 import { useAppSelector } from 'hooks';
-import { Link} from 'react-router-dom';
-import HeaderLogged from './headerLoged';
-import HeaderNotLogged from './headerNotLoged';
-import { getAuthorizationStatus, getUserInformation } from 'store/user-process/selectors';
+import { Link } from 'react-router-dom';
+import HeaderLogged from './header-loged';
+import HeaderNotLogged from './header-not-loged';
+import { getAuthorizationStatus, getUserInformation } from 'store/user/selectors';
 import { AppRoute, AuthorizationStatus } from '../../constants';
 import { memo } from 'react';
 
@@ -10,7 +10,7 @@ type Props = {
   isLoggedIn: boolean;
 }
 
-function Header({isLoggedIn}: Props): JSX.Element {
+function Header({ isLoggedIn }: Props): JSX.Element {
   const user = useAppSelector(getUserInformation);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 

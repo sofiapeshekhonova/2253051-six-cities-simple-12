@@ -1,15 +1,15 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { STARS, Status } from '../../constants';
-import StarsInput from 'components/starsInput/starsInput';
+import StarsInput from 'components/stars-input/stars-input';
 import { postRoomCommentsAction } from 'store/api-actions';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { getPost } from 'store/room/selectors';
+import { getPost } from 'store/currentOffer/selectors';
 
 type Props = {
   cardId: number;
 }
 
-function ReviewsForm({cardId}: Props): JSX.Element {
+function ReviewsForm({ cardId }: Props): JSX.Element {
   const dispatch = useAppDispatch();
   const postStatus = useAppSelector(getPost);
 
@@ -39,7 +39,7 @@ function ReviewsForm({cardId}: Props): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {STARS.map((star) => (
-          <StarsInput key={star.id} name={star.name} starId={star.id} value={formData.rating} handleChange={handleChange} />
+          <StarsInput key={star.id} name={star.name} starId={star.id} value={formData.rating} onChange={handleChange} />
         ))}
       </div>
       <textarea

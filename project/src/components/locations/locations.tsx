@@ -1,7 +1,7 @@
-import CityNav from 'components/cityNav/cityNav';
+import CityNav from 'components/city-nav/city-nav';
 import { useAppDispatch } from 'hooks';
 import { memo } from 'react';
-import { changeCity } from 'store/app/app-slice';
+import { changeCity } from 'store/app/app';
 import { CITIES } from '../../constants';
 
 function Locations(): JSX.Element {

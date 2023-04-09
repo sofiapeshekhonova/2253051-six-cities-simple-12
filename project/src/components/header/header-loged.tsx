@@ -21,7 +21,7 @@ function HeaderLogged({ email, avatar }: Props): JSX.Element {
         <li className="header__nav-item user">
           <div className="header__nav-profile">
             <div className="header__avatar-wrapper user__avatar-wrapper">
-              <img src={avatar} alt="avatar"/>
+              <img src={avatar} alt="avatar" />
             </div>
             <span className="header__user-name user__name">{email}</span>
           </div>

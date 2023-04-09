@@ -6,7 +6,7 @@ import { AuthData } from 'types/auth-data';
 import './form__text-error.css';
 import { Status } from '../../constants';
 import Layout from 'components/layout/layout';
-import { getLoginStatus } from 'store/user-process/selectors';
+import { getLoginStatus } from 'store/user/selectors';
 
 type Props = {
   value: string;

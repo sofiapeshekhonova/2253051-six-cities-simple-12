@@ -54,7 +54,7 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
-export enum NameSpace {
+export enum Namespace {
   Room = 'ROOM',
   Hotels = 'HOTELS',
   User = 'USER',
