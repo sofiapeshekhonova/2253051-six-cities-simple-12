@@ -4,10 +4,10 @@ type StarsInputProps = {
   name: string;
   starId: number;
   value: number;
-  handleChange: (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  onChange: (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX.Element {
+function StarsInput({ onChange, starId, name, value }: StarsInputProps): JSX.Element {
 
   return (
     <>
@@ -15,7 +15,7 @@ function StarsInput({ handleChange, starId, name, value }: StarsInputProps): JSX
         className="form__rating-input visually-hidden"
         name="rating"
         type="radio"
-        onChange={handleChange}
+        onChange={onChange}
         value={starId}
         id={`${starId}-stars`}
         checked={starId === Number(value)}

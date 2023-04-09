@@ -39,7 +39,7 @@ function ReviewsForm({ cardId }: Props): JSX.Element {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {STARS.map((star) => (
-          <StarsInput key={star.id} name={star.name} starId={star.id} value={formData.rating} handleChange={handleChange} />
+          <StarsInput key={star.id} name={star.name} starId={star.id} value={formData.rating} onChange={handleChange} />
         ))}
       </div>
       <textarea
