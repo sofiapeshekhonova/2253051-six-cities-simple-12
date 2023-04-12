@@ -2,14 +2,15 @@ import { useAppDispatch } from 'hooks';
 import { MouseEvent } from 'react';
 import { logoutAction } from 'store/api-actions';
 import './header__nav_button.css';
+
 type Props = {
   email: string | undefined;
   avatar: string | undefined;
 }
 
 function HeaderLogged({ email, avatar }: Props): JSX.Element {
-
   const dispatch = useAppDispatch();
+
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
     dispatch(logoutAction());

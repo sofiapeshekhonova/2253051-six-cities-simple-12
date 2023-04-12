@@ -1,3 +1,7 @@
+// import { roomTypeToLable } from "constants";
+// import { RoomType } from "constants";
+
+import { RoomType } from '../constants';
 
 export type Host = {
   avatarUrl: string;
@@ -16,14 +20,19 @@ export type CityType = {
   location: Location;
   name: string;
 };
-
+export type Room = {
+  apartment: string;
+  room: string;
+  house: string;
+  hotel: string;
+};
 
 export type Card = {
   title: string;
   previewImage: string;
   isPremium: boolean;
   price: number;
-  type: string;
+  type: keyof typeof RoomType;
   id: number;
   maxAdults: number;
   bedrooms: number;

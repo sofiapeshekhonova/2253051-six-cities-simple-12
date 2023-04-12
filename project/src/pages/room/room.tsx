@@ -11,7 +11,7 @@ import { fetchActiveOfferAction, fetchNearOffersAction, fetchRoomCommentsAction}
 import { getActiveOffer, getStatusOffer } from 'store/hotels/selectors';
 import { getNearOffers, getroomComments } from 'store/currentOffer/selectors';
 import Layout from 'components/layout/layout';
-import { Status } from '../../constants';
+import { RoomType, Status} from '../../constants';
 import LoadingScreen from 'pages/loading-screen/loading-screen';
 
 function Room(): JSX.Element {
@@ -66,7 +66,7 @@ function Room(): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{ width: `${(rating / 5) * 100}%` }}></span>
+                  <span style={{ width: `${ Math.round(rating) * 20 }%` }}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">
@@ -75,7 +75,7 @@ function Room(): JSX.Element {
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
-                  {type}
+                  {RoomType[type]}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
                   {bedrooms} Bedrooms
