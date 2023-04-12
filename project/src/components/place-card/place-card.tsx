@@ -1,6 +1,7 @@
 import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'types/offer';
+import { RoomType} from '../../constants';
 
 type Props = {
   card: Card;
@@ -8,7 +9,7 @@ type Props = {
 }
 
 function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
-  const { id } = card;
+  const { id, type } = card;
   const offerId = `/offer/${id}`;
 
   function mouseOverHandler() {
@@ -40,14 +41,14 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${Math.round(card.rating / 5 * 100)}%` }} />
+            <span style={{ width: `${ Math.round(card.rating) * 20 }%` }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={offerId}>{card.title}</Link>
         </h2>
-        <p className="place-card__type">{card.type}</p>
+        <p className="place-card__type">{RoomType[type]}</p>
       </div>
     </article>
   );

@@ -29,15 +29,18 @@ export const sortList = [
 
 export function SortCards(cards: Card[], sortListItem: string) {
   switch (sortListItem) {
+    case sortList[0]:
+      return cards;
     case sortList[1]:
-      return cards.sort((a, b) => a.price - b.price);
+      return cards.slice().sort((a, b) => a.price - b.price);
     case sortList[2]:
-      return cards.sort((b, a) => a.price - b.price);
+      return cards.slice().sort((b, a) => a.price - b.price);
     case sortList[3]:
-      return cards.sort((b, a) => a.rating - b.rating);
+      return cards.slice().sort((b, a) => a.rating - b.rating);
     default:
       return cards;
   }
+
 }
 
 export enum APIRoute {
@@ -67,3 +70,29 @@ export enum Status {
   Success = 'Success',
   Failed = 'Failed',
 }
+
+export enum RoomType {
+  apartment = 'Apartment',
+  room = 'Private room',
+  house = 'House',
+  hotel = 'Hotel',
+}
+
+export const SORT_LIST = {
+  DEFAULT: {
+    name: 'Popular',
+    sortProperty: 'default',
+  },
+  PRICE_HIGH: {
+    name: 'Price: high to low',
+    sortProperty: 'price',
+  },
+  PRICE_LOW: {
+    name: 'Price: low to high',
+    sortProperty: '-price',
+  },
+  RATING: {
+    name: 'Top rated first',
+    sortProperty: 'rating',
+  },
+};
