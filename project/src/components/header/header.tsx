@@ -1,7 +1,7 @@
 import { useAppSelector } from 'hooks';
 import { Link } from 'react-router-dom';
-import HeaderLogged from './header-loged';
-import HeaderNotLogged from './header-not-loged';
+import HeaderLogged from './header-logged';
+import HeaderNotLogged from './header-not-logged';
 import { getAuthorizationStatus, getUserInformation } from 'store/user/selectors';
 import { AppRoute, AuthorizationStatus } from '../../constants';
 import { memo } from 'react';

@@ -19,12 +19,12 @@ function ReviewsForm({ cardId }: Props): JSX.Element {
     cardId
   });
 
-  function handleChange(evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  const handleChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = evt.target;
     setFormData({ ...formData, [name]: value });
-  }
+  };
 
-  function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     dispatch(postRoomCommentsAction(formData));
     setFormData({
@@ -32,7 +32,7 @@ function ReviewsForm({ cardId }: Props): JSX.Element {
       comment: '',
       cardId
     });
-  }
+  };
 
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={handleSubmit}>

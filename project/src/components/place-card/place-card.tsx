@@ -12,17 +12,17 @@ function PlaceCard({ card, setActiveCard }: Props): JSX.Element {
   const { id, type } = card;
   const offerId = `/offer/${id}`;
 
-  function mouseOverHandler() {
+  const mouseOverHandler = () => {
     if (setActiveCard !== undefined) {
       setActiveCard(id);
     }
-  }
+  };
 
-  function mouseLeaveHandler() {
+  const mouseLeaveHandler = () => {
     if (setActiveCard !== undefined) {
       setActiveCard(null);
     }
-  }
+  };
 
   return (
     <article className="cities__card place-card" onMouseOver={mouseOverHandler} onMouseLeave={mouseLeaveHandler}>

@@ -2,12 +2,12 @@ import { useAppSelector } from 'hooks';
 import { MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { getOffersCity } from '../../store/app/selectors';
-type cityProps = {
+type СityProps = {
   city: string;
   handleChangeCity: (city: string) => void;
 };
 
-function CityNav({ city, handleChangeCity }: cityProps): JSX.Element {
+function CityNav({ city, handleChangeCity }: СityProps): JSX.Element {
   const activeCity = useAppSelector(getOffersCity);
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {

@@ -77,22 +77,3 @@ export enum RoomType {
   house = 'House',
   hotel = 'Hotel',
 }
-
-export const SORT_LIST = {
-  DEFAULT: {
-    name: 'Popular',
-    sortProperty: 'default',
-  },
-  PRICE_HIGH: {
-    name: 'Price: high to low',
-    sortProperty: 'price',
-  },
-  PRICE_LOW: {
-    name: 'Price: low to high',
-    sortProperty: '-price',
-  },
-  RATING: {
-    name: 'Top rated first',
-    sortProperty: 'rating',
-  },
-};

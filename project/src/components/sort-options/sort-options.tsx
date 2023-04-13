@@ -12,14 +12,14 @@ function SortOptions({ selectedSortItem }: SortScreenProps) {
   const dispatch = useAppDispatch();
   const [isOpenSortList, setIsOpenSortList] = useState(false);
 
-  function handelOpenSortList() {
+  const handelOpenSortList = () => {
     setIsOpenSortList(true);
-  }
+  };
 
-  function handelChooseSort(item: string) {
+  const handelChooseSort = (item: string) => {
     dispatch(changeOffersSort(item));
     setIsOpenSortList(false);
-  }
+  };
 
   return (
     <form className="places__sorting" action="#" method="get">

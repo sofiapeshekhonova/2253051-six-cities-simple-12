@@ -1,6 +1,3 @@
-// import { roomTypeToLable } from "constants";
-// import { RoomType } from "constants";
-
 import { RoomType } from '../constants';
 
 export type Host = {
