@@ -20,9 +20,9 @@ function Login(): JSX.Element {
   const rand = Math.floor(Math.random() * CITIES.length);
   const randomCity = CITIES[rand];
 
-  function handleChangeCity() {
+  const handleChangeCity = () => {
     dispatch(changeCity(randomCity));
-  }
+  };
 
   return (
     <Layout className="page page--gray page--login" title="Login" isLoggedIn={false}>

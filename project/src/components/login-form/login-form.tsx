@@ -38,7 +38,7 @@ function LoginForm(): JSX.Element {
     }
   });
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     const isValid = formValue[name].regex.test(value);
     const hasValue = !!value.trim();
@@ -47,20 +47,20 @@ function LoginForm(): JSX.Element {
       ...formValue,
       [name]: { ...formValue[name], value, isValid, hasValue },
     });
-  }
+  };
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
   };
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     onSubmit({
       login: formValue.email.value,
       password: formValue.password.value,
     });
-  }
+  };
 
   return (
     <form className="login__form form" action="#" method="post" onSubmit={handleSubmit} noValidate>
@@ -94,7 +94,6 @@ function LoginForm(): JSX.Element {
           id="password"
           placeholder="Password"
           minLength={2}
-          pattern="^(?=.*[a-zA-Zа-яА-Я])(?=.*\d)[^\s].+"
           required
         />
         <span className={!formValue.password.isValid && formValue.password.hasValue ? 'form__text-error_active' : 'form__text-error'}>

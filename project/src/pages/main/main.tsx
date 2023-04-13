@@ -18,7 +18,6 @@ function Main(): JSX.Element {
 
   const selectedCity = useAppSelector(getOffersCity);
   const allOffers = useAppSelector(getOffers);
-  // const offers = allOffers.filter((card) => card.city.name === selectedCity);
 
   const offers = useMemo(
     () => allOffers.filter((card) => card.city.name === selectedCity),

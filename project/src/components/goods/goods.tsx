@@ -1,8 +1,8 @@
-type cityProps = {
+type СityProps = {
   item: string;
 }
 
-function Goods({ item }: cityProps): JSX.Element {
+function Goods({ item }: СityProps): JSX.Element {
 
   return (
     <li className="property__inside-item">

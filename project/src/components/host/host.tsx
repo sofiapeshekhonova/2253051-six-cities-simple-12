@@ -18,7 +18,7 @@ function Host({ room }: Props): JSX.Element {
           {host.name}
         </span>
         <span className="property__user-status">
-          {!host.isPro ? '' : 'Pro'}
+          {host.isPro && 'Pro'}
         </span>
       </div>
       <div className="property__description">

@@ -6,13 +6,12 @@ import useMap from 'hooks/useMap';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../constants';
 import { Card } from 'types/offer';
 
-function createIcon(icon: string): BaseIconOptions {
-  return {
-    iconUrl: icon,
-    iconSize: [30, 40],
-    iconAnchor: [20, 40],
-  };
-}
+const createIcon = (icon: string): BaseIconOptions => ({
+  iconUrl: icon,
+  iconSize: [30, 40],
+  iconAnchor: [20, 40],
+});
+
 
 const defaultCustomIcon = new Icon(createIcon(URL_MARKER_DEFAULT));
 const currentCustomIcon = new Icon(createIcon(URL_MARKER_CURRENT));
